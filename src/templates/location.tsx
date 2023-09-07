@@ -23,13 +23,13 @@ import {
 import { isProduction } from "@yext/pages/util";
 import "../index.css";
 import Favicon from "../assets/images/yext-favicon.ico";
-import About from "../components/About";
-import Banner from "../components/Banner";
-import Details from "../components/Details";
-import Hours from "../components/Hours";
-import PageLayout from "../components/PageLayout";
-import EditTool from "../components/EditTool";
-import BreadCrumbs from "../components/Breadcrumbs";
+import About from "../components/starter/About";
+import Banner from "../components/starter/Banner";
+import Details from "../components/starter/Details";
+import Hours from "../components/starter/Hours";
+import PageLayout from "../components/common/PageLayout";
+import EditTool from "../components/starter/EditTool";
+import BreadCrumbs from "../components/starter/Breadcrumbs";
 
 /**
  * Required when Knowledge Graph data is used for a template.

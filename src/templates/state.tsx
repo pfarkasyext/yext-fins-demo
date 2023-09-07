@@ -13,11 +13,11 @@ import {
 import { isProduction } from "@yext/pages/util";
 import "../index.css";
 import Favicon from "../assets/images/yext-favicon.ico";
-import Banner from "../components/Banner";
-import DirectoryStateGrid from "../components/DirectoryStateGrid";
-import PageLayout from "../components/PageLayout";
-import EditTool from "../components/EditTool";
-import Breadcrumbs from "../components/Breadcrumbs";
+import Banner from "../components/starter/Banner";
+import DirectoryStateGrid from "../components/starter/DirectoryStateGrid";
+import PageLayout from "../components/common/PageLayout";
+import EditTool from "../components/starter/EditTool";
+import Breadcrumbs from "../components/starter/Breadcrumbs";
 
 export const config: TemplateConfig = {
   stream: {

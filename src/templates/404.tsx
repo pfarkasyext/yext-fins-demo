@@ -9,8 +9,8 @@ import {
   TemplateProps,
   TemplateRenderProps,
 } from "@yext/pages";
-import Banner from "../components/Banner";
-import PageLayout from "../components/PageLayout";
+import Banner from "../components/starter/Banner";
+import PageLayout from "../components/common/PageLayout";
 import Favicon from "../assets/images/yext-favicon.ico";
 
 export const config: TemplateConfig = {

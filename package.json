@@ -21,18 +21,25 @@
     "node": ">=17"
   },
   "dependencies": {
+    "@fontsource/lato": "^5.0.11",
     "@headlessui/react": "^1.7.12",
     "@heroicons/react": "^2.0.14",
-    "classnames": "^2.3.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-phone-number-input": "^3.2.19",
-    "tailwind-merge": "^1.6.2",
+    "@radix-ui/react-navigation-menu": "^1.1.3",
+    "@radix-ui/react-slot": "^1.0.2",
     "@yext/components-tsx-maps": "^1.0.11",
     "@yext/react-components": "^0.0.6",
     "@yext/search-headless-react": "^2.3.0",
     "@yext/search-ui-react": "^1.3.0",
-    "@yext/sites-components": "^1.0.0-rc.2"
+    "@yext/sites-components": "^1.0.0-rc.2",
+    "class-variance-authority": "^0.7.0",
+    "classnames": "^2.3.2",
+    "clsx": "^2.0.0",
+    "lucide-react": "^0.274.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-phone-number-input": "^3.2.19",
+    "tailwind-merge": "^1.14.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/react": "^17.0.49",

@@ -5,7 +5,7 @@ import {
   Instagram,
   Twitter,
   YouTube,
-} from "../assets/svgs/SocialIcons";
+} from "../../assets/svgs/SocialIcons";
 
 export interface FooterProps {
   _site?: any;

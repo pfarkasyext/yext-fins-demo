@@ -1,6 +1,6 @@
 import * as React from "react";
-import { DirectoryParent } from "../types/DirectoryParent";
-import { DirectoryChild } from "../types/DirectoryChild";
+import { DirectoryParent } from "../../types/DirectoryParent";
+import { DirectoryChild } from "../../types/DirectoryChild";
 
 interface DirectoryGridProps {
   name?: string;

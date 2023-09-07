@@ -1,7 +1,7 @@
 import * as React from "react";
-import PageLayout from "../components/PageLayout";
-import Banner from "../components/Banner";
-import DirectoryRootGrid from "../components/DirectoryRootGrid";
+import PageLayout from "../components/common/PageLayout";
+import Banner from "../components/starter/Banner";
+import DirectoryRootGrid from "../components/starter/DirectoryRootGrid";
 import Favicon from "../assets/images/yext-favicon.ico";
 import "../index.css";
 import {
