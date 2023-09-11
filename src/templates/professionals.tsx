@@ -28,9 +28,10 @@ export const config: TemplateConfig = {
   stream: {
     $id: "professionals",
     localization: { locales: ["en"], primary: false },
-    filter: { entityTypes: ["financialProfessional"] },
+    filter: { entityTypes: ["financialProfessional"], savedFilterIds: ["1339778047"] },
     fields: [
       "name",
+      "id",
       "description",
       "headshot",
       "slug",
@@ -51,7 +52,7 @@ export const config: TemplateConfig = {
   },
 };
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
-  return document.slug ?? document.entityId.toString();
+  return document.slug ?? document.id.toString();
 };
 
 export default function Professional({ document, __meta }: TemplateProps) {
