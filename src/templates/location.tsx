@@ -1,200 +1,226 @@
-/**
- * This is an example of how to create a template that makes use of streams data.
- * The stream data originates from Yext's Knowledge Graph. When a template in
- * concert with a stream is built by the Yext Pages system, a static html page
- * is generated for every corresponding (based on the filter) stream document.
- *
- * Another way to think about it is that a page will be generated using this
- * template for every eligible entity in your Knowledge Graph.
- */
-
-import * as React from "react";
-import {
-  GetHeadConfig,
-  GetPath,
-  GetRedirects,
-  HeadConfig,
-  Template,
-  TemplateConfig,
-  TemplateProps,
-  TemplateRenderProps,
-  TransformProps,
-} from "@yext/pages";
-import { isProduction } from "@yext/pages/util";
+import { GetPath, TemplateConfig, TemplateProps } from "@yext/pages";
+import CenteredContainer from "../components/CenteredContainer";
+import GridContainer from "../components/GridContainer";
+import PageLayout from "../components/PageLayout";
+import Paragraph from "../components/Paragraph";
+import Title from "../components/Title";
+import VerticalStack from "../components/VerticalStack";
 import "../index.css";
-import Favicon from "../assets/images/yext-favicon.ico";
-import About from "../components/starter/About";
-import Banner from "../components/starter/Banner";
-import Details from "../components/starter/Details";
-import Hours from "../components/starter/Hours";
-import PageLayout from "../components/common/PageLayout";
-import EditTool from "../components/starter/EditTool";
-import BreadCrumbs from "../components/starter/Breadcrumbs";
-
-/**
- * Required when Knowledge Graph data is used for a template.
- */
+import HorizontalStack from "../components/HorizontalStack";
+import HeroImage from "../components/HeroImage";
+import { LocationMap } from "@yext/pages/components";
+import { GoogleMaps } from "@yext/components-tsx-maps";
+import Articles from "../components/Articles";
+import MapDescription from "../components/MapDescription";
+import ItemsGrid from "../components/ItemsGrid";
+import Item from "../components/Item";
+import HeroSection from "../components/LocationHeroSection";
+import AdvisorInfo from "../components/AdvisorInfo";
+import "@fontsource/lato/100.css";
+import "@fontsource/lato/300.css";
+import "@fontsource/lato/400.css";
+import "@fontsource/lato/700.css";
+import "@fontsource/lato/900.css";
+import "@fontsource/lato/100-italic.css";
+import "@fontsource/lato/300-italic.css";
+import "@fontsource/lato/400-italic.css";
+import "@fontsource/lato/700-italic.css";
+import "@fontsource/lato/900-italic.css";
+import "../index.css";
 export const config: TemplateConfig = {
   stream: {
-    $id: "location-stream",
-    // Defines the scope of entities that qualify for this stream.
-    // You can use entityTypes, savedFilterIds, and/or entityIds
-    filter: {
-      entityTypes: ["location"],
-    },
-    // Specifies the exact data that each generated document will contain.
-    // This data is passed in directly as props to the default exported function.
+    $id: "locations",
+    localization: { locales: ["en"], primary: false },
+    filter: { entityTypes: ["location"] },
     fields: [
-      "id",
-      "uid",
-      "meta",
       "name",
+      "description",
+      "slug",
+      "photoGallery",
+      "logo",
+      "emails",
       "address",
       "mainPhone",
-      "description",
-      "hours",
-      "slug",
       "geocodedCoordinate",
-      "services",
-      "photoGallery",
-      "dm_directoryParents.name",
-      "dm_directoryParents.slug",
-      "dm_directoryParents.meta",
-      "dm_directoryParents.c_addressRegionDisplayName",
+      "fins_relatedServices.name",
+      "fins_relatedServices.description",
+      "fins_relatedServices.fins_servicesImage",
+      "c_linkedInsightsArticles.name",
+      "c_linkedInsightsArticles.c_insightsArticleBody",
+      "c_linkedInsightsArticles.primaryPhoto",
+      "fins_relatedProfessionals.name",
+      "fins_relatedProfessionals.headshot",
+      "fins_relatedProfessionals.fins_jobTitle",
+      "fins_relatedProfessionals.c_fPBio",
+      "fins_relatedProfessionals.emails",
     ],
-    // The entity language profiles that documents will be generated for.
-    localization: {
-      locales: ["en"],
-      primary: false,
-    },
-    transform: {
-      replaceOptionValuesWithDisplayNames: ["paymentOptions"],
-    },
   },
 };
-
-/**
- * Defines the path that the generated file will live at for production.
- *
- * NOTE: To preview production URLs locally, you must return document.slug from this function
- * and ensure that each entity has the slug field pouplated.
- */
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
-  return document.slug
-    ? document.slug
-    : `${document.locale}/${document.address.region}/${document.address.city}/${
-        document.address.line1
-      }-${document.id.toString()}`;
+  return document.slug ?? document.entityId.toString();
 };
 
-/**
- * Defines a list of paths which will redirect to the path created by getPath.
- *
- * NOTE: This currently has no impact on the local dev path. Redirects will be setup on
- * a new deploy.
- */
-export const getRedirects: GetRedirects<TemplateProps> = ({ document }) => {
-  return [`index-old/${document.locale}/${document.id.toString()}`];
-};
-
-/**
- * This allows the user to define a function which will take in their template
- * data and produce a HeadConfig object. When the site is generated, the HeadConfig
- * will be used to generate the inner contents of the HTML document's <head> tag.
- * This can include the title, meta tags, script tags, etc.
- */
-export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
-  document,
-}): HeadConfig => {
-  return {
-    title: document.name,
-    charset: "UTF-8",
-    viewport: "width=device-width, initial-scale=1",
-    tags: [
-      {
-        type: "meta",
-        attributes: {
-          name: "description",
-          content: document.description,
-        },
-      },
-      {
-        type: "link",
-        attributes: {
-          rel: "icon",
-          type: "image/x-icon",
-          href: Favicon,
-        },
-      },
-    ],
-  };
-};
-
-/**
- * Required only when data needs to be retrieved from an external (non-Knowledge Graph) source.
- * If the page is truly static this function is not necessary.
- *
- * This function will be run during generation and pass in directly as props to the default
- * exported function.
- */
-export const transformProps: TransformProps<any> = async (data) => {
-  const { dm_directoryParents, name } = data.document;
-
-  (dm_directoryParents || []).push({ name: name, slug: "" });
-
-  return {
-    ...data,
-    document: {
-      ...data.document,
-      dm_directoryParents: dm_directoryParents,
-    },
-  };
-};
-
-/**
- * This is the main template. It can have any name as long as it's the default export.
- * The props passed in here are the direct stream document defined by `config`.
- *
- * There are a bunch of custom components being used from the src/components folder. These are
- * an example of how you could create your own. You can set up your folder structure for custom
- * components any way you'd like as long as it lives in the src folder (though you should not put
- * them in the src/templates folder as this is specific for true template files).
- */
-const Location: Template<TemplateRenderProps> = ({
-  relativePrefixToRoot,
-  document,
-}) => {
-  const {
-    name,
-    address,
-    hours,
-    mainPhone,
-    services,
-    description,
-    siteDomain,
-    dm_directoryParents,
-  } = document;
+export default function Location({ document, __meta }: TemplateProps) {
+  const mappinSVG = (
+    <svg
+      width="56"
+      height="58"
+      viewBox="0 0 56 58"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M28.0951 1C33.1149 1 37.6595 3.03469 40.9491 6.32432C44.2388 9.61396 46.2734 14.1586 46.2734 19.1784C46.2734 25.9554 40.1704 38.558 28.0941 57C16.019 38.5565 9.91669 25.955 9.91669 19.1784C9.91669 14.1586 11.9514 9.61396 15.241 6.32432C18.5307 3.03469 23.0752 1 28.0951 1Z"
+        fill="#0F70F0"
+        stroke="black"
+        strokeOpacity="0.5"
+      />
+      <path
+        d="M28.095 27.2577C32.5571 27.2577 36.1743 23.6405 36.1743 19.1784C36.1743 14.7163 32.5571 11.0991 28.095 11.0991C23.633 11.0991 20.0157 14.7163 20.0157 19.1784C20.0157 23.6405 23.633 27.2577 28.095 27.2577Z"
+        fill="white"
+      />
+    </svg>
+  );
+  const formattedPhone = `${document.mainPhone.substring(
+    0,
+    2
+  )} (${document.mainPhone.substring(2, 5)}) ${document.mainPhone.substring(
+    5,
+    8
+  )}-${document.mainPhone.substring(8)}`;
 
   return (
-    <>
-      <PageLayout>
-        <Banner name={name} address={address} />
-        <div className="centered-container">
-          <BreadCrumbs
-            breadcrumbs={dm_directoryParents}
-            baseUrl={relativePrefixToRoot}
+    <PageLayout>
+      <CenteredContainer>
+        <HeroSection
+          backgroundImage={document.photoGallery[0].image.url}
+          name={document.name}
+          city={document.address.city}
+          addressLine1={document.address.line1}
+          addressLine2={`${document.address.city}, ${document.address.region} ${document.address.postalCode}`}
+          email={document.emails[0]}
+          phone={formattedPhone}
+          textColor="#fff"
+        ></HeroSection>
+        <HorizontalStack
+          backgroundColor="#F9FAFB"
+          spacing={"0"}
+          leftMargin={"0"}
+          rightMargin={"0"}
+          topMargin={"0"}
+          bottomMargin={"0"}
+          alignment={"top"}
+          verticalOnMobile={"true"}
+        >
+          <HeroImage
+            src={document.fins_relatedProfessionals[0].headshot.url}
+            alt={""}
+            leftPadding={"0"}
+          ></HeroImage>
+          <AdvisorInfo
+            name={document.fins_relatedProfessionals[0].name}
+            title={document.fins_relatedProfessionals[0].fins_jobTitle}
+            email={document.fins_relatedProfessionals[0].emails}
+            description={document.fins_relatedProfessionals[0].description}
+            textColor="#333333"
+          ></AdvisorInfo>
+        </HorizontalStack>
+        <ItemsGrid title="Our Services" columns={3}>
+          <Item
+            name={document.fins_relatedServices[0].name}
+            image={document.fins_relatedServices[0]?.fins_servicesImage.url}
+            description={document.fins_relatedServices[0]?.description}
           />
-          <div className="grid gap-x-10 gap-y-10 md:grid-cols-2">
-            <Details address={address} phone={mainPhone} services={services} />
-            {hours && <Hours title={"Restaurant Hours"} hours={hours} />}
-            {description && <About name={name} description={description} />}
-          </div>
-        </div>
-      </PageLayout>
-      {/* This component displays a link to the entity that represents the given page in the Knowledge Graph*/}
-      {!isProduction(siteDomain) && <EditTool data={document} />}
-    </>
-  );
-};
+          <Item
+            name={document.fins_relatedServices[1]?.name}
+            image={document.fins_relatedServices[1]?.fins_servicesImage.url}
+            description={document.fins_relatedServices[1]?.description}
+          />
+          <Item
+            name={document.fins_relatedServices[2]?.name}
+            image={document.fins_relatedServices[2]?.fins_servicesImage.url}
+            description={document.fins_relatedServices[2]?.description}
+          />
+        </ItemsGrid>
+        <VerticalStack
+          alignment="left"
+          rightMargin="0"
+          leftMargin="0"
+          bottomMargin="0"
+          topMargin="0"
+          spacing="0"
+          backgroundColor="#F9FAFB"
+        >
+          <Title
+            value={`About ${document.name}`}
+            textSize="4xl"
+            fontWeight="medium"
+            topMargin="4"
+            bottomMargin="4"
+            textColor="#1C2E5E"
+          />
+          <Paragraph
+            value={`${document.description}`}
+            textSize="base"
+            fontWeight="normal"
+            bottomMargin="6"
+          />
+        </VerticalStack>
+        <Title
+          value={`Insights`}
+          textSize="4xl"
+          fontWeight="medium"
+          topMargin="4"
+          bottomMargin="8"
+          textColor="#1C2E5E"
+        />
+        <Articles articles={document.c_linkedInsightsArticles} />
+        <Title
+          value={`Let's Talk`}
+          textSize="4xl"
+          fontWeight="medium"
+          topMargin="4"
+          bottomMargin="2"
+          backgroundColor="#F9FAFB"
+          textColor="#1C2E5E"
+        />
+        <GridContainer backgroundColor="#F9FAFB">
+          <MapDescription
+            description={document.description}
+            email={document.emails[0]}
+            phone={formattedPhone}
+            textColor="#333333"
+          />
 
-export default Location;
+          <LocationMap
+            className="h-full"
+            clientKey="gme-yextinc"
+            coordinate={document.geocodedCoordinate}
+            provider={GoogleMaps}
+          >
+            {
+              <svg
+                width="56"
+                height="58"
+                viewBox="0 0 56 58"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M28.0951 1C33.1149 1 37.6595 3.03469 40.9491 6.32432C44.2388 9.61396 46.2734 14.1586 46.2734 19.1784C46.2734 25.9554 40.1704 38.558 28.0941 57C16.019 38.5565 9.91669 25.955 9.91669 19.1784C9.91669 14.1586 11.9514 9.61396 15.241 6.32432C18.5307 3.03469 23.0752 1 28.0951 1Z"
+                  fill="#0F70F0"
+                  stroke="black"
+                  strokeOpacity="0.5"
+                />
+                <path
+                  d="M28.095 27.2577C32.5571 27.2577 36.1743 23.6405 36.1743 19.1784C36.1743 14.7163 32.5571 11.0991 28.095 11.0991C23.633 11.0991 20.0157 14.7163 20.0157 19.1784C20.0157 23.6405 23.633 27.2577 28.095 27.2577Z"
+                  fill="white"
+                />
+              </svg>
+            }
+          </LocationMap>
+        </GridContainer>
+      </CenteredContainer>
+    </PageLayout>
+  );
+}
