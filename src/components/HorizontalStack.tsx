@@ -84,20 +84,35 @@ const HorizontalStack = ({
   };
 
   return (
-    <div
-      className="w-full bg-cover bg-center"
-      style={{
-        backgroundImage: `url(${backgroundImage})`,
-      }}
-    >
-      <div className={`bg-hero-blue/80`}>
-        <div
-          className={`flex content-center justify-center h-[482px] ${responsiveVariants[verticalOnMobile]} ${alignmentVariants[alignment]} ${spacingVariants[spacing]} ${topMarginVariants[topMargin]} ${bottomMarginVariants[bottomMargin]} ${leftMarginVariants[leftMargin]} ${rightMarginVariants[rightMargin]}`}
-        >
-          {children}
+    // <div
+    //   className="w-full bg-cover bg-center"
+    //   style={{
+    //     backgroundImage: `url(${backgroundImage})`,
+    //   }}
+    // >
+    //   <div className={`bg-hero-blue/80`}>
+    //     <div
+    //       className={`flex content-center justify-center h-[482px] ${responsiveVariants[verticalOnMobile]} ${alignmentVariants[alignment]} ${spacingVariants[spacing]} ${topMarginVariants[topMargin]} ${bottomMarginVariants[bottomMargin]} ${leftMarginVariants[leftMargin]} ${rightMarginVariants[rightMargin]}`}
+    //     >
+    //       {children}
+    //     </div>
+    //   </div>
+    // </div>
+    <>
+      <div className="relative overflow-hidden min-h-fit bg-blue-950 bg-opacity-80">
+        <img
+          src={backgroundImage}
+          className="object-cover absolute -z-10 w-fit object-bottom"
+        />
+        <div className="flex flex-col justify-between p-8 h-full">
+          <div
+            className={`flex content-center justify-center h-[482px] ${responsiveVariants[verticalOnMobile]} ${alignmentVariants[alignment]} ${spacingVariants[spacing]} ${topMarginVariants[topMargin]} ${bottomMarginVariants[bottomMargin]} ${leftMarginVariants[leftMargin]} ${rightMarginVariants[rightMargin]}`}
+          >
+            {children}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

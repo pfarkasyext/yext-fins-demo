@@ -28,7 +28,10 @@ export const config: TemplateConfig = {
   stream: {
     $id: "professionals",
     localization: { locales: ["en"], primary: false },
-    filter: { entityTypes: ["financialProfessional"], savedFilterIds: ["1339778047"] },
+    filter: {
+      entityTypes: ["financialProfessional"],
+      savedFilterIds: ["1339778047"],
+    },
     fields: [
       "name",
       "id",
@@ -36,6 +39,7 @@ export const config: TemplateConfig = {
       "headshot",
       "slug",
       "photoGallery",
+      "c_fPBio",
       "fins_jobTitle",
       "logo",
       "fins_relatedServices.name",
@@ -45,9 +49,9 @@ export const config: TemplateConfig = {
       "geocodedCoordinate",
       "fins_relatedServices.description",
       "fins_relatedServices.fins_servicesImage",
-      "fins_featuredArticles.name",
-      "fins_featuredArticles.fins_articleDescription",
-      "fins_featuredArticles.fins_articlePhoto",
+      "c_linkedInsightsArticles.name",
+      "c_linkedInsightsArticles.c_insightsArticleSummary",
+      "c_linkedInsightsArticles.primaryPhoto",
     ],
   },
 };
@@ -111,41 +115,61 @@ export default function Professional({ document, __meta }: TemplateProps) {
           textColor="#fff"
         ></ContactInfo>
       </HorizontalStack>
-      <CenteredContainer>
-      {/* <div className="max-w-5xl"> */}
-        <VerticalStack
-          alignment="left"
-          rightMargin="0"
-          leftMargin="0"
-          bottomMargin="0"
-          topMargin="0"
-          spacing="0"
-          backgroundColor="#F9FAFB"
-        >
+      <div className="flex justify-center gap-10 py-4">
+        <div>About</div>
+        <div>Insights</div>
+        <div>Let's Talk</div>
+      </div>
+      <VerticalStack
+        alignment="center"
+        rightMargin="0"
+        leftMargin="0"
+        bottomMargin="0"
+        topMargin="0"
+        spacing="0"
+        backgroundColor="#F9FAFB"
+      >
+        <div className="max-w-5xl flex flex-col justify-center px-10">
           <Title
             value={`About ${document.name}`}
             textSize="4xl"
             fontWeight="medium"
-            topMargin="4"
+            topMargin="10"
             bottomMargin="4"
             textColor="#1C2E5E"
           />
           <Paragraph
-            value={`${document.description}`}
+            value={`${document.c_fPBio}`}
             textSize="base"
             fontWeight="normal"
-            bottomMargin="6"
+            bottomMargin="10"
           />
-        </VerticalStack>
-        <Title
-          value={`Insights`}
-          textSize="4xl"
-          fontWeight="medium"
-          topMargin="4"
-          bottomMargin="8"
-          textColor="#1C2E5E"
-        />
-        <Articles articles={document.fins_featuredArticles} />
+        </div>
+      </VerticalStack>
+      <div className="flex flex-col items-center">
+        <div className="max-w-5xl flex flex-col justify-center ">
+          <Title
+            value={`Insights`}
+            textSize="4xl"
+            fontWeight="medium"
+            topMargin="12"
+            bottomMargin="8"
+            textColor="#1C2E5E"
+          />
+          <Articles articles={document.c_linkedInsightsArticles} />
+        </div>
+      </div>
+
+      <VerticalStack
+        alignment="center"
+        rightMargin="0"
+        leftMargin="0"
+        bottomMargin="0"
+        topMargin="0"
+        spacing="0"
+        backgroundColor="#F9FAFB"
+      >
+        <div className="max-w-5xl flex flex-col justify-center px-10">
         <Title
           value={`Let's Talk`}
           textSize="4xl"
@@ -191,8 +215,9 @@ export default function Professional({ document, __meta }: TemplateProps) {
             }
           </LocationMap>
         </GridContainer>
-      {/* </div> */}
-      </CenteredContainer>
+        </div>
+        
+      </VerticalStack>
     </PageLayout>
   );
 }
