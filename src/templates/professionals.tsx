@@ -116,9 +116,9 @@ export default function Professional({ document, __meta }: TemplateProps) {
         ></ContactInfo>
       </HorizontalStack>
       <div className="flex justify-center gap-10 py-4">
-        <div>About</div>
-        <div>Insights</div>
-        <div>Let's Talk</div>
+        <div>{"About"}</div>
+        <div>{"Insights"}</div>
+        <div>{"Let's Talk"}</div>
       </div>
       <VerticalStack
         alignment="center"
