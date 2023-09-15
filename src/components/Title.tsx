@@ -3,8 +3,8 @@ import { HexColor } from "@yext/studio";
 export interface TitleProps {
   value: string;
   textSize: "xl" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl";
-  topMargin: "0" | "2" | "4" | "6" | "8" | "10";
-  bottomMargin: "0" | "2" | "4" | "6" | "8" | "10";
+  topMargin: "0" | "2" | "4" | "6" | "8" | "10" | "12";
+  bottomMargin: "0" | "2" | "4" | "6" | "8" | "10" | "12";
   fontWeight:
     | "thin"
     | "extralight"
@@ -64,6 +64,7 @@ const Title = ({
     "6": "mt-6",
     "8": "mt-8",
     "10": "mt-10",
+    "12": "mt-12"
   };
 
   const bottomMarginVariants = {
@@ -73,12 +74,13 @@ const Title = ({
     "6": "mb-6",
     "8": "mb-8",
     "10": "mb-10",
+    "12": "mb-12"
   };
 
   return (
     <div className="flex justify-center items-center" style={{backgroundColor}}>
       <div
-        className={`not-prose mt-4 ${topMarginVariants[topMargin]} ${bottomMarginVariants[bottomMargin]}`}
+        className={`not-prose ${topMarginVariants[topMargin]} ${bottomMarginVariants[bottomMargin]}`}
       >
         <h1
           className={`${sizeVariants[textSize]} ${weightVariants[fontWeight]} tracking-tight`} style={{color:textColor}}
