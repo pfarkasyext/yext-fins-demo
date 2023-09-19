@@ -58,7 +58,7 @@ const ContactInfo = ({
         </div>
       </div>
       <button className="bg-white hover:bg-slate-100 text-blue border-blue font-normal text-small py-2 px-8 rounded">
-        Get In Touch
+        Request an Appointment
       </button>
     </div>
   );

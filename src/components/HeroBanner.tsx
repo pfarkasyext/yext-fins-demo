@@ -1,4 +1,4 @@
-export interface HorizontalStackProps {
+export interface HeroBannerProps {
   children: React.ReactNode;
   spacing: "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10";
   leftMargin: "0" | "2" | "4" | "6" | "8" | "10";
@@ -7,10 +7,11 @@ export interface HorizontalStackProps {
   bottomMargin: "0" | "2" | "4" | "6" | "8" | "10";
   alignment: "top" | "center" | "bottom";
   verticalOnMobile: "true" | "false";
+  backgroundImage?: string;
   backgroundColor?: string;
 }
 
-const HorizontalStack = ({
+const HeroBanner = ({
   children,
   spacing,
   leftMargin,
@@ -19,8 +20,8 @@ const HorizontalStack = ({
   bottomMargin,
   alignment,
   verticalOnMobile,
-  backgroundColor,
-}: HorizontalStackProps) => {
+  backgroundImage,
+}: HeroBannerProps) => {
   const spacingVariants = {
     "0": "gap-0",
     "1": "gap-1",
@@ -83,14 +84,22 @@ const HorizontalStack = ({
   };
 
   return (
-    <div
-      className={`flex content-center bg-center bg-cover ${responsiveVariants[verticalOnMobile]} ${alignmentVariants[alignment]} ${spacingVariants[spacing]} ${topMarginVariants[topMargin]} ${bottomMarginVariants[bottomMargin]} ${leftMarginVariants[leftMargin]} ${rightMarginVariants[rightMargin]}`}
-      style={{
-        backgroundColor}}
-    >
-      {children}
-    </div>
+    <>
+      <div className="relative overflow-hidden min-h-fit bg-blue-950 bg-opacity-80">
+        <img
+          src={backgroundImage}
+          className="object-cover absolute -z-10 w-fit object-bottom"
+        />
+        <div className="flex flex-col justify-between p-8 h-full">
+          <div
+            className={`flex content-center justify-center h-[482px] ${responsiveVariants[verticalOnMobile]} ${alignmentVariants[alignment]} ${spacingVariants[spacing]} ${topMarginVariants[topMargin]} ${bottomMarginVariants[bottomMargin]} ${leftMarginVariants[leftMargin]} ${rightMarginVariants[rightMargin]}`}
+          >
+            {children}
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 
-export default HorizontalStack;
+export default HeroBanner;
