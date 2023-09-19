@@ -6,7 +6,6 @@ import Paragraph from "../components/Paragraph";
 import Title from "../components/Title";
 import VerticalStack from "../components/VerticalStack";
 import "../index.css";
-import HorizontalStack from "../components/HorizontalStack";
 import HeroImage from "../components/HeroImage";
 import ContactInfo from "../components/ContactInfo";
 import { LocationMap } from "@yext/pages/components";
@@ -24,6 +23,7 @@ import "@fontsource/lato/400-italic.css";
 import "@fontsource/lato/700-italic.css";
 import "@fontsource/lato/900-italic.css";
 import "../index.css";
+import HeroBanner from "../components/HeroBanner";
 export const config: TemplateConfig = {
   stream: {
     $id: "professionals",
@@ -90,7 +90,7 @@ export default function Professional({ document, __meta }: TemplateProps) {
 
   return (
     <PageLayout>
-      <HorizontalStack
+      <HeroBanner
         spacing="10"
         topMargin="0"
         bottomMargin="0"
@@ -114,7 +114,7 @@ export default function Professional({ document, __meta }: TemplateProps) {
           phone={formattedPhone}
           textColor="#fff"
         ></ContactInfo>
-      </HorizontalStack>
+      </HeroBanner>
       <div className="flex justify-center gap-10 py-4">
         <div>{"About"}</div>
         <div>{"Insights"}</div>
