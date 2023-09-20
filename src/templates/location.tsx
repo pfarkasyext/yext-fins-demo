@@ -151,23 +151,32 @@ export default function Location({ document, __meta }: TemplateProps) {
         <div>{"Let's Talk"}</div>
       </div>
 
-      <Services services={document.fins_relatedServices} />
+      {document.fins_relatedServices && (
+        <Services services={document.fins_relatedServices} />
+      )}
 
-      <Team team={document.c_relatedFPsAndTeams} city={document.address.city}/>
+      {document.c_relatedFPsAndTeams && (
+        <Team
+          team={document.c_relatedFPsAndTeams}
+          city={document.address.city}
+        />
+      )}
 
-      <div className="flex flex-col items-center">
-        <div className="max-w-5xl flex flex-col justify-center ">
-          <Title
-            value={`Insights`}
-            textSize="4xl"
-            fontWeight="medium"
-            topMargin="12"
-            bottomMargin="8"
-            textColor="#1C2E5E"
-          />
-          <Articles articles={document.c_linkedInsightsArticles} />
+      {document.c_linkedInsightsArticles && (
+        <div className="flex flex-col items-center">
+          <div className="max-w-5xl flex flex-col justify-center ">
+            <Title
+              value={`Insights`}
+              textSize="4xl"
+              fontWeight="medium"
+              topMargin="12"
+              bottomMargin="8"
+              textColor="#1C2E5E"
+            />
+            <Articles articles={document.c_linkedInsightsArticles} />
+          </div>
         </div>
-      </div>
+      )}
 
       <VerticalStack
         alignment="center"
