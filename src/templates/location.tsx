@@ -23,6 +23,8 @@ import "@fontsource/lato/700-italic.css";
 import "@fontsource/lato/900-italic.css";
 import "../index.css";
 import HeroBanner from "../components/HeroBanner";
+import Services from "../components/Services";
+import Team from "../components/Team";
 export const config: TemplateConfig = {
   stream: {
     $id: "locations",
@@ -37,13 +39,18 @@ export const config: TemplateConfig = {
       "slug",
       "photoGallery",
       "logo",
-      "fins_relatedServices.name",
       "emails",
       "address",
       "mainPhone",
       "geocodedCoordinate",
-      "fins_relatedServices.description",
-      "fins_relatedServices.fins_servicesImage",
+      "fins_relatedServices.name",
+      "fins_relatedServices.c_serviceDescription",
+      "c_relatedFPsAndTeams.name",
+      "c_relatedFPsAndTeams.mainPhone",
+      "c_relatedFPsAndTeams.emails",
+      "c_relatedFPsAndTeams.headshot",
+      "c_relatedFPsAndTeams.fins_jobTitle",
+      "c_relatedFPsAndTeams.slug",
       "c_linkedInsightsArticles.name",
       "c_linkedInsightsArticles.c_insightsArticleSummary",
       "c_linkedInsightsArticles.primaryPhoto",
@@ -143,6 +150,10 @@ export default function Location({ document, __meta }: TemplateProps) {
         <div>{"Recent Reviews"}</div>
         <div>{"Let's Talk"}</div>
       </div>
+
+      <Services services={document.fins_relatedServices} />
+
+      <Team team={document.c_relatedFPsAndTeams} city={document.address.city}/>
 
       <div className="flex flex-col items-center">
         <div className="max-w-5xl flex flex-col justify-center ">
