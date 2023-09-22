@@ -1,32 +1,3 @@
-export interface Interval {
-	start: any,
-	end: any,
-}
-
-export interface DayHour {
-	openIntervals?: Interval[],
-	isClosed?: boolean,
-}
-
-export interface HolidayHours {
-	date: string,
-	openIntervals?: Interval[],
-	isClosed?: boolean,
-	isRegularHours?: boolean,
-}
-
-export interface Hours {
-	monday?: DayHour,
-	tuesday?: DayHour,
-	wednesday?: DayHour,
-	thursday?: DayHour,
-	friday?: DayHour,
-	saturday?: DayHour,
-	sunday?: DayHour,
-	holidayHours?: HolidayHours[],
-	reopenDate?: string,
-}
-
 export enum Category {
 	BOOK_TRAVEL = "Book Travel",
 	CHECK_IN = "Check in",
@@ -44,6 +15,7 @@ export enum Category {
 	ORDER = "Order (Restaurant)",
 	TAKEOUT = "Takeout",
 	PICKUP = "Pickup (Restaurant)",
+	RESERVE = "Reserve (Restaurant)",
 	MENU = "Menu",
 	APPOINTMENT = "Appointment",
 	PORTFOLIO = "Portfolio",
@@ -99,20 +71,33 @@ export interface Image {
 	alternateText?: string,
 }
 
-export enum CovidVaccinesOffered {
-	PFIZER = "Pfizer",
-	MODERNA = "Moderna",
-	JOHNSON___JOHNSON = "Johnson & Johnson",
+export interface Interval {
+	start: any,
+	end: any,
 }
 
-export enum PickupAndDeliveryServices {
-	IN_STORE_PICKUP = "In-Store Pickup",
-	CURBSIDE_PICKUP = "Curbside Pickup",
-	PICKUP_NOT_OFFERED = "Pickup Not Offered",
-	DELIVERY = "Delivery",
-	SAME_DAY_DELIVERY = "Same Day Delivery",
-	NO_CONTACT_DELIVERY = "No-Contact Delivery",
-	DELIVERY_NOT_OFFERED = "Delivery Not Offered",
+export interface DayHour {
+	openIntervals?: Interval[],
+	isClosed?: boolean,
+}
+
+export interface HolidayHours {
+	date: string,
+	openIntervals?: Interval[],
+	isClosed?: boolean,
+	isRegularHours?: boolean,
+}
+
+export interface Hours {
+	monday?: DayHour,
+	tuesday?: DayHour,
+	wednesday?: DayHour,
+	thursday?: DayHour,
+	friday?: DayHour,
+	saturday?: DayHour,
+	sunday?: DayHour,
+	holidayHours?: HolidayHours[],
+	reopenDate?: string,
 }
 
 export interface Address {
@@ -166,15 +151,6 @@ export interface Fins_secondaryCTA {
 export interface FeaturedMessage {
 	description?: string,
 	url?: string,
-}
-
-export enum LocationType {
-	LOCATION = "Location",
-	HEALTHCARE_FACILITY = "Healthcare Facility",
-	HEALTHCARE_PROFESSIONAL = "Healthcare Professional",
-	ATM = "ATM",
-	RESTAURANT = "Restaurant",
-	HOTEL = "Hotel",
 }
 
 export interface MenuUrl {
@@ -289,34 +265,10 @@ export enum PaymentOptions {
 	Überweisung = "Banküberweisung",
 }
 
-export enum PriceRange {
-	UNSPECIFIED = "Unspecified",
-	ONE = "$",
-	TWO = "$$",
-	THREE = "$$$",
-	FOUR = "$$$$",
-}
-
 export interface ReservationUrl {
 	url?: string,
 	displayUrl?: string,
 	preferDisplayUrl?: boolean,
-}
-
-export enum Presentation {
-	BUTTON = "Button",
-	LINK = "Link",
-}
-
-export interface UberLink {
-	text?: string,
-	presentation: Presentation,
-}
-
-export interface UberTripBranding {
-	text: string,
-	url: string,
-	description: string,
 }
 
 export interface WebsiteUrl {
@@ -331,8 +283,7 @@ export interface ComplexVideo {
 	description?: string,
 }
 
-export default interface Location {
-	accessHours?: Hours,
+export default interface FinancialProfessional {
 	appleActionLinks?: AppleActionLinks[],
 	appleBusinessDescription?: string,
 	appleBusinessId?: string,
@@ -340,50 +291,27 @@ export default interface Location {
 	appleCompanyId?: string,
 	appleCompanyIdDqe?: string,
 	appleCoverPhoto?: Image,
+	appointmentOnly?: boolean,
+	awards?: string[],
 	bingWebsiteOverride?: string,
-	blackOwnedBusiness?: boolean,
-	brunchHours?: Hours,
-	covid19InformationUrl?: string,
-	covidMessaging?: string,
-	covidTestAppointmentUrl?: string,
-	covidTestingAppointmentRequired?: boolean,
-	covidTestingDriveThroughSite?: boolean,
-	covidTestingIsFree?: boolean,
-	covidTestingPatientRestrictions?: boolean,
-	covidTestingReferralRequired?: boolean,
-	covidTestingSiteInstructions?: string,
-	covidVaccineAppointmentRequired?: boolean,
-	covidVaccineDriveThroughSite?: boolean,
-	covidVaccineInformationUrl?: string,
-	covidVaccinePatientRestrictions?: boolean,
-	covidVaccineReferralRequired?: boolean,
-	covidVaccineSiteInstructions?: string,
-	covidVaccinesOffered?: CovidVaccinesOffered[],
-	deliveryHours?: Hours,
-	deliveryUrl?: string,
-	dineInHours?: Hours,
-	driveThroughHours?: Hours,
+	disclosureLink?: string,
 	facebookWebsiteOverride?: string,
-	fullyVaccinatedStaff?: boolean,
 	geomodifier?: string,
-	happyHours?: Hours,
+	hobbies?: string[],
 	holidayHoursConversationEnabled?: boolean,
-	kitchenHours?: Hours,
+	interests?: string[],
 	landingPageUrl?: string,
 	linkedInUrl?: string,
 	neighborhood?: string,
+	nmlsNumber?: string,
 	nudgeEnabled?: boolean,
 	onlineServiceHours?: Hours,
-	phoneticName?: string,
-	pickupAndDeliveryServices?: PickupAndDeliveryServices[],
-	pickupHours?: Hours,
 	primaryConversationContact?: any,
-	proofOfVaccinationRequired?: boolean,
 	reviewResponseConversationEnabled?: boolean,
-	seniorHours?: Hours,
 	slug?: string,
-	takeoutHours?: Hours,
+	teamName?: string,
 	what3WordsAddress?: string,
+	yearsOfExperience?: number,
 	yelpWebsiteOverride?: string,
 	additionalHoursText?: string,
 	address: Address,
@@ -397,133 +325,55 @@ export default interface Location {
 	logo?: ComplexImage,
 	name: string,
 	categories?: any,
+	certifications?: string[],
 	cityCoordinate?: Coordinate,
 	closed?: boolean,
 	fins_featuredArticles?: EntityReference[],
+	fins_jobTitle?: string,
 	fins_primaryCTA?: Fins_primaryCTA,
 	fins_relatedFaqs?: EntityReference[],
+	fins_relatedLocations?: EntityReference[],
 	fins_relatedProducts?: EntityReference[],
-	fins_relatedProfessionals?: EntityReference[],
 	fins_relatedServices?: EntityReference[],
 	fins_secondaryCTA?: Fins_secondaryCTA,
 	displayCoordinate?: Coordinate,
 	dropoffCoordinate?: Coordinate,
 	emails?: string[],
-	facebookEmail?: string,
 	facebookPageUrl?: string,
 	fax?: any,
 	featuredMessage?: FeaturedMessage,
 	photoGallery?: ComplexImage[],
 	geocodedCoordinate?: Coordinate,
 	googleWebsiteOverride?: string,
+	headshot?: Image,
 	instagramHandle?: string,
 	iosAppUrl?: string,
 	isoRegionCode?: string,
 	keywords?: string[],
 	languages?: string[],
 	localPhone?: any,
-	locationType?: LocationType,
 	mainPhone?: any,
 	menuUrl?: MenuUrl,
 	mobilePhone?: any,
 	orderUrl?: OrderUrl,
 	paymentOptions?: PaymentOptions[],
-	phones?: any,
 	pickupCoordinate?: Coordinate,
-	priceRange?: PriceRange,
 	products?: string[],
 	reservationUrl?: ReservationUrl,
 	routableCoordinate?: Coordinate,
 	services?: string[],
-	shortName35?: string,
-	shortName64?: string,
 	specialities?: string[],
 	id: string,
 	timezone?: any,
 	tollFreePhone?: any,
 	ttyPhone?: any,
 	twitterHandle?: string,
-	uberClientId?: string,
-	uberLink?: UberLink,
-	uberTripBranding?: UberTripBranding,
 	walkableCoordinate?: Coordinate,
 	websiteUrl?: WebsiteUrl,
-	yearEstablished?: number,
 	yextDisplayCoordinate?: Coordinate,
 	yextDropoffCoordinate?: Coordinate,
 	yextPickupCoordinate?: Coordinate,
 	yextRoutableCoordinate?: Coordinate,
 	yextWalkableCoordinate?: Coordinate,
 	videos?: ComplexVideo[],
-}
-
-export interface Atm {
-	accessHours?: Hours,
-	appleActionLinks?: AppleActionLinks[],
-	appleBusinessDescription?: string,
-	appleBusinessId?: string,
-	appleBusinessIdDqe?: string,
-	appleCompanyId?: string,
-	appleCompanyIdDqe?: string,
-	appleCoverPhoto?: Image,
-	bingWebsiteOverride?: string,
-	driveThroughHours?: Hours,
-	facebookWebsiteOverride?: string,
-	geomodifier?: string,
-	holidayHoursConversationEnabled?: boolean,
-	landingPageUrl?: string,
-	neighborhood?: string,
-	nudgeEnabled?: boolean,
-	phoneticName?: string,
-	primaryConversationContact?: any,
-	reviewResponseConversationEnabled?: boolean,
-	slug?: string,
-	what3WordsAddress?: string,
-	yelpWebsiteOverride?: string,
-	additionalHoursText?: string,
-	address: Address,
-	alternatePhone?: any,
-	description?: string,
-	hours?: Hours,
-	logo?: ComplexImage,
-	name: string,
-	categories?: any,
-	cityCoordinate?: Coordinate,
-	closed?: boolean,
-	fins_featuredArticles?: EntityReference[],
-	fins_primaryCTA?: Fins_primaryCTA,
-	fins_relatedFaqs?: EntityReference[],
-	fins_relatedProducts?: EntityReference[],
-	fins_relatedServices?: EntityReference[],
-	fins_secondaryCTA?: Fins_secondaryCTA,
-	displayCoordinate?: Coordinate,
-	dropoffCoordinate?: Coordinate,
-	facebookPageUrl?: string,
-	fax?: any,
-	featuredMessage?: FeaturedMessage,
-	photoGallery?: ComplexImage[],
-	geocodedCoordinate?: Coordinate,
-	googleWebsiteOverride?: string,
-	isoRegionCode?: string,
-	keywords?: string[],
-	localPhone?: any,
-	locatedIn?: EntityReference,
-	locationType?: LocationType,
-	mainPhone?: any,
-	mobilePhone?: any,
-	phones?: any,
-	pickupCoordinate?: Coordinate,
-	priceRange?: PriceRange,
-	routableCoordinate?: Coordinate,
-	id: string,
-	timezone?: any,
-	tollFreePhone?: any,
-	ttyPhone?: any,
-	walkableCoordinate?: Coordinate,
-	websiteUrl?: WebsiteUrl,
-	yextDisplayCoordinate?: Coordinate,
-	yextDropoffCoordinate?: Coordinate,
-	yextPickupCoordinate?: Coordinate,
-	yextRoutableCoordinate?: Coordinate,
-	yextWalkableCoordinate?: Coordinate,
 }
