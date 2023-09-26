@@ -1,0 +1,23 @@
+{
+  "$id": "site-stream",
+  "filter": {
+    "entityIds": ["home"]
+  },
+  "source": "knowledgeGraph",
+  "fields": [
+    "c_featuredServices.name",
+    "c_featuredServices.c_serviceDescription",
+    "c_featuredArticles.name",
+    "c_featuredArticles.datePosted",
+    "c_featuredArticles.primaryPhoto",
+    "c_featuredArticles.c_insightsArticleSummary",
+    "c_featuredArticles.c_insightsArticleBody",
+    "c_featuredEvents.name",
+    "c_featuredEvents.description",
+    "c_featuredEvents.time"
+  ],
+  "localization": {
+    "locales": ["en"],
+    "primary": false
+  }
+}
