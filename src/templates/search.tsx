@@ -60,9 +60,9 @@ export const SEARCHER = provideHeadless({
   experienceVersion: experienceVersion,
 });
 
-const Search: Template<TemplateRenderProps> = () => {
+const Search: Template<TemplateRenderProps> = ({ document }) => {
   return (
-    <PageLayout>
+    <PageLayout _site={document._site}>
       <SearchHeadlessProvider searcher={SEARCHER}>
         <UniversalSearch />
       </SearchHeadlessProvider>

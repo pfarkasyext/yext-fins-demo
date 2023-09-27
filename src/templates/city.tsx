@@ -115,7 +115,7 @@ const City: Template<TemplateRenderProps> = ({
 
   return (
     <>
-      <PageLayout>
+      <PageLayout _site={document._site}>
         <Banner name={name} />
         <div className="centered-container">
           <Breadcrumbs

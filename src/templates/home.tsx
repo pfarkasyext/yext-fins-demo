@@ -65,7 +65,7 @@ export const getHeadConfig: GetHeadConfig<
 
 const Home: Template<TemplateRenderProps> = ({ document }) => {
   return (
-    <PageLayout containerClassName="mx-auto w-full">
+    <PageLayout containerClassName="mx-auto w-full" _site={document._site}>
       <HeroSection img={document.primaryPhoto} />
       <section className="px-32 bg-gray-50">
         <Services services={document._site.c_featuredServices} />

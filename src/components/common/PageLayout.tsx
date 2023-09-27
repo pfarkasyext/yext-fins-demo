@@ -7,19 +7,21 @@ export interface PageLayoutProps {
   children?: React.ReactNode;
   backgroundColor?: HexColor;
   containerClassName?: string;
+  _site?: any;
 }
 
 const PageLayout = ({
   children,
   backgroundColor,
   containerClassName,
+  _site,
 }: PageLayoutProps) => {
   return (
     <div
       className={`min-h-screen relative flex flex-col justify-between`}
       style={{ backgroundColor }}
     >
-      <ComplexHeader />
+      <ComplexHeader data={_site} />
       <main className={containerClassName}>{children}</main>
       <Footer />
     </div>

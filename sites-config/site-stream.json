@@ -14,7 +14,14 @@
     "c_featuredArticles.c_insightsArticleBody",
     "c_featuredEvents.name",
     "c_featuredEvents.description",
-    "c_featuredEvents.time"
+    "c_featuredEvents.time",
+    "name",
+    "c_navbar.name",
+    "c_navbar.slug",
+    "c_navbar.relatedServices.name",
+    "c_navbar.relatedServices.slug",
+    "c_navbar.relatedServices.c_childProducts.name",
+    "c_navbar.relatedServices.c_childProducts.slug"
   ],
   "localization": {
     "locales": ["en"],

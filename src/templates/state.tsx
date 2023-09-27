@@ -105,7 +105,7 @@ const State: Template<TemplateRenderProps> = ({
 
   return (
     <>
-      <PageLayout>
+      <PageLayout _site={document._site}>
         <Banner
           name={c_addressRegionDisplayName ? c_addressRegionDisplayName : name}
         />

@@ -91,7 +91,7 @@ export default function Location({ document, __meta }: TemplateProps) {
   )}-${document.mainPhone.substring(8)}`;
 
   return (
-    <PageLayout>
+    <PageLayout _site={document._site}>
       <HeroBanner
         spacing="10"
         topMargin="0"

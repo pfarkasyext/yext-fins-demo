@@ -88,7 +88,7 @@ const HeroBanner = ({
       <div className="relative overflow-hidden min-h-fit bg-blue-950 bg-opacity-80">
         <img
           src={backgroundImage}
-          className="object-cover absolute -z-10 w-fit object-bottom"
+          className="object-cover absolute -z-10 w-full -top-1/3 object-bottom"
         />
         <div className="flex flex-col justify-between p-8 h-full">
           <div
