@@ -4,11 +4,16 @@ import {
 } from "../types/autogen";
 import { Image } from "@yext/pages/components";
 import Cta from "./Cta";
+import { Button } from "./common/Button";
+import { formatDate } from "../lib/utils";
+import { ChevronRight } from "lucide-react";
+import { BsChevronRight } from "react-icons/bs";
 
 interface ArticleProps {
   name: string;
   c_insightsArticleSummary: string;
   primaryPhoto?: ComplexImageType | ImageType;
+  datePosted?: string;
 }
 
 export default function Articles({ articles }: { articles: ArticleProps[] }) {
@@ -20,45 +25,61 @@ export default function Articles({ articles }: { articles: ArticleProps[] }) {
   const otherArticles = articles.slice(1);
 
   return (
-    <div className="bg-white pb-5 flex flex-col items-center">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-x-8 gap-y-12 px-6 sm:gap-y-16 lg:grid-cols-2 lg:px-8">
-        <article className="mx-auto w-full max-w-2xl lg:mx-0 lg:max-w-lg">
+    <div className="py-8 flex flex-col items-between gap-8">
+      <h2 className="font-bold text-4xl text-center text-brand-blue">
+        Insights
+      </h2>
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-x-8">
+        <article className="lg:col-span-3 flex flex-col gap-4">
           {featuredArticle.primaryPhoto && (
             <Image
               image={featuredArticle.primaryPhoto}
-              className="rounded-lg"
+              className="rounded-lg h-80"
             />
           )}
-          <h2
-            id="featured-post"
-            className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
-          >
+          <span className="text-sm text-gray-600">
+            {formatDate(featuredArticle.datePosted)}
+          </span>
+          <h3 id="featured-post" className="text-2xl font-bold text-brand-blue">
             {featuredArticle.name}
-          </h2>
-          <p className="mt-4 text-lg  text-gray-600 line-clamp-4">
+          </h3>
+          <p className="text-base  text-gray-600 line-clamp-3">
             {featuredArticle.c_insightsArticleSummary}
           </p>
+          <a className="text-brand-blue text flex gap-1 items-center hover:cursor-pointer">
+            <span className="underline">Read more</span>
+            <BsChevronRight />
+          </a>
         </article>
-        <div className="mx-auto w-full max-w-2xl border-t border-gray-900/10 pt-12 sm:pt-16 lg:mx-0 lg:max-w-none lg:border-t-0 lg:pt-0">
-          <div className="-my-12 divide-y divide-gray-900/10">
+        <div className="lg:col-span-2">
+          <div className="flex flex-col gap-6">
             {otherArticles.map((article, idx) => (
-              <article key={idx} className="py-12">
-                <div className="group relative max-w-xl">
-                  <h2 className="mt-2 text-lg font-semibold text-gray-900 group-hover:text-gray-600">
-                    <span className="absolute inset-0" />
+              <>
+                <article className="flex flex-col gap-4 group" key={idx}>
+                  <div className="text-sm text-gray-600 flex gap-2">
+                    <span>Category</span>
+                    <span>|</span>
+                    <span>{formatDate(article.datePosted)}</span>
+                  </div>
+                  <h3 className="text-lg font-semibold text-brand-blue">
                     {article.name}
-                  </h2>
-                  <p className="mt-4 text-sm leading-6 text-gray-600 line-clamp-3">
+                  </h3>
+                  <p className="text-sm leading-6 text-gray-600 line-clamp-2">
                     {article.c_insightsArticleSummary}
                   </p>
-                </div>
-              </article>
+                  <a className="text-brand-blue text-sm flex gap-1 items-center hover:cursor-pointer">
+                    <span className="underline">Read more</span>
+                    <BsChevronRight />
+                  </a>
+                </article>
+                <div className="w-96 h-px border border-stone-300"></div>
+              </>
             ))}
           </div>
         </div>
       </div>
-      <div className="mt-12 mb-16">
-        <Cta buttonText="See All Articles" style="bg-white hover:bg-slate-100 text-blue border border-blue font-normal text-small py-2 px-8 rounded"/>
+      <div className="flex justify-center">
+        <Button variant="outline">See All Articles</Button>
       </div>
     </div>
   );
