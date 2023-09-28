@@ -1,11 +1,9 @@
 import { GetPath, TemplateConfig, TemplateProps } from "@yext/pages";
 import GridContainer from "../components/GridContainer";
 import PageLayout from "../components/common/PageLayout";
-import Paragraph from "../components/Paragraph";
 import Title from "../components/Title";
 import VerticalStack from "../components/VerticalStack";
 import "../index.css";
-import HorizontalStack from "../components/HorizontalStack";
 import LocationInfo from "../components/LocationInfo";
 import { LocationMap } from "@yext/pages/components";
 import { GoogleMaps } from "@yext/components-tsx-maps";
@@ -25,6 +23,7 @@ import "../index.css";
 import HeroBanner from "../components/HeroBanner";
 import Services from "../components/Services";
 import Team from "../components/Team";
+import StaticMap from "../components/StaticMap";
 export const config: TemplateConfig = {
   stream: {
     $id: "locations",
@@ -121,13 +120,12 @@ export default function Location({ document, __meta }: TemplateProps) {
         spacing="0"
         backgroundColor="#F9FAFB"
       >
-        <div className="max-w-5xl flex flex-row justify-center items-center py-16 gap-8">
-          {/* <div>IMAGE HERE</div> */}
+        <div className="max-w-5xl flex md:flex-row flex-col justify-center items-center py-16 gap-8 px-4 md:px-0">
           <img
             src={
               "https://a.mktgcdn.com/p/65JQqTuL6mWfKaHM0EiyiPEV820Oi35tUPhDN36Tq1A/3149x4724.jpg"
             }
-            className="w-[309.59px] aspect-[3/4] rounded-lg object-center object-cover"
+            className="w-full md:w-[309.59px] aspect-[3/4] rounded-lg object-center object-cover"
           />
           <div className="flex flex-col items-left gap-6">
             <div className="text-2xl font-bold text-blue-950">Joseph Adams</div>
@@ -157,7 +155,7 @@ export default function Location({ document, __meta }: TemplateProps) {
 
       {document.c_relatedFPsAndTeams && (
         <Team
-          team={document.c_relatedFPsAndTeams}
+          team={document.c_relatedFPsAndTeams.slice(0, 6)}
           city={document.address.city}
         />
       )}
@@ -187,7 +185,7 @@ export default function Location({ document, __meta }: TemplateProps) {
         spacing="0"
         backgroundColor="#F9FAFB"
       >
-        <div className="max-w-5xl flex flex-col justify-center px-10">
+        <div className="max-w-5xl flex flex-col justify-center px-10 mt-8 md:mt-0">
           <Title
             value={`Let's Talk`}
             textSize="4xl"
@@ -197,42 +195,60 @@ export default function Location({ document, __meta }: TemplateProps) {
             backgroundColor="#F9FAFB"
             textColor="#1C2E5E"
           />
-          <GridContainer backgroundColor="#F9FAFB">
-            <MapDescription
-              description={document.description}
-              email={document.emails[0]}
-              phone={formattedPhone}
-              textColor="#333333"
-            />
+          <span className="hidden md:block">
+            <GridContainer backgroundColor="#F9FAFB">
+              <MapDescription
+                description={document.description}
+                email={document.emails[0]}
+                phone={formattedPhone}
+                textColor="#333333"
+              />
 
-            <LocationMap
-              className="h-full"
-              clientKey="gme-yextinc"
-              coordinate={document.geocodedCoordinate}
-              provider={GoogleMaps}
-            >
-              {
-                <svg
-                  width="56"
-                  height="58"
-                  viewBox="0 0 56 58"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M28.0951 1C33.1149 1 37.6595 3.03469 40.9491 6.32432C44.2388 9.61396 46.2734 14.1586 46.2734 19.1784C46.2734 25.9554 40.1704 38.558 28.0941 57C16.019 38.5565 9.91669 25.955 9.91669 19.1784C9.91669 14.1586 11.9514 9.61396 15.241 6.32432C18.5307 3.03469 23.0752 1 28.0951 1Z"
-                    fill="#0F70F0"
-                    stroke="black"
-                    strokeOpacity="0.5"
-                  />
-                  <path
-                    d="M28.095 27.2577C32.5571 27.2577 36.1743 23.6405 36.1743 19.1784C36.1743 14.7163 32.5571 11.0991 28.095 11.0991C23.633 11.0991 20.0157 14.7163 20.0157 19.1784C20.0157 23.6405 23.633 27.2577 28.095 27.2577Z"
-                    fill="white"
-                  />
-                </svg>
-              }
-            </LocationMap>
-          </GridContainer>
+              <LocationMap
+                className="h-full"
+                clientKey="gme-yextinc"
+                coordinate={document.geocodedCoordinate}
+                provider={GoogleMaps}
+              >
+                {
+                  <svg
+                    width="56"
+                    height="58"
+                    viewBox="0 0 56 58"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M28.0951 1C33.1149 1 37.6595 3.03469 40.9491 6.32432C44.2388 9.61396 46.2734 14.1586 46.2734 19.1784C46.2734 25.9554 40.1704 38.558 28.0941 57C16.019 38.5565 9.91669 25.955 9.91669 19.1784C9.91669 14.1586 11.9514 9.61396 15.241 6.32432C18.5307 3.03469 23.0752 1 28.0951 1Z"
+                      fill="#0F70F0"
+                      stroke="black"
+                      strokeOpacity="0.5"
+                    />
+                    <path
+                      d="M28.095 27.2577C32.5571 27.2577 36.1743 23.6405 36.1743 19.1784C36.1743 14.7163 32.5571 11.0991 28.095 11.0991C23.633 11.0991 20.0157 14.7163 20.0157 19.1784C20.0157 23.6405 23.633 27.2577 28.095 27.2577Z"
+                      fill="white"
+                    />
+                  </svg>
+                }
+              </LocationMap>
+            </GridContainer>
+          </span>
+          <span className="block md:hidden">
+            <div className="grid grid-cols-1 gap-y-12 mt-4">
+              <div>
+                <StaticMap
+                  latitude={document.geocodedCoordinate.latitude}
+                  longitude={document.geocodedCoordinate.longitude}
+                ></StaticMap>
+              </div>
+              <MapDescription
+                description={document.description}
+                email={document.emails[0]}
+                phone={formattedPhone}
+                textColor="#333333"
+              />
+            </div>
+          </span>
         </div>
       </VerticalStack>
     </PageLayout>

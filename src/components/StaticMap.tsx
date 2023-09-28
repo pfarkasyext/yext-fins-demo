@@ -1,24 +1,11 @@
-import * as React from "react";
 
 export interface StaticMapProps {
   latitude: string;
   longitude: string;
 }
 
-const mapsApiKey = YEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
-
 const StaticMap = (props: StaticMapProps) => {
   const { latitude, longitude } = props;
-  if (!mapsApiKey) {
-    return (
-      <>
-        <div className="w-full">
-          It looks like you need a Maps API key. Grab an API Key from Google
-          Maps and add it to your .env file
-        </div>
-      </>
-    );
-  }
 
   return (
     <>
@@ -35,7 +22,7 @@ const StaticMap = (props: StaticMapProps) => {
           `${latitude}` +
           "," +
           `${longitude}` +
-          `&key=${mapsApiKey}`
+          "&key=AIzaSyDZNQlSlEIkFAct5VzUtsP4dSbvOr2bE18"
         }
       ></img>
     </>

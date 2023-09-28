@@ -25,11 +25,11 @@ export default function Articles({ articles }: { articles: ArticleProps[] }) {
   const otherArticles = articles.slice(1);
 
   return (
-    <div className="py-8 flex flex-col items-between gap-8">
+    <div className="md:py-8 flex flex-col items-between gap-8">
       <h2 className="font-bold text-4xl text-center text-brand-blue">
         Insights
       </h2>
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-x-8">
+      <div className="grid grid-cols-1 lg:grid-cols-5 md:gap-x-8 px-6 md:px-0 w-full">
         <article className="lg:col-span-3 flex flex-col gap-4">
           {featuredArticle.primaryPhoto && (
             <Image
@@ -50,7 +50,9 @@ export default function Articles({ articles }: { articles: ArticleProps[] }) {
             <span className="underline">Read more</span>
             <BsChevronRight />
           </a>
+          <div className="show md:hidden w-full md:w-96 mb-6 h-px border border-stone-300"></div>
         </article>
+
         <div className="lg:col-span-2">
           <div className="flex flex-col gap-6">
             {otherArticles.map((article, idx) => (
@@ -72,14 +74,16 @@ export default function Articles({ articles }: { articles: ArticleProps[] }) {
                     <BsChevronRight />
                   </a>
                 </article>
-                <div className="w-96 h-px border border-stone-300"></div>
+                <div className="w-full md:w-96 h-px border border-stone-300"></div>
               </>
             ))}
           </div>
         </div>
       </div>
-      <div className="flex justify-center">
-        <Button variant="outline">See All Articles</Button>
+      <div className="flex justify-center ">
+        <Button variant="outline" className=" w-full mx-6 lg:w-fit">
+          See All Articles
+        </Button>
       </div>
     </div>
   );
