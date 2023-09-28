@@ -34,7 +34,7 @@ const NavMenu = ({ menuItems }: any) => {
                   <button
                     onMouseEnter={() => setNestedData(subItem)}
                     type="button"
-                    className="border-none z-10 text-left bg-transparent leading-copy text-mid-gray px-4 py-2 relative sans-serif whistespace-break-spaces flex justify-between items-center w-full"
+                    className="border-none z-50 text-left bg-transparent leading-copy text-mid-gray px-4 py-2 relative sans-serif whistespace-break-spaces flex justify-between items-center w-full"
                   >
                     <a href={`${subItem.slug || "#"}`}>{subItem.name}</a>
                     <ChevronRightIcon className="h-3 w-3 ml-1" />
@@ -53,7 +53,7 @@ const NavMenu = ({ menuItems }: any) => {
                 >
                   <button
                     type="button"
-                    className="border-none z-10 text-left bg-transparent leading-copy text-mid-gray px-4 py-2 relative sans-serif whitespace-break-spaces"
+                    className="border-none z-50 text-left bg-transparent leading-copy text-mid-gray px-4 py-2 relative sans-serif whitespace-break-spaces"
                   >
                     <a href={`${subItem.slug || "#"}`}>{subItem.name}</a>
                   </button>
@@ -77,7 +77,7 @@ const NavMenu = ({ menuItems }: any) => {
         >
           <section>
             <div>
-              <div className="relative z-10 text-sm">
+              <div className="relative z-50 text-sm">
                 <a
                   className=" flex items-center no-underline desktop-header-trigger leading-title font-bold text-navy secondary-nav-flyout-trigger px-1 rounded-full transition-all duration-100 ease-in-out"
                   href={`${item.slug || `#`}`}
@@ -93,7 +93,7 @@ const NavMenu = ({ menuItems }: any) => {
                   item.relatedServices &&
                   index === hoveredMenu && (
                     <div
-                      className={`bg-white absolute z-10  rounded-br-3 rounded--bottom left-0 leading-copy overflow-hidden shadow-1 pt-1`}
+                      className={`bg-white absolute z-50  rounded-br-3 rounded--bottom left-0 leading-copy overflow-hidden shadow-1 pt-1`}
                       style={{
                         maxHeight: "545px",
                       }}
