@@ -24,6 +24,8 @@ import HeroBanner from "../components/HeroBanner";
 import Services from "../components/Services";
 import Team from "../components/Team";
 import StaticMap from "../components/StaticMap";
+import { XMarkIcon } from "@heroicons/react/24/outline";
+import { useState } from "react";
 export const config: TemplateConfig = {
   stream: {
     $id: "locations",
@@ -61,6 +63,7 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
 };
 
 export default function Location({ document, __meta }: TemplateProps) {
+  const [isSubNavOpen, setIsSubNavOpen] = useState<boolean>(false);
   const mappinSVG = (
     <svg
       width="56"
@@ -141,39 +144,105 @@ export default function Location({ document, __meta }: TemplateProps) {
           </div>
         </div>
       </VerticalStack>
-      <div className="flex justify-center gap-10 py-4">
-        <div>{"Our Services"}</div>
-        <div>{"Our Team"}</div>
-        <div>{"Insights"}</div>
-        <div>{"Recent Reviews"}</div>
-        <div>{"Let's Talk"}</div>
-      </div>
-
+      <ul className="hidden md:flex justify-center gap-10 py-4">
+        <li>
+          <a href="#services"> Our Services</a>
+        </li>
+        <li>
+          {" "}
+          <a href="#team"> Our Team</a>
+        </li>
+        <li>
+          {" "}
+          <a href="#insights"> Insights</a>
+        </li>
+        <li>
+          {" "}
+          <a href="#reviews"> Recent Reviews</a>
+        </li>
+        <li>
+          {" "}
+          <a href="#letstalk"> Let's Talk</a>
+        </li>
+      </ul>
+      <ul className="md:hidden flex flex-col justify-center px-4 md:px-0 md:gap-10 py-4">
+        <li className="flex justify-between items-center">
+          <div
+            onClick={() => setIsSubNavOpen(true)}
+            className="hover:cursor-pointer flex-1"
+          >
+            Navigate to{" "}
+          </div>
+          <XMarkIcon
+            className="h-4 w-4 hover:cursor-pointer"
+            onClick={() => setIsSubNavOpen(false)}
+          />
+        </li>
+        <hr className="my-4" />
+        {isSubNavOpen && (
+          <span
+            className="bg-white shadow-md rounded p-4 mt-4 "
+            style={{ opacity: isSubNavOpen ? 1 : 0 }}
+          >
+            <a href="#services"> Our Services</a>
+            <hr className="my-4" />
+            <li>
+              <a href="#services"> Our Services</a>
+            </li>
+            <hr className="my-4" />
+            <li>
+              <a href="#team"> Our Team</a>
+            </li>
+            <hr className="my-4" />
+            <li>
+              <a href="#insights"> Insights</a>
+            </li>
+            <hr className="my-4" />
+            <li>
+              <a href="#reviews"> Recent Reviews</a>
+            </li>
+            <hr className="my-4" />
+            <li>
+              <a href="#letstalk"> Let's Talk</a>
+            </li>
+            <hr className="my-4" />
+          </span>
+        )}
+      </ul>
       {document.fins_relatedServices && (
-        <Services services={document.fins_relatedServices} />
+        <>
+          <a id="services"></a>
+          <Services services={document.fins_relatedServices} />
+        </>
       )}
 
       {document.c_relatedFPsAndTeams && (
-        <Team
-          team={document.c_relatedFPsAndTeams.slice(0, 6)}
-          city={document.address.city}
-        />
+        <>
+          <a id="team"></a>
+          <Team
+            team={document.c_relatedFPsAndTeams.slice(0, 6)}
+            city={document.address.city}
+          />
+        </>
       )}
 
       {document.c_linkedInsightsArticles && (
-        <div className="flex flex-col items-center">
-          <div className="max-w-5xl flex flex-col justify-center ">
-            <Title
-              value={`Insights`}
-              textSize="4xl"
-              fontWeight="medium"
-              topMargin="12"
-              bottomMargin="8"
-              textColor="#1C2E5E"
-            />
-            <Articles articles={document.c_linkedInsightsArticles} />
+        <>
+          <a id="insights"></a>
+          <div className="flex flex-col items-center">
+            <div className="max-w-5xl flex flex-col justify-center ">
+              <Title
+                value={`Insights`}
+                textSize="4xl"
+                fontWeight="medium"
+                topMargin="12"
+                bottomMargin="8"
+                textColor="#1C2E5E"
+              />
+              <Articles articles={document.c_linkedInsightsArticles} />
+            </div>
           </div>
-        </div>
+        </>
       )}
 
       <VerticalStack
@@ -185,6 +254,7 @@ export default function Location({ document, __meta }: TemplateProps) {
         spacing="0"
         backgroundColor="#F9FAFB"
       >
+        <a id="letstalk"></a>
         <div className="max-w-5xl flex flex-col justify-center px-10 mt-8 md:mt-0">
           <Title
             value={`Let's Talk`}
