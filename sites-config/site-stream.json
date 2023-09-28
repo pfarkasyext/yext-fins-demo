@@ -21,7 +21,8 @@
     "c_navbar.relatedServices.name",
     "c_navbar.relatedServices.slug",
     "c_navbar.relatedServices.c_childProducts.name",
-    "c_navbar.relatedServices.c_childProducts.slug"
+    "c_navbar.relatedServices.c_childProducts.slug",
+    "c_headerLogo"
   ],
   "localization": {
     "locales": ["en"],

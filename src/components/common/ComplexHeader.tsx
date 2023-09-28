@@ -99,7 +99,7 @@ export default function ComplexHeader({ data }: any) {
         <div className="flex lg:flex-1">
           <a href="/index.html" className="-m-1.5 p-1.5">
             <span className="sr-only">Capital Wealth Management</span>
-            <img src="/src/assets/images/logo.png"/>
+            <img src={data.c_headerLogo.url}/>
           </a>
         </div>
         <div className="flex lg:hidden">
