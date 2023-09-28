@@ -9,6 +9,7 @@ export interface HeroBannerProps {
   verticalOnMobile: "true" | "false";
   backgroundImage?: string;
   backgroundColor?: string;
+  isProfessional?: boolean;
 }
 
 const HeroBanner = ({
@@ -21,6 +22,7 @@ const HeroBanner = ({
   alignment,
   verticalOnMobile,
   backgroundImage,
+  isProfessional = false,
 }: HeroBannerProps) => {
   const spacingVariants = {
     "0": "gap-0",
@@ -88,7 +90,9 @@ const HeroBanner = ({
       <div className="relative overflow-hidden min-h-fit bg-blue-950 bg-opacity-80">
         <img
           src={backgroundImage}
-          className="object-cover absolute -z-10 w-full -top-1/3 object-bottom"
+          className={`object-cover absolute -z-10 w-full  object-bottom ${
+            isProfessional && `-top-1/3`
+          }`}
         />
         <div className="flex flex-col justify-between p-8 h-full">
           <div
