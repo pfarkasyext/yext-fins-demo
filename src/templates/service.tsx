@@ -11,7 +11,6 @@ import "@fontsource/lato/400-italic.css";
 import "@fontsource/lato/700-italic.css";
 import "@fontsource/lato/900-italic.css";
 import "../index.css";
-import HeroSection from "../components/home/HeroSection";
 import ServicesHero from "../components/ServicesHero";
 export const config: TemplateConfig = {
   stream: {
