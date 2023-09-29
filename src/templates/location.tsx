@@ -181,7 +181,7 @@ export default function Location({ document, __meta }: TemplateProps) {
         <hr className="my-4" />
         {isSubNavOpen && (
           <span
-            className="bg-white shadow-md rounded p-4 mt-4 "
+            className="bg-white  rounded py-4 mt-4 transition-all"
             style={{ opacity: isSubNavOpen ? 1 : 0 }}
           >
             <a href="#services"> Our Services</a>
