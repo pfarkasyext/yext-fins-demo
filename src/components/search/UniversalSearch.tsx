@@ -84,7 +84,7 @@ export default function UniversalSearch({
   // useEffect(() => {
   //   vertKeyId ? handleNavBarSelect(vertKeyId) : handleNavBarSelect("all");
   // }, [vertKeyId]);
-  useEffect(() => {
+  /*useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const paramValue = params.get("param");
     console.log("Parameter value:", paramValue.get());
@@ -93,7 +93,7 @@ export default function UniversalSearch({
       console.log(`${key}: ${value}`);
     });
     // paramValue && handleNavBarSelect(paramValue[vertKeyId]);
-  }, []);
+  }, []);*/
   useEffect(() => {
     if (isUniveralSearch) {
       const resultsCountMap: Record<string, number> = {};
