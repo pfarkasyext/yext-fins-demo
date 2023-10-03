@@ -27,7 +27,6 @@ export default function RelatedProducts({
                   key={index}
                   className="grow shrink basis-0 bg-white rounded-lg border border-zinc-200 flex-col justify-start items-start inline-flex gap-2 items-center flex-col p-6"
                 >
-                  {/* <div className="self-stretch p-8 bg-white justify-start items-center gap-6 inline-flex flex-col"> */}
                   <div className="text-blue-950 text-2xl font-bold font-['Lato'] leading-[30px] align-center">
                     {item.name}
                   </div>
@@ -39,7 +38,6 @@ export default function RelatedProducts({
                     Learn More
                   </a>
                 </div>
-                // </div>
               );
             })}
           </div>

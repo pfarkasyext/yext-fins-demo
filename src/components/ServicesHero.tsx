@@ -1,15 +1,14 @@
-import { useState } from 'react'
-import { Dialog } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { useState } from "react";
+import { Dialog } from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 export interface BannerProps {
-    pageTitle: string;
-    imageUrl: string;
-    description: string;
-  }
+  pageTitle: string;
+  imageUrl: string;
+  description: string;
+}
 
-const ServicesHero = ({pageTitle, imageUrl, description}: BannerProps) => {
-
+const ServicesHero = ({ pageTitle, imageUrl, description }: BannerProps) => {
   return (
     <div className="bg-white">
       <div className="relative">
@@ -28,8 +27,11 @@ const ServicesHero = ({pageTitle, imageUrl, description}: BannerProps) => {
               <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl">
                 <div className="hidden sm:mb-10 sm:flex">
                   <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-500 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                    Get in contact with an advisor that understands your goals.{' '}
-                    <a href="#" className="whitespace-nowrap font-semibold text-blue-950">
+                    Get in contact with an advisor that understands your goals.{" "}
+                    <a
+                      href="#"
+                      className="whitespace-nowrap font-semibold text-blue-950"
+                    >
                       <span className="absolute inset-0" aria-hidden="true" />
                       Find an Advisor <span aria-hidden="true">&rarr;</span>
                     </a>
@@ -48,7 +50,10 @@ const ServicesHero = ({pageTitle, imageUrl, description}: BannerProps) => {
                   >
                     Make an Appointment
                   </a>
-                  <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+                  <a
+                    href="#"
+                    className="text-sm font-semibold leading-6 text-gray-900"
+                  >
                     Learn more <span aria-hidden="true">→</span>
                   </a>
                 </div>
@@ -57,15 +62,17 @@ const ServicesHero = ({pageTitle, imageUrl, description}: BannerProps) => {
           </div>
         </div>
         <div className="bg-gray-50 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-          <img
-            className="aspect-[3/2] object-cover lg:aspect-auto lg:h-full lg:w-full"
-            src={imageUrl}
-            alt=""
-          />
+          {imageUrl && (
+            <img
+              className="aspect-[3/2] object-cover lg:aspect-auto lg:h-full lg:w-full"
+              src={imageUrl}
+              alt=""
+            />
+          )}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default ServicesHero;
