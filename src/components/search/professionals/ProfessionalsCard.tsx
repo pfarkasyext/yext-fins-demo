@@ -23,6 +23,7 @@ const ProfessionalsCard = ({ result }: CardProps<FinancialProfessional>) => {
   //pull in the relevant fields from your entity to display on the card
   const data: any = {
     name: result.rawData.name,
+    slug: result.rawData.slug,
     headshot: result.rawData.headshot,
     landingPageUrl: result.rawData.landingPageUrl,
     address: result.rawData.address,
@@ -81,9 +82,9 @@ const ProfessionalsCard = ({ result }: CardProps<FinancialProfessional>) => {
         }
       />
       <div className="grow shrink basis-0 flex-col justify-start items-start gap-3 inline-flex">
-        <div className="text-blue-950 text-lg font-bold font-['Lato'] leading-normal">
+        <a href={data.slug} className="text-blue-950 text-lg font-bold font-['Lato'] leading-normal">
           {data.name}
-        </div>
+        </a>
         <div className="text-center text-blue-950 text-base font-bold font-['Lato'] leading-normal">
           {data.job}
         </div>
@@ -117,20 +118,20 @@ const ProfessionalsCard = ({ result }: CardProps<FinancialProfessional>) => {
           </div>
         </div>
         <div className="justify-start items-start gap-3 inline-flex">
-          <div className="h-8 bg-blue-950 rounded-md flex-col justify-center items-center inline-flex">
+          <a href={`/${data.slug}`} className="h-8 bg-blue-950 rounded-md flex-col justify-center items-center inline-flex">
             <div className="grow shrink basis-0 px-6 py-2 justify-start items-center gap-2.5 inline-flex">
               <div className="text-center text-white text-sm font-normal font-['Lato'] leading-snug">
                 Get In Touch
               </div>
             </div>
-          </div>
-          <div className="h-8 rounded-md border border-blue-950 flex-col justify-center items-center inline-flex">
+          </a>
+          <a href={`/${data.slug}`} className="h-8 rounded-md border border-blue-950 flex-col justify-center items-center inline-flex">
             <div className="grow shrink basis-0 px-6 py-2 justify-start items-center gap-2.5 inline-flex">
               <div className="text-center text-blue-950 text-sm font-normal font-['Lato'] leading-snug">
                 View Profile
               </div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>

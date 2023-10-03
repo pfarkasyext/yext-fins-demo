@@ -28,6 +28,7 @@ import Location from "../../types/locations";
 import FinancialProfessional from "../../types/financial_professionals";
 import Ce_service from "../../types/services";
 import Ce_financialProduct from "../../types/financial_products";
+import GridSection from "./GridSection";
 
 export interface SearchProps {
   vertKeyId?: string;
@@ -150,7 +151,9 @@ export default function UniversalSearch({
 
   const verticalResultsClassnames = () => {
     switch (vertical) {
-      case "blog_posts":
+      case "services":
+        return "grid grid-cols-3 gap-4 ";
+      case "financial_products":
         return "grid grid-cols-3 gap-4 ";
       default:
         return "flex flex-col gap-y-4";
@@ -302,7 +305,7 @@ export default function UniversalSearch({
                           results,
                           verticalKey,
                         }: SectionProps<Ce_service>) => (
-                          <ListSection
+                          <GridSection
                             results={results}
                             CardComponent={ServicesCard}
                             verticalKey={verticalKey}
@@ -321,7 +324,7 @@ export default function UniversalSearch({
                           results,
                           verticalKey,
                         }: SectionProps<Ce_financialProduct>) => (
-                          <ListSection
+                          <GridSection
                             results={results}
                             CardComponent={ProductsCard}
                             verticalKey={verticalKey}

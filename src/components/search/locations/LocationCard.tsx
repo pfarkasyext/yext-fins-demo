@@ -20,6 +20,7 @@ const LocationCard = ({ result }: CardProps<Location>) => {
   //pull in the relevant fields from your entity to display on the card
   const data: any = {
     name: result.rawData.name,
+    slug: result.rawData.slug,
     landingPageUrl: result.rawData.landingPageUrl,
     address: result.rawData.address,
     mainPhone: result.rawData.mainPhone,
@@ -66,9 +67,12 @@ const LocationCard = ({ result }: CardProps<Location>) => {
   return (
     <div className="w-full h-44 p-6 bg-white rounded-lg border border-zinc-200 justify-start items-start gap-4 inline-flex">
       <div className="grow shrink basis-0 flex-col justify-start items-start gap-3 inline-flex">
-        <div className="text-blue-950 text-lg font-bold font-['Lato'] leading-normal">
+        <a
+          href={data.slug}
+          className="text-blue-950 text-lg font-bold font-['Lato'] leading-normal"
+        >
           {data.name}
-        </div>
+        </a>
         <div className="self-stretch justify-start items-center gap-4 inline-flex">
           <div className="text-zinc-800 text-base font-normal font-['Lato'] leading-normal">
             {data.address.line1}
@@ -101,16 +105,22 @@ const LocationCard = ({ result }: CardProps<Location>) => {
         <div className="justify-start items-start gap-3 inline-flex">
           <div className="h-8 bg-blue-950 rounded-md flex-col justify-center items-center inline-flex">
             <div className="grow shrink basis-0 px-6 py-2 justify-start items-center gap-2.5 inline-flex">
-              <div className="text-center text-white text-sm font-normal font-['Lato'] leading-snug">
-                View Profile
-              </div>
+              <a
+                href={`/${data.slug}`}
+                className="text-center text-white text-sm font-normal font-['Lato'] leading-snug"
+              >
+                View More
+              </a>
             </div>
           </div>
           <div className="h-8 rounded-md border border-blue-950 flex-col justify-center items-center inline-flex">
             <div className="grow shrink basis-0 px-6 py-2 justify-start items-center gap-2.5 inline-flex">
-              <div className="text-center text-blue-950 text-sm font-normal font-['Lato'] leading-snug">
+              <a
+                href={`/${data.slug}`}
+                className="text-center text-blue-950 text-sm font-normal font-['Lato'] leading-snug"
+              >
                 Get Directions
-              </div>
+              </a>
             </div>
           </div>
         </div>
