@@ -35,7 +35,9 @@ module.exports = {
         "dark-orange": "#db8000",
         "brand-blue": "#1C2E5E",
         "brand-orange": "#DC7138",
-        "brand-secondary": "#DC7138"
+        "brand-primary": "#1C2E5E",
+        "brand-hover": "#314FA1",
+        "brand-secondary": "#DC7138",
       },
       scale: {
         1.02: "1.02",

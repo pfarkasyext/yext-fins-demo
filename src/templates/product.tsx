@@ -12,28 +12,35 @@ import "@fontsource/lato/700-italic.css";
 import "@fontsource/lato/900-italic.css";
 import "../index.css";
 import ServicesHero from "../components/ServicesHero";
-import RelatedProducts from "../components/RelatedProducts";
 export const config: TemplateConfig = {
   stream: {
-    $id: "services",
+    $id: "products",
     localization: { locales: ["en"], primary: false },
     filter: {
-      entityTypes: ["fins_service"],
+      entityTypes: ["fins_financialProduct"],
     },
-    fields: ["name", "id", "slug", "fins_servicesImage", "c_childProducts.name", "c_childProducts.slug", "c_serviceDescription"],
+    fields: [
+      "name",
+      "id",
+      "slug",
+      "fins_servicesImage",
+      "c_childProducts.name",
+      "c_serviceDescription",
+      "c_parentService.name",
+      "c_parentService.slug"
+    ],
   },
 };
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
-  return document.slug ?? document.id.toString();
+  return document.slug ?? "financial-product/" + document.id.toString();
 };
 
-export default function Service({ document, __meta }: TemplateProps) {
-  let pageTitle = `${document.name} at Capital Wealth`;
-  if (document.name === "Mortgage") {
-    pageTitle = "Mortages at Capital Wealth"
-  } else if (document.name === "Retail Banking") {
-    pageTitle = "Personal Banking with Capital";
-  }
+export default function Product({ document, __meta }: TemplateProps) {
+
+  let bannerImgUrl =
+    "https://a.mktgcdn.com/p/X6uh0LQn4S9FDKtEP9CkXIC2QrSTEvTLwoKsT7asb8o/1872x836.jpg";
+  if (document.fins_servicesImage.url)
+    bannerImgUrl = document.fins_servicesImage.url;
 
   return (
     <PageLayout _site={document._site}>
@@ -45,16 +52,20 @@ export default function Service({ document, __meta }: TemplateProps) {
           Home
         </a>
         <span className="mx-2 text-gray-400">&gt;</span>
+        <a href={"/" + document.c_parentService[0].slug} className="text-brand-primary hover:text-brand-hover">
+          {document.c_parentService[0].name}
+        </a>
+        <span className="mx-2 text-gray-400">&gt;</span>
         <a href={"/#"} className="text-brand-primary hover:text-brand-hover">
           {document.name}
         </a>
       </div>
+
       <ServicesHero
-        pageTitle={pageTitle}
-        imageUrl={document.fins_servicesImage.url}
+        pageTitle={document.name}
+        imageUrl={bannerImgUrl}
         description={document.c_serviceDescription}
       />
-      <RelatedProducts products={document.c_childProducts} name={document.name}/>
     </PageLayout>
   );
 }
