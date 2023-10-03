@@ -30,7 +30,14 @@ export const config: TemplateConfig = {
   stream: {
     $id: "home",
     localization: { locales: ["en"], primary: false },
-    fields: ["id", "name", "primaryPhoto", "slug"],
+    fields: [
+      "id",
+      "name",
+      "primaryPhoto",
+      "slug",
+      "c_heroBannerTitle",
+      "c_heroBannerDescription",
+    ],
     filter: { entityIds: ["home"] },
   },
 };
@@ -66,7 +73,11 @@ export const getHeadConfig: GetHeadConfig<
 const Home: Template<TemplateRenderProps> = ({ document }) => {
   return (
     <PageLayout containerClassName="mx-auto w-full" _site={document._site}>
-      <HeroSection img={document.primaryPhoto} />
+      <HeroSection
+        img={document.primaryPhoto}
+        heroTitle={document.c_heroBannerTitle}
+        heroDescription={document.c_heroBannerDescription}
+      />
       <section className="px-32 bg-gray-50">
         <Services services={document._site.c_featuredServices} />
       </section>
