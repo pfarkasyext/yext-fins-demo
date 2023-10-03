@@ -12,6 +12,7 @@ import "@fontsource/lato/700-italic.css";
 import "@fontsource/lato/900-italic.css";
 import "../index.css";
 import ServicesHero from "../components/ServicesHero";
+import RelatedProducts from "../components/RelatedProducts";
 export const config: TemplateConfig = {
   stream: {
     $id: "services",
@@ -19,7 +20,7 @@ export const config: TemplateConfig = {
     filter: {
       entityTypes: ["fins_service"],
     },
-    fields: ["name", "id", "slug", "fins_servicesImage"],
+    fields: ["name", "id", "slug", "fins_servicesImage", "c_childProducts.name", "c_childProducts.slug", "c_serviceDescription"],
   },
 };
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
@@ -39,7 +40,9 @@ export default function Service({ document, __meta }: TemplateProps) {
       <ServicesHero
         pageTitle={pageTitle}
         imageUrl={document.fins_servicesImage.url}
+        description={document.c_serviceDescription}
       />
+      <RelatedProducts products={document.c_childProducts} name={document.name}/>
     </PageLayout>
   );
 }
