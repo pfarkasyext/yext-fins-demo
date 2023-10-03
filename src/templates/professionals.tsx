@@ -24,6 +24,10 @@ import "@fontsource/lato/900-italic.css";
 import "../index.css";
 import HeroBanner from "../components/HeroBanner";
 import StaticMap from "../components/StaticMap";
+import HeroInfo from "../components/common/HeroInfotext";
+import LetsTalk from "../components/common/LetsTalk";
+import { useState } from "react";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 export const config: TemplateConfig = {
   stream: {
     $id: "professionals",
@@ -60,6 +64,8 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
 };
 
 export default function Professional({ document, __meta }: TemplateProps) {
+  const [isSubNavOpen, setIsSubNavOpen] = useState<boolean>(false);
+
   const mappinSVG = (
     <svg
       width="56"
@@ -100,27 +106,70 @@ export default function Professional({ document, __meta }: TemplateProps) {
         verticalOnMobile="false"
         backgroundImage={document.photoGallery[0]?.image.url}
         isProfessional={true}
+        headShot={document.headshot.url}
       >
-        <HeroImage
-          src={`${document.headshot.url}`}
-          alt={`${document.headshot.alternateText}`}
-          leftPadding="0"
-        />
-        <ContactInfo
-          name={document.name}
-          title={document.fins_jobTitle}
-          addressLine1={document.address.line1}
-          addressLine2={`${document.address.city}, ${document.address.region} ${document.address.postalCode}`}
+        <span className="hidden md:block">
+          <HeroImage
+            src={`${document.headshot.url}`}
+            alt={`${document.headshot.alternateText}`}
+            leftPadding="0"
+          />
+        </span>
+        <HeroInfo
+          title={document.name}
+          subtitle={document.fins_jobTitle}
+          line1={document.address.line1}
+          line2={`${document.address.city}, ${document.address.region} ${document.address.postalCode}`}
           email={document.emails[0]}
           phone={formattedPhone}
           textColor="#fff"
-        ></ContactInfo>
+        ></HeroInfo>
       </HeroBanner>
-      <div className="flex justify-center gap-10 py-4">
-        <div>{"About"}</div>
-        <div>{"Insights"}</div>
-        <div>{"Let's Talk"}</div>
-      </div>
+      <ul className="hidden md:flex justify-center gap-10 py-4">
+        <li>
+          <a href="#about">About</a>
+        </li>
+        <li>
+          <a href="#insights"> Insights</a>
+        </li>
+        <li>
+          <a href="#letstalk"> Let's Talk</a>
+        </li>
+      </ul>
+      <ul className="md:hidden flex flex-col justify-center px-4 md:px-0 md:gap-10 py-4">
+        <li className="flex justify-between items-center">
+          <div
+            onClick={() => setIsSubNavOpen(true)}
+            className="hover:cursor-pointer flex-1"
+          >
+            Navigate to{" "}
+          </div>
+          <XMarkIcon
+            className="h-4 w-4 hover:cursor-pointer"
+            onClick={() => setIsSubNavOpen(false)}
+          />
+        </li>
+        <hr className="my-4" />
+        {isSubNavOpen && (
+          <span
+            className="bg-white  rounded py-4 mt-4 transition-all"
+            style={{ opacity: isSubNavOpen ? 1 : 0 }}
+          >
+            <li>
+              <a href="#about">About</a>
+            </li>
+            <hr className="my-4" />
+            <li>
+              <a href="#insights"> Insights</a>
+            </li>
+            <hr className="my-4" />
+            <li>
+              <a href="#letstalk"> Let's Talk</a>
+            </li>
+            <hr className="my-4" />
+          </span>
+        )}
+      </ul>
       <VerticalStack
         alignment="center"
         rightMargin="0"
@@ -131,6 +180,7 @@ export default function Professional({ document, __meta }: TemplateProps) {
         backgroundColor="#F9FAFB"
       >
         <div className="max-w-5xl flex flex-col justify-center px-10">
+          <a id="about"></a>
           <Title
             value={`About ${document.name}`}
             textSize="4xl"
@@ -149,6 +199,7 @@ export default function Professional({ document, __meta }: TemplateProps) {
       </VerticalStack>
       <div className="flex flex-col items-center">
         <div className="max-w-5xl flex flex-col justify-center ">
+          <a id="insights"></a>
           <Title
             value={`Insights`}
             textSize="4xl"
@@ -170,66 +221,13 @@ export default function Professional({ document, __meta }: TemplateProps) {
         spacing="0"
         backgroundColor="#F9FAFB"
       >
-        <div className="max-w-5xl flex flex-col justify-center px-10">
-          <Title
-            value={`Let's Talk`}
-            textSize="4xl"
-            fontWeight="medium"
-            topMargin="4"
-            bottomMargin="2"
-            backgroundColor="#F9FAFB"
-            textColor="#1C2E5E"
-          />
-          <span className="hidden md:block">
-            <GridContainer backgroundColor="#F9FAFB">
-              <MapDescription
-                description={document.description}
-                email={document.emails[0]}
-                phone={formattedPhone}
-                textColor="#333333"
-              />
-
-              <LocationMap
-                className="h-full"
-                clientKey="gme-yextinc"
-                coordinate={document.geocodedCoordinate}
-                provider={GoogleMaps}
-              >
-                {
-                  <svg
-                    width="56"
-                    height="58"
-                    viewBox="0 0 56 58"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M28.0951 1C33.1149 1 37.6595 3.03469 40.9491 6.32432C44.2388 9.61396 46.2734 14.1586 46.2734 19.1784C46.2734 25.9554 40.1704 38.558 28.0941 57C16.019 38.5565 9.91669 25.955 9.91669 19.1784C9.91669 14.1586 11.9514 9.61396 15.241 6.32432C18.5307 3.03469 23.0752 1 28.0951 1Z"
-                      fill="#0F70F0"
-                      stroke="black"
-                      strokeOpacity="0.5"
-                    />
-                    <path
-                      d="M28.095 27.2577C32.5571 27.2577 36.1743 23.6405 36.1743 19.1784C36.1743 14.7163 32.5571 11.0991 28.095 11.0991C23.633 11.0991 20.0157 14.7163 20.0157 19.1784C20.0157 23.6405 23.633 27.2577 28.095 27.2577Z"
-                      fill="white"
-                    />
-                  </svg>
-                }
-              </LocationMap>
-            </GridContainer>
-          </span>
-          <span className="block md:hidden">
-            <div className="grid grid-cols-1">
-              {/* <div>{document.description}</div> */}
-              <div>
-                <StaticMap
-                  latitude={document.geocodedCoordinate.latitude}
-                  longitude={document.geocodedCoordinate.longitude}
-                ></StaticMap>
-              </div>
-            </div>
-          </span>
-        </div>
+        <a id="letstalk"></a>
+        <LetsTalk
+          description={document.description}
+          emails={document.emails[0]}
+          formattedPhone={formattedPhone}
+          geocodedCoordinate={document.geocodedCoordinate}
+        ></LetsTalk>
       </VerticalStack>
     </PageLayout>
   );

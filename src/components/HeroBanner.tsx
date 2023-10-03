@@ -10,6 +10,7 @@ export interface HeroBannerProps {
   backgroundImage?: string;
   backgroundColor?: string;
   isProfessional?: boolean;
+  headShot?: string;
 }
 
 const HeroBanner = ({
@@ -23,6 +24,7 @@ const HeroBanner = ({
   verticalOnMobile,
   backgroundImage,
   isProfessional = false,
+  headShot,
 }: HeroBannerProps) => {
   const spacingVariants = {
     "0": "gap-0",
@@ -90,13 +92,18 @@ const HeroBanner = ({
       <div className="relative overflow-hidden min-h-fit bg-blue-950 bg-opacity-80">
         <img
           src={backgroundImage}
-          className={`object-cover absolute -z-10 w-full  object-bottom ${
+          className={`hidden md:block object-cover absolute -z-10 w-full  object-bottom ${
             isProfessional && `-top-1/3`
           }`}
         />
+        <img
+          style={{ height: "290px" }}
+          src={isProfessional ? headShot : backgroundImage}
+          className="block md:hidden object-cover absolute -z-10 w-full"
+        />
         <div className="flex flex-col justify-between p-8 h-full">
           <div
-            className={`flex content-center justify-center h-[482px] ${responsiveVariants[verticalOnMobile]} ${alignmentVariants[alignment]} ${spacingVariants[spacing]} ${topMarginVariants[topMargin]} ${bottomMarginVariants[bottomMargin]} ${leftMarginVariants[leftMargin]} ${rightMarginVariants[rightMargin]}`}
+            className={`flex content-center justify-center h-fit md:h-[482px] ${responsiveVariants[verticalOnMobile]} ${alignmentVariants[alignment]} ${spacingVariants[spacing]} ${topMarginVariants[topMargin]} ${bottomMarginVariants[bottomMargin]} ${leftMarginVariants[leftMargin]} ${rightMarginVariants[rightMargin]}`}
           >
             {children}
           </div>

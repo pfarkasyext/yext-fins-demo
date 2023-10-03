@@ -26,6 +26,8 @@ import Team from "../components/Team";
 import StaticMap from "../components/StaticMap";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
+import HeroInfo from "../components/common/HeroInfotext";
+import LetsTalk from "../components/common/LetsTalk";
 export const config: TemplateConfig = {
   stream: {
     $id: "locations",
@@ -104,15 +106,15 @@ export default function Location({ document, __meta }: TemplateProps) {
         verticalOnMobile="false"
         backgroundImage={document.photoGallery[0]?.image.url}
       >
-        <LocationInfo
-          name={document.name}
-          city={document.address.city}
-          addressLine1={document.address.line1}
-          addressLine2={`${document.address.city}, ${document.address.region} ${document.address.postalCode}`}
+        <HeroInfo
+          title={document.name}
+          subtitle={document.address.city}
+          line1={document.address.line1}
+          line2={`${document.address.city}, ${document.address.region} ${document.address.postalCode}`}
           email={document.emails[0]}
           phone={formattedPhone}
           textColor="#fff"
-        ></LocationInfo>
+        ></HeroInfo>
       </HeroBanner>
       <VerticalStack
         alignment="center"
@@ -255,71 +257,12 @@ export default function Location({ document, __meta }: TemplateProps) {
         backgroundColor="#F9FAFB"
       >
         <a id="letstalk"></a>
-        <div className="max-w-5xl flex flex-col justify-center px-10 mt-8 md:mt-0">
-          <Title
-            value={`Let's Talk`}
-            textSize="4xl"
-            fontWeight="medium"
-            topMargin="4"
-            bottomMargin="2"
-            backgroundColor="#F9FAFB"
-            textColor="#1C2E5E"
-          />
-          <span className="hidden md:block">
-            <GridContainer backgroundColor="#F9FAFB">
-              <MapDescription
-                description={document.description}
-                email={document.emails[0]}
-                phone={formattedPhone}
-                textColor="#333333"
-              />
-
-              <LocationMap
-                className="h-full"
-                clientKey="gme-yextinc"
-                coordinate={document.geocodedCoordinate}
-                provider={GoogleMaps}
-              >
-                {
-                  <svg
-                    width="56"
-                    height="58"
-                    viewBox="0 0 56 58"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M28.0951 1C33.1149 1 37.6595 3.03469 40.9491 6.32432C44.2388 9.61396 46.2734 14.1586 46.2734 19.1784C46.2734 25.9554 40.1704 38.558 28.0941 57C16.019 38.5565 9.91669 25.955 9.91669 19.1784C9.91669 14.1586 11.9514 9.61396 15.241 6.32432C18.5307 3.03469 23.0752 1 28.0951 1Z"
-                      fill="#0F70F0"
-                      stroke="black"
-                      strokeOpacity="0.5"
-                    />
-                    <path
-                      d="M28.095 27.2577C32.5571 27.2577 36.1743 23.6405 36.1743 19.1784C36.1743 14.7163 32.5571 11.0991 28.095 11.0991C23.633 11.0991 20.0157 14.7163 20.0157 19.1784C20.0157 23.6405 23.633 27.2577 28.095 27.2577Z"
-                      fill="white"
-                    />
-                  </svg>
-                }
-              </LocationMap>
-            </GridContainer>
-          </span>
-          <span className="block md:hidden">
-            <div className="grid grid-cols-1 gap-y-12 mt-4">
-              <div>
-                <StaticMap
-                  latitude={document.geocodedCoordinate.latitude}
-                  longitude={document.geocodedCoordinate.longitude}
-                ></StaticMap>
-              </div>
-              <MapDescription
-                description={document.description}
-                email={document.emails[0]}
-                phone={formattedPhone}
-                textColor="#333333"
-              />
-            </div>
-          </span>
-        </div>
+        <LetsTalk
+          description={document.description}
+          emails={document.emails[0]}
+          formattedPhone={formattedPhone}
+          geocodedCoordinate={document.geocodedCoordinate}
+        ></LetsTalk>
       </VerticalStack>
     </PageLayout>
   );
