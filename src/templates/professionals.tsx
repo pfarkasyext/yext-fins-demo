@@ -28,6 +28,7 @@ import HeroInfo from "../components/common/HeroInfotext";
 import LetsTalk from "../components/common/LetsTalk";
 import { useState } from "react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import InpageNav from "../components/common/InpageNav";
 export const config: TemplateConfig = {
   stream: {
     $id: "professionals",
@@ -93,7 +94,20 @@ export default function Professional({ document, __meta }: TemplateProps) {
     5,
     8
   )}-${document.mainPhone.substring(8)}`;
-
+  const InPageNavItems = [
+    {
+      name: "About",
+      navId: "about",
+    },
+    {
+      name: "Insights",
+      navId: "insights",
+    },
+    {
+      name: "Let's Talk",
+      navId: "letstalk",
+    },
+  ];
   return (
     <PageLayout _site={document._site}>
       <HeroBanner
@@ -125,51 +139,7 @@ export default function Professional({ document, __meta }: TemplateProps) {
           textColor="#fff"
         ></HeroInfo>
       </HeroBanner>
-      <ul className="hidden md:flex justify-center gap-10 py-4">
-        <li>
-          <a href="#about">About</a>
-        </li>
-        <li>
-          <a href="#insights"> Insights</a>
-        </li>
-        <li>
-          <a href="#letstalk"> Let's Talk</a>
-        </li>
-      </ul>
-      <ul className="md:hidden flex flex-col justify-center px-4 md:px-0 md:gap-10 py-4">
-        <li className="flex justify-between items-center">
-          <div
-            onClick={() => setIsSubNavOpen(true)}
-            className="hover:cursor-pointer flex-1"
-          >
-            Navigate to{" "}
-          </div>
-          <XMarkIcon
-            className="h-4 w-4 hover:cursor-pointer"
-            onClick={() => setIsSubNavOpen(false)}
-          />
-        </li>
-        <hr className="my-4" />
-        {isSubNavOpen && (
-          <span
-            className="bg-white  rounded py-4 mt-4 transition-all"
-            style={{ opacity: isSubNavOpen ? 1 : 0 }}
-          >
-            <li>
-              <a href="#about">About</a>
-            </li>
-            <hr className="my-4" />
-            <li>
-              <a href="#insights"> Insights</a>
-            </li>
-            <hr className="my-4" />
-            <li>
-              <a href="#letstalk"> Let's Talk</a>
-            </li>
-            <hr className="my-4" />
-          </span>
-        )}
-      </ul>
+      <InpageNav navItems={InPageNavItems}></InpageNav>
       <VerticalStack
         alignment="center"
         rightMargin="0"

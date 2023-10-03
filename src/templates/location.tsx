@@ -22,6 +22,7 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import HeroInfo from "../components/common/HeroInfotext";
 import LetsTalk from "../components/common/LetsTalk";
+import InpageNav from "../components/common/InpageNav";
 export const config: TemplateConfig = {
   stream: {
     $id: "locations",
@@ -59,7 +60,6 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
 };
 
 export default function Location({ document, __meta }: TemplateProps) {
-  const [isSubNavOpen, setIsSubNavOpen] = useState<boolean>(false);
   const mappinSVG = (
     <svg
       width="56"
@@ -87,6 +87,29 @@ export default function Location({ document, __meta }: TemplateProps) {
     5,
     8
   )}-${document.mainPhone.substring(8)}`;
+
+  const InPageNavItems = [
+    {
+      name: "services",
+      navId: "services",
+    },
+    {
+      name: "Our Team",
+      navId: "team",
+    },
+    {
+      name: "Insights",
+      navId: "insights",
+    },
+    {
+      name: "Recent Reviews",
+      navId: "reviews",
+    },
+    {
+      name: "Let's Talk",
+      navId: "letstalk",
+    },
+  ];
 
   return (
     <PageLayout _site={document._site}>
@@ -140,71 +163,8 @@ export default function Location({ document, __meta }: TemplateProps) {
           </div>
         </div>
       </VerticalStack>
-      <ul className="hidden md:flex justify-center gap-10 py-4">
-        <li>
-          <a href="#services"> Our Services</a>
-        </li>
-        <li>
-          {" "}
-          <a href="#team"> Our Team</a>
-        </li>
-        <li>
-          {" "}
-          <a href="#insights"> Insights</a>
-        </li>
-        <li>
-          {" "}
-          <a href="#reviews"> Recent Reviews</a>
-        </li>
-        <li>
-          {" "}
-          <a href="#letstalk"> Let's Talk</a>
-        </li>
-      </ul>
-      <ul className="md:hidden flex flex-col justify-center px-4 md:px-0 md:gap-10 py-4">
-        <li className="flex justify-between items-center">
-          <div
-            onClick={() => setIsSubNavOpen(true)}
-            className="hover:cursor-pointer flex-1"
-          >
-            Navigate to{" "}
-          </div>
-          <XMarkIcon
-            className="h-4 w-4 hover:cursor-pointer"
-            onClick={() => setIsSubNavOpen(false)}
-          />
-        </li>
-        <hr className="my-4" />
-        {isSubNavOpen && (
-          <span
-            className="bg-white  rounded py-4 mt-4 transition-all"
-            style={{ opacity: isSubNavOpen ? 1 : 0 }}
-          >
-            <a href="#services"> Our Services</a>
-            <hr className="my-4" />
-            <li>
-              <a href="#services"> Our Services</a>
-            </li>
-            <hr className="my-4" />
-            <li>
-              <a href="#team"> Our Team</a>
-            </li>
-            <hr className="my-4" />
-            <li>
-              <a href="#insights"> Insights</a>
-            </li>
-            <hr className="my-4" />
-            <li>
-              <a href="#reviews"> Recent Reviews</a>
-            </li>
-            <hr className="my-4" />
-            <li>
-              <a href="#letstalk"> Let's Talk</a>
-            </li>
-            <hr className="my-4" />
-          </span>
-        )}
-      </ul>
+      <InpageNav navItems={InPageNavItems}></InpageNav>
+
       {document.fins_relatedServices && (
         <>
           <a id="services"></a>
