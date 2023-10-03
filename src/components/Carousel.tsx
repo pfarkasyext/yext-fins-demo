@@ -13,8 +13,6 @@ interface ServicesProps {
 }
 
 const Carousel = ({ services }: ServicesProps) => {
-  console.log(JSON.stringify(services));
-
   const settings = {
     dots: true,
     infinite: false,

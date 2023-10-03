@@ -1,14 +1,9 @@
 import { GetPath, TemplateConfig, TemplateProps } from "@yext/pages";
-import GridContainer from "../components/GridContainer";
 import PageLayout from "../components/common/PageLayout";
 import Title from "../components/Title";
 import VerticalStack from "../components/VerticalStack";
 import "../index.css";
-import LocationInfo from "../components/LocationInfo";
-import { LocationMap } from "@yext/pages/components";
-import { GoogleMaps } from "@yext/components-tsx-maps";
 import Articles from "../components/Articles";
-import MapDescription from "../components/MapDescription";
 import "@fontsource/lato/100.css";
 import "@fontsource/lato/300.css";
 import "@fontsource/lato/400.css";
@@ -23,7 +18,6 @@ import "../index.css";
 import HeroBanner from "../components/HeroBanner";
 import Services from "../components/Services";
 import Team from "../components/Team";
-import StaticMap from "../components/StaticMap";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import HeroInfo from "../components/common/HeroInfotext";
@@ -221,10 +215,18 @@ export default function Location({ document, __meta }: TemplateProps) {
       {document.c_relatedFPsAndTeams && (
         <>
           <a id="team"></a>
-          <Team
-            team={document.c_relatedFPsAndTeams.slice(0, 6)}
-            city={document.address.city}
-          />
+          <span className="block md:hidden">
+            <Team
+              team={document.c_relatedFPsAndTeams.slice(0, 3)}
+              city={document.address.city}
+            />
+          </span>
+          <span className="md:block hidden">
+            <Team
+              team={document.c_relatedFPsAndTeams.slice(0, 6)}
+              city={document.address.city}
+            />
+          </span>
         </>
       )}
 

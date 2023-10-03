@@ -20,8 +20,6 @@ const NavMenu = ({ menuItems }: any) => {
         {item.length >= 2 ? (
           <ul className="list m-0 p-0 pb-3">
             {item.map((subItem, subIndex) => {
-              console.log(subIndex, hoveredItem);
-
               return (
                 <li
                   onMouseEnter={() => setHoveredItem(subIndex)}

@@ -11,6 +11,7 @@ import {
 } from "../../common/consts";
 import { useSearchState } from "@yext/search-headless-react";
 import FinancialProfessional from "../../../types/financial_professionals";
+import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/outline";
 
 export const searchAnalytics = provideSearchAnalytics({
   experienceKey: experienceKey,
@@ -86,7 +87,7 @@ const ProfessionalsCard = ({ result }: CardProps<FinancialProfessional>) => {
         <div className="text-center text-blue-950 text-base font-bold font-['Lato'] leading-normal">
           {data.job}
         </div>
-        <div className="self-stretch justify-start items-center gap-4 inline-flex">
+        <div className="self-stretch justify-start items-center gap-8 inline-flex">
           <div className="text-zinc-800 text-base font-normal font-['Lato'] leading-normal">
             {data.address.line1}
             <br />
@@ -96,7 +97,7 @@ const ProfessionalsCard = ({ result }: CardProps<FinancialProfessional>) => {
             <div className="justify-start items-center gap-2 inline-flex">
               <div className="w-4 h-4 justify-center items-center flex">
                 <div className="w-5 h-5 text-center text-zinc-800 text-base font-light font-['Font Awesome 6 Pro']">
-                  
+                  <PhoneIcon />
                 </div>
               </div>
               <div className="text-zinc-800 text-base font-normal font-['Lato'] leading-normal">
@@ -106,7 +107,7 @@ const ProfessionalsCard = ({ result }: CardProps<FinancialProfessional>) => {
             <div className="justify-start items-center gap-2 inline-flex">
               <div className="w-4 h-4 justify-center items-center flex">
                 <div className="w-5 h-5 text-center text-zinc-800 text-base font-light font-['Font Awesome 6 Pro']">
-                  
+                  <EnvelopeIcon />
                 </div>
               </div>
               <div className="text-zinc-800 text-base font-normal font-['Lato'] underline leading-normal">

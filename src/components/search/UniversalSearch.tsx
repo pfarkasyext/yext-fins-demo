@@ -1,5 +1,7 @@
 import {
+  AppliedFilters,
   DirectAnswer,
+  Facets,
   Pagination,
   ResultsCount,
   SearchBar,
@@ -12,7 +14,6 @@ import { useSearchActions, useSearchState } from "@yext/search-headless-react";
 import Section from "../atoms/Section";
 import { useEffect, useState } from "react";
 import ListSection from "../search/ListSection";
-import GridSection from "../search/GridSection";
 import NoResults from "../search/NoResults";
 import SearchLoading from "../search/SearchLoading";
 import Icon from "../atoms/Icon";
@@ -27,9 +28,16 @@ import Location from "../../types/locations";
 import FinancialProfessional from "../../types/financial_professionals";
 import Ce_service from "../../types/services";
 import Ce_financialProduct from "../../types/financial_products";
-// import NavBar from "./services/NavBar";
 
-export default function UniversalSearch() {
+export interface SearchProps {
+  vertKeyId?: string;
+  searchQuery?: string;
+}
+
+export default function UniversalSearch({
+  vertKeyId,
+  searchQuery,
+}: SearchProps) {
   const [resultsCountMap, setResultsCountMap] = useState<
     Record<string, number>
   >({});
@@ -44,6 +52,8 @@ export default function UniversalSearch() {
   const verticalResultCount = useSearchState(
     (state) => state.vertical.resultsCount
   );
+  const facetsPresent = useSearchState((state) => state.filters.facets);
+
   const searchLoading = useSearchState((state) => state.searchStatus.isLoading);
 
   useEffect(() => {
@@ -71,6 +81,19 @@ export default function UniversalSearch() {
     }
   }, []);
 
+  // useEffect(() => {
+  //   vertKeyId ? handleNavBarSelect(vertKeyId) : handleNavBarSelect("all");
+  // }, [vertKeyId]);
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const paramValue = params.get("param");
+    console.log("Parameter value:", paramValue.get());
+
+    params.forEach((value, key) => {
+      console.log(`${key}: ${value}`);
+    });
+    // paramValue && handleNavBarSelect(paramValue[vertKeyId]);
+  }, []);
   useEffect(() => {
     if (isUniveralSearch) {
       const resultsCountMap: Record<string, number> = {};
@@ -82,6 +105,8 @@ export default function UniversalSearch() {
   }, [universalResults]);
 
   const handleNavBarSelect = (id: string) => {
+    console.log("done");
+
     if (id === "all") {
       searchActions.setUniversal();
       searchActions.setRestrictVerticals([
@@ -203,123 +228,150 @@ export default function UniversalSearch() {
       {!searchLoading ? (
         <>
           <Section>
-            <ResultsCount
-              customCssClasses={{
-                resultsCountContainer: "font-sans-bold text-lg mb-0 p-0",
-              }}
-            />
-            <DirectAnswer />
             {isUniveralSearch ? (
               universalResults && universalResults.length > 0 ? (
-                <UniversalResults
-                  customCssClasses={{
-                    universalResultsContainer: "flex flex-col gap-y-8",
-                  }}
-                  verticalConfigMap={{
-                    financial_professionals: {
-                      CardComponent: ProfessionalsCard,
-                      SectionComponent: ({
-                        results,
-                        verticalKey,
-                      }: SectionProps<FinancialProfessional>) => (
-                        <ListSection
-                          results={results}
-                          CardComponent={ProfessionalsCard}
-                          verticalKey={verticalKey}
-                          header={
-                            <h2 className="text-2xl font-semibold text-blue-950 pb-4">
-                              Financial Professionals
-                            </h2>
-                          }
-                        />
-                      ),
-                    },
-                    locations: {
-                      CardComponent: LocationCard,
-                      SectionComponent: ({
-                        results,
-                        verticalKey,
-                      }: SectionProps<Location>) => (
-                        <ListSection
-                          results={results}
-                          CardComponent={LocationCard}
-                          verticalKey={verticalKey}
-                          header={
-                            <h2 className="text-2xl font-semibold text-blue-950 pb-4">
-                              Locations
-                            </h2>
-                          }
-                        />
-                      ),
-                    },
-                    faqs: {
-                      CardComponent: FaqCard,
-                      SectionComponent: ({
-                        results,
-                        verticalKey,
-                      }: SectionProps<Faq>) => (
-                        <GridSection
-                          results={results}
-                          CardComponent={FaqCard}
-                          verticalKey={verticalKey}
-                          header={
-                            <h2 className="text-2xl font-semibold text-blue-950 pb-4">
-                              FAQs
-                            </h2>
-                          }
-                        />
-                      ),
-                    },
-                    services: {
-                      label: "Services",
-                      SectionComponent: ({
-                        results,
-                        verticalKey,
-                      }: SectionProps<Ce_service>) => (
-                        <ListSection
-                          results={results}
-                          CardComponent={ServicesCard}
-                          verticalKey={verticalKey}
-                          header={
-                            <h2 className="text-2xl font-semibold text-blue-950 pb-4">
-                              Services
-                            </h2>
-                          }
-                        />
-                      ),
-                      CardComponent: ServicesCard,
-                    },
-                    financial_products: {
-                      label: "Financial Products",
-                      SectionComponent: ({
-                        results,
-                        verticalKey,
-                      }: SectionProps<Ce_financialProduct>) => (
-                        <ListSection
-                          results={results}
-                          CardComponent={ProductsCard}
-                          verticalKey={verticalKey}
-                          header={
-                            <h2 className="text-2xl font-semibold text-blue-950 pb-4">
-                              Financial Products
-                            </h2>
-                          }
-                        />
-                      ),
-                      CardComponent: ProductsCard,
-                    },
-                  }}
-                />
+                <>
+                  <ResultsCount
+                    customCssClasses={{
+                      resultsCountContainer: "font-sans-bold text-lg mb-0 p-0",
+                    }}
+                  />
+                  <DirectAnswer />
+                  <UniversalResults
+                    customCssClasses={{
+                      universalResultsContainer: "flex flex-col gap-y-8",
+                    }}
+                    verticalConfigMap={{
+                      financial_professionals: {
+                        CardComponent: ProfessionalsCard,
+                        SectionComponent: ({
+                          results,
+                          verticalKey,
+                        }: SectionProps<FinancialProfessional>) => (
+                          <ListSection
+                            results={results}
+                            CardComponent={ProfessionalsCard}
+                            verticalKey={verticalKey}
+                            header={
+                              <h2 className="text-2xl font-semibold text-blue-950 pb-4">
+                                Financial Professionals
+                              </h2>
+                            }
+                          />
+                        ),
+                      },
+                      locations: {
+                        CardComponent: LocationCard,
+                        SectionComponent: ({
+                          results,
+                          verticalKey,
+                        }: SectionProps<Location>) => (
+                          <ListSection
+                            results={results}
+                            CardComponent={LocationCard}
+                            verticalKey={verticalKey}
+                            header={
+                              <h2 className="text-2xl font-semibold text-blue-950 pb-4">
+                                Locations
+                              </h2>
+                            }
+                          />
+                        ),
+                      },
+                      faqs: {
+                        CardComponent: FaqCard,
+                        SectionComponent: ({
+                          results,
+                          verticalKey,
+                        }: SectionProps<Faq>) => (
+                          <ListSection
+                            results={results}
+                            CardComponent={FaqCard}
+                            verticalKey={verticalKey}
+                            header={
+                              <h2 className="text-2xl font-semibold text-blue-950 pb-4">
+                                FAQs
+                              </h2>
+                            }
+                          />
+                        ),
+                      },
+                      services: {
+                        label: "Services",
+                        SectionComponent: ({
+                          results,
+                          verticalKey,
+                        }: SectionProps<Ce_service>) => (
+                          <ListSection
+                            results={results}
+                            CardComponent={ServicesCard}
+                            verticalKey={verticalKey}
+                            header={
+                              <h2 className="text-2xl font-semibold text-blue-950 pb-4">
+                                Services
+                              </h2>
+                            }
+                          />
+                        ),
+                        CardComponent: ServicesCard,
+                      },
+                      financial_products: {
+                        label: "Financial Products",
+                        SectionComponent: ({
+                          results,
+                          verticalKey,
+                        }: SectionProps<Ce_financialProduct>) => (
+                          <ListSection
+                            results={results}
+                            CardComponent={ProductsCard}
+                            verticalKey={verticalKey}
+                            header={
+                              <h2 className="text-2xl font-semibold text-blue-950 pb-4">
+                                Financial Products
+                              </h2>
+                            }
+                          />
+                        ),
+                        CardComponent: ProductsCard,
+                      },
+                    }}
+                  />
+                </>
               ) : (
                 <NoResults />
               )
             ) : verticalResultCount && verticalResultCount > 0 ? (
-              <VerticalResults
-                customCssClasses={{
-                  verticalResultsContainer: verticalResultsClassnames(),
-                }}
-                CardComponent={CardComponent}
-              />
+              <>
+                <div className="flex mt-4">
+                  {facetsPresent && facetsPresent.length >= 1 && (
+                    <div className="min-w-[18rem] mr-5 ">
+                      <Facets
+                        customCssClasses={{
+                          facetsContainer: "bg-white p-2",
+                        }}
+                      />
+                    </div>
+                  )}
+                  <div
+                    className={`${
+                      facetsPresent && facetsPresent.length >= 1
+                        ? "flex-grow"
+                        : "w-full"
+                    }`}
+                  >
+                    <div className="flex flex-col items-baseline">
+                      <ResultsCount />
+                      <AppliedFilters />
+                    </div>
+                    <VerticalResults
+                      customCssClasses={{
+                        verticalResultsContainer: verticalResultsClassnames(),
+                      }}
+                      CardComponent={CardComponent}
+                    />
+                  </div>
+                </div>
+              </>
             ) : (
               <NoResults />
             )}
