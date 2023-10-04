@@ -1,8 +1,4 @@
-import * as React from "react";
-import { Address, ComplexImageType, ImageType } from "@yext/pages/components";
-import { formatPhoneNumber } from "react-phone-number-input";
-import List from "./List";
-import { Image } from "@yext/pages/components";
+import { ImageType } from "@yext/pages/components";
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/outline";
 
 interface TeamProps {
@@ -23,7 +19,7 @@ export default function Team({
 }) {
   return (
     <>
-      <div className="w-full md:w-[1440px] h-full md:h-[922px] px-6 md:px-[150px] py-16 bg-gray-50 flex-col justify-start items-center gap-8 inline-flex">
+      <div className="w-full   h-full md:h-[922px] px-6 md:px-[150px] py-16 bg-gray-50 flex-col justify-start items-center gap-8 inline-flex">
         <div className="self-stretch text-center text-blue-950 text-[34px] font-bold font-['Lato'] leading-10">
           Our {city} Team
         </div>
@@ -89,9 +85,12 @@ export default function Team({
 
           <div className=" rounded-md border border-blue-950 flex-col justify-center items-center flex w-fit">
             <div className="grow shrink basis-0 px-6 py-2 justify-start items-center gap-2.5 inline-flex">
-              <div className="text-center text-blue-950 text-sm font-normal font-['Lato'] leading-snug ">
+              <a
+                href={`/search.html?vertical=financial_professionals&query=Financial professionals near ${city}`}
+                className="text-center text-blue-950 text-sm font-normal font-['Lato'] leading-snug "
+              >
                 Load More
-              </div>
+              </a>
             </div>
           </div>
         </div>

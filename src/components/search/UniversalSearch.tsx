@@ -30,21 +30,12 @@ import Ce_service from "../../types/services";
 import Ce_financialProduct from "../../types/financial_products";
 import GridSection from "./GridSection";
 
-export interface SearchProps {
-  vertKeyId?: string;
-  searchQuery?: string;
-}
-
-export default function UniversalSearch({
-  vertKeyId,
-  searchQuery,
-}: SearchProps) {
+export default function UniversalSearch() {
   const [resultsCountMap, setResultsCountMap] = useState<
     Record<string, number>
   >({});
 
   const searchActions = useSearchActions();
-
   const isUniveralSearch = useSearchState(
     (state) => state.meta.searchType === "universal"
   );
@@ -59,10 +50,10 @@ export default function UniversalSearch({
 
   useEffect(() => {
     const verticalKey = new URLSearchParams(window.location.search).get(
-      "verticalKey"
+      "vertical"
     );
-    // if there is a query in the url, add it to the search state
     const query = new URLSearchParams(window.location.search).get("query");
+
     if (query) {
       searchActions.setQuery(query);
     }
@@ -82,19 +73,6 @@ export default function UniversalSearch({
     }
   }, []);
 
-  // useEffect(() => {
-  //   vertKeyId ? handleNavBarSelect(vertKeyId) : handleNavBarSelect("all");
-  // }, [vertKeyId]);
-  /*useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const paramValue = params.get("param");
-    console.log("Parameter value:", paramValue.get());
-
-    params.forEach((value, key) => {
-      console.log(`${key}: ${value}`);
-    });
-    // paramValue && handleNavBarSelect(paramValue[vertKeyId]);
-  }, []);*/
   useEffect(() => {
     if (isUniveralSearch) {
       const resultsCountMap: Record<string, number> = {};
@@ -106,7 +84,14 @@ export default function UniversalSearch({
   }, [universalResults]);
 
   const handleNavBarSelect = (id: string) => {
-    console.log("done");
+    const queryParams = new URLSearchParams(window.location.search);
+
+    if (id && id !== "all") {
+      queryParams.set("vertical", id);
+    } else {
+      queryParams.delete("vertical");
+    }
+    history.pushState(null, "", "?" + queryParams.toString());
 
     if (id === "all") {
       searchActions.setUniversal();
@@ -128,6 +113,16 @@ export default function UniversalSearch({
     verticalKey?: string;
     query?: string;
   }) => {
+    const { query } = searchEventData;
+    const queryParams = new URLSearchParams(window.location.search);
+
+    if (query) {
+      queryParams.set("query", query);
+    } else {
+      queryParams.delete("query");
+    }
+    history.pushState(null, "", "?" + queryParams.toString());
+
     searchActions.setQuery(searchEventData.query || "");
     handleNavBarSelect(searchEventData.verticalKey || "all");
   };
@@ -179,10 +174,7 @@ export default function UniversalSearch({
             }}
             onSearch={handleSearchClick}
           />
-          <button
-            className="bg-white flex justify-center items-center p-4 my-auto rounded-full "
-            // onClick={handleSearchClick}
-          >
+          <button className="bg-white flex justify-center items-center p-4 my-auto rounded-full ">
             <Icon name="search" color="text-green" height={"4"} width="4" />
             <p className="text-white text-sm ml-2 lg:hidden">Search</p>
           </button>
