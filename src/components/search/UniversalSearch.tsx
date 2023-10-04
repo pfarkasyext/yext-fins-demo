@@ -2,6 +2,7 @@ import {
   AppliedFilters,
   DirectAnswer,
   Facets,
+  NumericalFacet,
   Pagination,
   ResultsCount,
   SearchBar,
@@ -341,10 +342,21 @@ export default function UniversalSearch() {
                   {facetsPresent && facetsPresent.length >= 1 && (
                     <div className="min-w-[18rem] mr-5 ">
                       <Facets
-                        customCssClasses={{
-                          facetsContainer: "bg-white p-2",
-                        }}
-                      />
+                        customCssClasses={
+                          {
+                            // facetsContainer: "bg-white p-2",
+                          }
+                        }
+                      >
+                        {/* <NumericalFacet
+                          fieldId="yearsOfExperience"
+                          customCssClasses={{
+                            input: "pl-6",
+                            inputPrefix:
+                              " absolute top-1/2 transform -translate-y-1/2 left-3",
+                          }}
+                        /> */}
+                      </Facets>
                     </div>
                   )}
                   <div
