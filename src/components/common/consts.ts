@@ -12,8 +12,8 @@ export const locale = "en";
 export const experienceVersion = "PRODUCTION";
 
 export const additionalQueryParams: any = {
-      "source": "fins-universal-search"
-    };
+  source: "fins-universal-search",
+};
 
 //set universal result limits for each vertical
 export const UNIVERSAL_LIMITS: UniversalLimit = {
@@ -25,4 +25,4 @@ export const UNIVERSAL_LIMITS: UniversalLimit = {
   //add additional vertical limits for universal search below, make sure to assign the correct vertical key
   // vertical2: 5,
   // vertical3: 5
-}
+};

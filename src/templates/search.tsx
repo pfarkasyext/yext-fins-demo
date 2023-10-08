@@ -10,12 +10,7 @@ import {
   TemplateProps,
 } from "@yext/pages";
 import "../index.css";
-import {
-  SearchHeadlessProvider,
-  provideHeadless,
-} from "@yext/search-headless-react";
 
-import SearchExperience from "../components/search/SearchExperience";
 import {
   apiKey,
   experienceKey,
@@ -53,19 +48,10 @@ export const getHeadConfig: GetHeadConfig<
   };
 };
 
-export const SEARCHER = provideHeadless({
-  apiKey: apiKey,
-  experienceKey: experienceKey,
-  locale: locale,
-  experienceVersion: experienceVersion,
-});
-
 const Search: Template<TemplateRenderProps> = ({ document }) => {
   return (
     <PageLayout _site={document._site}>
-      <SearchHeadlessProvider searcher={SEARCHER}>
-        <UniversalSearch />
-      </SearchHeadlessProvider>
+      <UniversalSearch />
     </PageLayout>
   );
 };

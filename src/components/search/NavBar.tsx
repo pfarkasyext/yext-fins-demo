@@ -11,10 +11,6 @@ export interface NavBarProps {
   onSelect?: (id: string) => void;
 }
 
-export const initialProps: NavBarProps = {
-  items: [{ id: "About" }, { id: "Insurances" }, { id: "Locations" }],
-};
-
 export default function NavBar({ items, onSelect, selectedId }: NavBarProps) {
   const handleSelect = (id: string) => {
     onSelect?.(id);
@@ -27,16 +23,12 @@ export default function NavBar({ items, onSelect, selectedId }: NavBarProps) {
           {items.map(({ label, id, resultsCount }) => (
             <button
               key={id}
-              className={twMerge(
-                `inline-flex items-center px-1 pt-1 border-transparent hover:border-blue-950 border-b-2 text-sm font-medium`,
-                selectedId === id && "border-blue-950"
-              )}
+              className={`inline-flex items-center px-1 pt-1 hover:border-blue-950 border-b-2 text-sm font-medium ${
+                selectedId === id ? `border-blue-950` : `border-transparent`
+              }`}
               onClick={() => handleSelect(id)}
             >
               <div className="font-bold">{label ?? id}</div>
-              {/* {resultsCount !== undefined && (
-                <div className="pl-0.5">{` (${resultsCount})`}</div>
-              )} */}
             </button>
           ))}
         </div>

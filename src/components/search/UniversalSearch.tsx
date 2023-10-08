@@ -35,7 +35,7 @@ export default function UniversalSearch() {
   const [resultsCountMap, setResultsCountMap] = useState<
     Record<string, number>
   >({});
-
+  const [currentTab, setCurrentTab] = useState("all");
   const searchActions = useSearchActions();
   const isUniveralSearch = useSearchState(
     (state) => state.meta.searchType === "universal"
@@ -50,11 +50,12 @@ export default function UniversalSearch() {
   const searchLoading = useSearchState((state) => state.searchStatus.isLoading);
 
   useEffect(() => {
+    console.log("entered");
+
     const verticalKey = new URLSearchParams(window.location.search).get(
       "vertical"
     );
     const query = new URLSearchParams(window.location.search).get("query");
-
     if (query) {
       searchActions.setQuery(query);
     }
@@ -86,7 +87,6 @@ export default function UniversalSearch() {
 
   const handleNavBarSelect = (id: string) => {
     const queryParams = new URLSearchParams(window.location.search);
-
     if (id && id !== "all") {
       queryParams.set("vertical", id);
     } else {
@@ -341,22 +341,7 @@ export default function UniversalSearch() {
                 <div className="flex mt-4">
                   {facetsPresent && facetsPresent.length >= 1 && (
                     <div className="min-w-[18rem] mr-5 ">
-                      <Facets
-                        customCssClasses={
-                          {
-                            // facetsContainer: "bg-white p-2",
-                          }
-                        }
-                      >
-                        {/* <NumericalFacet
-                          fieldId="yearsOfExperience"
-                          customCssClasses={{
-                            input: "pl-6",
-                            inputPrefix:
-                              " absolute top-1/2 transform -translate-y-1/2 left-3",
-                          }}
-                        /> */}
-                      </Facets>
+                      <Facets />
                     </div>
                   )}
                   <div
