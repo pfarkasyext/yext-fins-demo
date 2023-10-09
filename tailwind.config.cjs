@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const { ComponentsContentPath } = require("@yext/search-ui-react");
+
 module.exports = {
   darkMode: ["class"],
   content: [
@@ -6,6 +8,7 @@ module.exports = {
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
+    ComponentsContentPath,
   ],
   theme: {
     container: {

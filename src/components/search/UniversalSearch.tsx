@@ -367,7 +367,7 @@ export default function UniversalSearch() {
               <>
                 <div className="flex mt-4">
                   {facetsPresent && facetsPresent.length >= 1 && (
-                    <div className="min-w-[18rem] mr-5 ">
+                    <div className="w-[15rem] mr-5 ">
                       <Facets />
                     </div>
                   )}

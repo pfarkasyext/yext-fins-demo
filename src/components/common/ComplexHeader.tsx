@@ -83,7 +83,7 @@ const company = [
   { name: "Blog", href: "#" },
 ];
 
-function classNames(...classes) {
+function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
 
@@ -99,7 +99,7 @@ export default function ComplexHeader({ data }: any) {
         <div className="flex lg:flex-1">
           <a href="/index.html" className="-m-1.5 p-1.5">
             <span className="sr-only">Capital Wealth Management</span>
-            <img src={data.c_headerLogo.url}/>
+            <img src={data.c_headerLogo.url} />
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -117,7 +117,10 @@ export default function ComplexHeader({ data }: any) {
         </div>
 
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="/search.html" className="text-sm font-semibold leading-6 text-gray-900">
+          <a
+            href="/search.html"
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
             Search <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
