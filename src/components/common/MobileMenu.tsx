@@ -71,7 +71,7 @@ const MobileMenu = ({ category, open, setOpen, logo }: MobileMenuProps) => {
             leaveFrom="translate-x-0"
             leaveTo="-translate-x-full"
           >
-            <Dialog.Panel className="relative flex w-full max-w-xs flex-col overflow-y-auto bg-white pb-12 shadow-xl  px-4">
+            <Dialog.Panel className="relative flex w-full max-w-sm flex-col overflow-y-auto bg-white pb-12 shadow-xl">
               <div className="flex pt-5 pb-2 ">
                 <button
                   type="button"
@@ -97,7 +97,7 @@ const MobileMenu = ({ category, open, setOpen, logo }: MobileMenuProps) => {
                     leave="transition ease-in-out duration-300 transform"
                     leaveFrom="translate-x-0"
                     leaveTo="-translate-x-full"
-                    className="flex py-2"
+                    className="flex py-2  px-4 hover:bg-gray-300"
                     key={index}
                   >
                     <MobileSubmenu
