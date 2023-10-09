@@ -11,7 +11,11 @@ import {
   UniversalResults,
   VerticalResults,
 } from "@yext/search-ui-react";
-import { useSearchActions, useSearchState } from "@yext/search-headless-react";
+import {
+  Matcher,
+  useSearchActions,
+  useSearchState,
+} from "@yext/search-headless-react";
 import Section from "../atoms/Section";
 import { useEffect, useState } from "react";
 import ListSection from "../search/ListSection";
@@ -35,7 +39,6 @@ export default function UniversalSearch() {
   const [resultsCountMap, setResultsCountMap] = useState<
     Record<string, number>
   >({});
-  const [currentTab, setCurrentTab] = useState("all");
   const searchActions = useSearchActions();
   const isUniveralSearch = useSearchState(
     (state) => state.meta.searchType === "universal"
@@ -50,18 +53,42 @@ export default function UniversalSearch() {
   const searchLoading = useSearchState((state) => state.searchStatus.isLoading);
 
   useEffect(() => {
-    console.log("entered");
-
     const verticalKey = new URLSearchParams(window.location.search).get(
       "vertical"
     );
+
+    const staticFilter = new URLSearchParams(window.location.search).get(
+      "staticfilter"
+    );
+
     const query = new URLSearchParams(window.location.search).get("query");
     if (query) {
       searchActions.setQuery(query);
     }
     if (verticalKey) {
       searchActions.setVertical(verticalKey);
-      searchActions.executeVerticalQuery();
+      {
+        staticFilter &&
+          searchActions.setStaticFilters([
+            {
+              selected: true,
+              displayName: "Current Location",
+              filter: {
+                kind: "fieldValue",
+                fieldId: "c_primaryService.name",
+                value: staticFilter,
+                matcher: Matcher.Equals,
+              },
+            },
+          ]);
+      }
+      searchActions.executeVerticalQuery().then(() => {
+        const queryParams = new URLSearchParams(window.location.search);
+        if (staticFilter) {
+          queryParams.delete("staticfilter");
+        }
+        history.pushState(null, "", "?" + queryParams.toString());
+      });
     } else {
       searchActions.setUniversal();
       searchActions.setRestrictVerticals([

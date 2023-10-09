@@ -8,6 +8,11 @@ const NavMenu = ({ menuItems }: any) => {
   const handleMouseEnter = (index) => {
     setHoveredMenu(index);
   };
+  const buildLink = (slug: string) => {
+    return slug.includes("staticfilter")
+      ? slug.replace("html-", "html?").replace("-static", "&static")
+      : slug;
+  };
 
   const handleMouseLeave = () => {
     setHoveredMenu(null);
@@ -34,7 +39,13 @@ const NavMenu = ({ menuItems }: any) => {
                     type="button"
                     className="border-none z-50 text-left bg-transparent leading-copy text-mid-gray px-4 py-2 relative sans-serif whistespace-break-spaces flex justify-between items-center w-full"
                   >
-                    <a href={`/${subItem.slug || "#"}`}>{subItem.name}</a>
+                    <a
+                      href={`/${
+                        (subItem.slug && buildLink(subItem.slug)) || `#`
+                      }`}
+                    >
+                      {subItem.name}
+                    </a>
                     <ChevronRightIcon className="h-3 w-3 ml-1" />
                   </button>
                 </li>
@@ -53,7 +64,13 @@ const NavMenu = ({ menuItems }: any) => {
                     type="button"
                     className="border-none z-50 text-left bg-transparent leading-copy text-mid-gray px-4 py-2 relative sans-serif whitespace-break-spaces"
                   >
-                    <a href={`/${subItem.slug || "#"}`}>{subItem.name}</a>
+                    <a
+                      href={`/${
+                        (subItem.slug && buildLink(subItem.slug)) || `#`
+                      }`}
+                    >
+                      {subItem.name}
+                    </a>
                   </button>
                 </li>
               );
@@ -120,7 +137,11 @@ const NavMenu = ({ menuItems }: any) => {
                                             <li className="mt-3" key={index}>
                                               <a
                                                 className="text-gray-600 no-underline subcategory-item-link hover:underline hover:underline-offset-2"
-                                                href={`/${item.slug || `#`}`}
+                                                href={`/${
+                                                  (item.slug &&
+                                                    buildLink(item.slug)) ||
+                                                  `#`
+                                                }`}
                                               >
                                                 {item.name}
                                               </a>

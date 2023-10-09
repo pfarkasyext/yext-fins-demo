@@ -1,6 +1,5 @@
 // src/templates/search.tsx
 
-import * as React from "react";
 import {
   Template,
   GetPath,
@@ -11,12 +10,6 @@ import {
 } from "@yext/pages";
 import "../index.css";
 
-import {
-  apiKey,
-  experienceKey,
-  experienceVersion,
-  locale,
-} from "../components/common/consts";
 import UniversalSearch from "../components/search/UniversalSearch";
 import PageLayout from "../components/common/PageLayout";
 import "@fontsource/lato/100.css";
