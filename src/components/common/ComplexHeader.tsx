@@ -38,6 +38,7 @@ import {
   PlayCircleIcon,
 } from "@heroicons/react/20/solid";
 import NavMenu from "../NavMenu";
+import { MobileMenu } from "./MobileMenu";
 
 const products = [
   {
@@ -109,7 +110,11 @@ export default function ComplexHeader({ data }: any) {
             onClick={() => setMobileMenuOpen(true)}
           >
             <span className="sr-only">Open main menu</span>
-            <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+            <Bars3Icon
+              className="h-6 w-6"
+              aria-hidden="true"
+              onClick={() => setMobileMenuOpen(true)}
+            />
           </button>
         </div>
         <div className="hidden lg:block">
@@ -125,7 +130,17 @@ export default function ComplexHeader({ data }: any) {
           </a>
         </div>
       </nav>
-      <Dialog
+      {mobileMenuOpen && (
+        <span className="lg:hidden">
+          <MobileMenu
+            category={data.c_navbar}
+            open={mobileMenuOpen}
+            setOpen={setMobileMenuOpen}
+            logo={data.c_headerLogo.url}
+          />
+        </span>
+      )}
+      {/* <Dialog
         as="div"
         className="lg:hidden"
         open={mobileMenuOpen}
@@ -236,7 +251,7 @@ export default function ComplexHeader({ data }: any) {
             </div>
           </div>
         </Dialog.Panel>
-      </Dialog>
+      </Dialog> */}
     </header>
   );
 }

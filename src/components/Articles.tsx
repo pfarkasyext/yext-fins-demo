@@ -56,7 +56,7 @@ export default function Articles({ articles }: { articles: ArticleProps[] }) {
         <div className="lg:col-span-2">
           <div className="flex flex-col gap-6">
             {otherArticles.map((article, idx) => (
-              <>
+              <span key={idx}>
                 <article className="flex flex-col gap-4 group" key={idx}>
                   <div className="text-sm text-gray-600 flex gap-2">
                     <span>Category</span>
@@ -75,7 +75,7 @@ export default function Articles({ articles }: { articles: ArticleProps[] }) {
                   </a>
                 </article>
                 <div className="w-full md:w-96 h-px border border-stone-300"></div>
-              </>
+              </span>
             ))}
           </div>
         </div>

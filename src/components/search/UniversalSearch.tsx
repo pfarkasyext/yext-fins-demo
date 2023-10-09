@@ -2,7 +2,6 @@ import {
   AppliedFilters,
   DirectAnswer,
   Facets,
-  NumericalFacet,
   Pagination,
   ResultsCount,
   SearchBar,
