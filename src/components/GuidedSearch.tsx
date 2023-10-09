@@ -20,7 +20,7 @@ const GuidedSearch = () => {
     }
   }, [currentStep]);
   return (
-    <section className="flex flex-col pt-32">
+    <section className="flex flex-col  ">
       {currentStep === 1 && (
         <section className="flex flex-col gap-8 items-center pt-20">
           <h3 className="text-2xl font-bold">
@@ -57,7 +57,7 @@ const GuidedSearch = () => {
             What service you are looking for?
           </h3>
           <FilterSearch
-            placeholder="Search for a city, state, or zip code"
+            placeholder="Search for a Service"
             customCssClasses={{
               filterSearchContainer: "flex justify-center",
               inputElement:
