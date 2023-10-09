@@ -8,11 +8,6 @@ const NavMenu = ({ menuItems }: any) => {
   const handleMouseEnter = (index) => {
     setHoveredMenu(index);
   };
-  const buildLink = (slug: string) => {
-    return slug.includes("staticfilter")
-      ? slug.replace("html-", "html?").replace("-static", "&static")
-      : slug;
-  };
 
   const handleMouseLeave = () => {
     setHoveredMenu(null);
@@ -169,3 +164,8 @@ const NavMenu = ({ menuItems }: any) => {
 };
 
 export default NavMenu;
+export const buildLink = (slug: string) => {
+  return slug.includes("staticfilter")
+    ? slug.replace("html-", "html?").replace("-static", "&static")
+    : slug;
+};

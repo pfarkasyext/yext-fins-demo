@@ -18,6 +18,7 @@ export const config: TemplateConfig = {
     localization: { locales: ["en"], primary: false },
     filter: {
       entityTypes: ["fins_financialProduct"],
+      savedFilterIds: ["1343713918"],
     },
     fields: [
       "name",
@@ -27,7 +28,7 @@ export const config: TemplateConfig = {
       "c_childProducts.name",
       "c_serviceDescription",
       "c_parentService.name",
-      "c_parentService.slug"
+      "c_parentService.slug",
     ],
   },
 };
@@ -36,7 +37,6 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
 };
 
 export default function Product({ document, __meta }: TemplateProps) {
-
   let bannerImgUrl =
     "https://a.mktgcdn.com/p/X6uh0LQn4S9FDKtEP9CkXIC2QrSTEvTLwoKsT7asb8o/1872x836.jpg";
   if (document.fins_servicesImage.url)
@@ -52,7 +52,10 @@ export default function Product({ document, __meta }: TemplateProps) {
           Home
         </a>
         <span className="mx-2 text-gray-400">&gt;</span>
-        <a href={"/" + document.c_parentService[0].slug} className="text-brand-primary hover:text-brand-hover">
+        <a
+          href={"/" + document.c_parentService[0].slug}
+          className="text-brand-primary hover:text-brand-hover"
+        >
           {document.c_parentService[0].name}
         </a>
         <span className="mx-2 text-gray-400">&gt;</span>
