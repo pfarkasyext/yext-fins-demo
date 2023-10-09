@@ -1,12 +1,7 @@
-import * as React from "react";
 import { Transition, Dialog } from "@headlessui/react";
 import { useState, Fragment } from "react";
-import {
-  XMarkIcon,
-  ChevronRightIcon,
-  ChevronLeftIcon,
-} from "@heroicons/react/24/outline";
-import { ComplexImageType, Image, ImageType } from "@yext/pages/components";
+import { XMarkIcon, ChevronLeftIcon } from "@heroicons/react/24/outline";
+import { ComplexImageType } from "@yext/pages/components";
 import MobileSubmenu from "./MobileSubmenu";
 
 export type Category = {
@@ -120,10 +115,3 @@ const MobileMenu = ({ category, open, setOpen, logo }: MobileMenuProps) => {
 };
 
 export { MobileMenu };
-{
-  /* {previousCategories.length > 0 && (
-                      <button type="button" onClick={handleBackClick}>
-                        <ChevronRightIcon className="h-6 w-6 transform rotate-180" />
-                      </button>
-                    )} */
-}

@@ -44,7 +44,6 @@ export interface Fins_secondaryCTA {
 }
 
 export default interface Faq {
-	answer?: string,
 	answerV2?: any,
 	landingPageUrl?: string,
 	nudgeEnabled?: boolean,
