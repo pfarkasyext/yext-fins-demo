@@ -21,10 +21,11 @@ body {
 }
 
 .slick-list {
-  width: 80%;
-  margin: 0 auto !important;
+  @apply w-full md:w-[80%] my-0 mx-auto static;
 }
-
+.slick-dots {
+  @apply my-8;
+}
 .slick-prev {
   left: 2em;
 }

@@ -77,7 +77,7 @@ const PageLayout = ({
           </div>
         )}
         <div
-          className="bg-brand-secondary p-4 rounded-full"
+          className="bg-brand-primary p-4 rounded-full"
           style={{ position: "fixed", bottom: "20px", right: "20px" }}
         >
           {!showChat ? (

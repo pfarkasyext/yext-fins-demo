@@ -12,8 +12,8 @@ interface ServicesProps {
 
 export function ServiceCard({ service }: { service: ServiceProps }) {
   return (
-    <div className="p-8 bg-white rounded-lg border border-zinc-200 flex-col justify-between items-center gap-4 inline-flex">
-      <div className="flex flex-col items-center gap-4">
+    <div className="py-8 my-8 bg-white rounded-lg border border-zinc-200 flex-col justify-between items-center gap-4 inline-flex w-full h-[350px]">
+      <div className="w-full flex flex-col items-center gap-4 p-4">
         <div className="w-14 h-14 relative">
           <svg
             width="56"
@@ -45,10 +45,10 @@ export function ServiceCard({ service }: { service: ServiceProps }) {
 export default function Services({ services }: ServicesProps) {
   return (
     <>
-      <div className="py-8 md:flex flex-col items-center gap-8 hidden ">
-        <div className="self-stretch text-center text-blue-950 text-4xl font-bold leading-10">
+      <div className="py-8 md:flex flex-col items-center gap-8 hidden">
+        <h2 className="font-bold text-4xl text-center text-brand-blue">
           Our Services
-        </div>
+        </h2>
         <div className="flex-col justify-start items-center gap-8 flex">
           <div className="grid gap-8 grid-cols-3 grid-rows-1">
             {services
@@ -71,10 +71,10 @@ export default function Services({ services }: ServicesProps) {
           </div>
         </div>
       </div>
-      <span className="block md:hidden">
-        <div className="self-stretch text-center text-blue-950 text-4xl font-bold leading-10 my-8">
+      <span className="block md:hidden h-[500px]">
+        <h2 className="font-bold text-4xl text-center text-brand-blue">
           Our Services
-        </div>
+        </h2>
         <Carousel services={services}></Carousel>
       </span>
     </>

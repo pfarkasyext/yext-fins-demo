@@ -50,9 +50,8 @@ export default function Articles({ articles }: { articles: ArticleProps[] }) {
             <span className="underline">Read more</span>
             <BsChevronRight />
           </a>
-          <div className="show md:hidden w-full md:w-96 mb-6 h-px border border-stone-300"></div>
+          <div className="show md:hidden w-full mt-4 md:w-96 mb-6 h-px border border-stone-300"></div>
         </article>
-
         <div className="lg:col-span-2">
           <div className="flex flex-col gap-6">
             {otherArticles.map((article, idx) => (
@@ -74,7 +73,7 @@ export default function Articles({ articles }: { articles: ArticleProps[] }) {
                     <BsChevronRight />
                   </a>
                 </article>
-                <div className="w-full md:w-96 h-px border border-stone-300"></div>
+                <div className="w-full md:w-96 h-px border mt-4 border-stone-300"></div>
               </span>
             ))}
           </div>

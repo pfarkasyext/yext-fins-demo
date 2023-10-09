@@ -15,8 +15,8 @@ export interface TitleProps {
     | "bold"
     | "extrabold"
     | "black";
-    backgroundColor?: HexColor;
-    textColor?: HexColor;
+  backgroundColor?: HexColor;
+  textColor?: HexColor;
 }
 
 export const initialProps: TitleProps = {
@@ -64,7 +64,7 @@ const Title = ({
     "6": "mt-6",
     "8": "mt-8",
     "10": "mt-10",
-    "12": "mt-12"
+    "12": "mt-12",
   };
 
   const bottomMarginVariants = {
@@ -74,16 +74,20 @@ const Title = ({
     "6": "mb-6",
     "8": "mb-8",
     "10": "mb-10",
-    "12": "mb-12"
+    "12": "mb-12",
   };
 
   return (
-    <div className="flex justify-center items-center" style={{backgroundColor}}>
+    <div
+      className="flex justify-center items-center"
+      style={{ backgroundColor }}
+    >
       <div
         className={`not-prose ${topMarginVariants[topMargin]} ${bottomMarginVariants[bottomMargin]}`}
       >
         <h1
-          className={`${sizeVariants[textSize]} ${weightVariants[fontWeight]} tracking-tight`} style={{color:textColor}}
+          className={`${sizeVariants[textSize]} ${weightVariants[fontWeight]} tracking-tight`}
+          style={{ color: textColor }}
         >
           {value}
         </h1>
