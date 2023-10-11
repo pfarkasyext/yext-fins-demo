@@ -4,4 +4,11 @@ import yextSSG from "@yext/pages/vite-plugin";
 
 export default defineConfig({
   plugins: [react(), yextSSG()],
+  ssr: [
+    "@yext/search-ui-react",
+    "@yext/search-headless-react",
+    "react-markdown",
+    "mapbox-gl",
+    "@yext",
+  ],
 });
