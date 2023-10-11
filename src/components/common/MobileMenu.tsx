@@ -22,6 +22,7 @@ type MobileMenuProps = {
 const MobileMenu = ({ category, open, setOpen, logo }: MobileMenuProps) => {
   const [currentCategory, setCurrentCategory] = useState<Category>(category);
   const [previousCategories, setPreviousCategories] = useState<Category[]>([]);
+  console.log(JSON.stringify(category));
 
   const handleClick = (subCategory: Category) => {
     if (subCategory.relatedServices) {
