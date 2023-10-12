@@ -35,7 +35,7 @@ const DirectoryCityGrid = ({
       >
         <h2>
           <a
-            className="font-bold text-2xl text-blue-700 hover:underline"
+            className="font-bold text-2xl text-blue-950 hover:underline"
             href={relativePrefixToRoot + child.slug}
           >
             {child.name}

@@ -11,6 +11,16 @@ import {
   TransformProps,
 } from "@yext/pages";
 import { isProduction } from "@yext/pages/util";
+import "@fontsource/lato/100.css";
+import "@fontsource/lato/300.css";
+import "@fontsource/lato/400.css";
+import "@fontsource/lato/700.css";
+import "@fontsource/lato/900.css";
+import "@fontsource/lato/100-italic.css";
+import "@fontsource/lato/300-italic.css";
+import "@fontsource/lato/400-italic.css";
+import "@fontsource/lato/700-italic.css";
+import "@fontsource/lato/900-italic.css";
 import "../index.css";
 import Favicon from "../assets/images/yext-favicon.ico";
 import Banner from "../components/starter/Banner";
@@ -18,6 +28,7 @@ import DirectoryStateGrid from "../components/starter/DirectoryStateGrid";
 import PageLayout from "../components/common/PageLayout";
 import EditTool from "../components/starter/EditTool";
 import Breadcrumbs from "../components/starter/Breadcrumbs";
+import DirectoryHero from "../components/DirectoryHero";
 
 export const config: TemplateConfig = {
   stream: {
@@ -106,14 +117,22 @@ const State: Template<TemplateRenderProps> = ({
   return (
     <>
       <PageLayout _site={document._site}>
-        <Banner
-          name={c_addressRegionDisplayName ? c_addressRegionDisplayName : name}
+        <DirectoryHero
+          pageTitle={`Capital Bank in ${c_addressRegionDisplayName}`}
         />
         <div className="centered-container">
-          <Breadcrumbs
-            breadcrumbs={dm_directoryParents}
-            baseUrl={relativePrefixToRoot}
-          />
+          <div className="mx-auto max-w-7xl flex flex-row font-bold p-6 lg:px-8">
+            <a
+              href={"/index.html"}
+              className="text-brand-primary hover:text-brand-hover"
+            >
+              Home
+            </a>
+            <span className="mx-2 text-gray-400">&gt;</span>
+            <a href={"#"} className="text-brand-primary hover:text-brand-hover">
+              {name}
+            </a>
+          </div>
           <DirectoryStateGrid
             name={
               c_addressRegionDisplayName ? c_addressRegionDisplayName : name

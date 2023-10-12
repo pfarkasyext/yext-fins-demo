@@ -3,6 +3,16 @@ import PageLayout from "../components/common/PageLayout";
 import Banner from "../components/starter/Banner";
 import DirectoryRootGrid from "../components/starter/DirectoryRootGrid";
 import Favicon from "../assets/images/yext-favicon.ico";
+import "@fontsource/lato/100.css";
+import "@fontsource/lato/300.css";
+import "@fontsource/lato/400.css";
+import "@fontsource/lato/700.css";
+import "@fontsource/lato/900.css";
+import "@fontsource/lato/100-italic.css";
+import "@fontsource/lato/300-italic.css";
+import "@fontsource/lato/400-italic.css";
+import "@fontsource/lato/700-italic.css";
+import "@fontsource/lato/900-italic.css";
 import "../index.css";
 import {
   Template,
@@ -13,6 +23,7 @@ import {
   GetHeadConfig,
   HeadConfig,
 } from "@yext/pages";
+import DirectoryHero from "../components/DirectoryHero";
 
 export const config: TemplateConfig = {
   stream: {
@@ -54,7 +65,7 @@ export const getHeadConfig: GetHeadConfig<
         type: "meta",
         attributes: {
           description:
-            "This is a description for the Turtlehead Tacos directory home page.",
+            "",
         },
       },
       {
@@ -78,11 +89,10 @@ const Index: Template<TemplateRenderProps> = ({
   return (
     <>
       <PageLayout _site={document._site}>
-        <Banner name={"Turtlehead Tacos"} />
+        <DirectoryHero pageTitle={"Capital Bank Directory"} />
         <div className="centered-container">
           <div className="section space-y-14 px-10">
             <DirectoryRootGrid
-              name={"Turtlehead Tacos"}
               directoryChildren={dm_directoryChildren}
               relativePrefixToRoot={relativePrefixToRoot}
             />

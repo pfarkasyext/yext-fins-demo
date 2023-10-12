@@ -32,7 +32,7 @@ const DirectoryStateGrid = ({
         <a
           key="uRL"
           href={relativePrefixToRoot + child.slug}
-          className="font-bold text-2xl text-blue-700 hover:underline"
+          className="font-bold text-2xl text-blue-950 hover:underline"
         >
           {child.name} ({child.dm_childEntityIds?.length || 0})
         </a>

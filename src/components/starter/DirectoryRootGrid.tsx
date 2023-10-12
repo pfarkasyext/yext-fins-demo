@@ -27,7 +27,7 @@ const DirectoryRootGrid = ({
     <div key={child.slug}>
       <a
         href={relativePrefixToRoot + child.slug}
-        className="font-bold text-2xl text-blue-700 hover:underline"
+        className="font-bold text-2xl text-blue-950 hover:underline"
       >
         {child.c_addressRegionDisplayName
           ? child.c_addressRegionDisplayName
