@@ -33,13 +33,13 @@ export default function NavBar({ items, onSelect, selectedId }: NavBarProps) {
           ))}
         </div>
       </div>
-      <div className="block px-10 sm:hidden">
+      {/* <div className="block px-10 sm:hidden">
         <Selector
           items={items}
           onSelect={onSelect}
           placeholder="Scroll to Section..."
         />
-      </div>
+      </div> */}
     </div>
   );
 }

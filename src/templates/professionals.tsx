@@ -1,16 +1,11 @@
 import { GetPath, TemplateConfig, TemplateProps } from "@yext/pages";
-import GridContainer from "../components/GridContainer";
 import PageLayout from "../components/common/PageLayout";
 import Paragraph from "../components/Paragraph";
 import Title from "../components/Title";
 import VerticalStack from "../components/VerticalStack";
 import "../index.css";
 import HeroImage from "../components/HeroImage";
-import ContactInfo from "../components/ContactInfo";
-import { LocationMap } from "@yext/pages/components";
-import { GoogleMaps } from "@yext/components-tsx-maps";
 import Articles from "../components/Articles";
-import MapDescription from "../components/MapDescription";
 import "@fontsource/lato/100.css";
 import "@fontsource/lato/300.css";
 import "@fontsource/lato/400.css";
@@ -23,11 +18,9 @@ import "@fontsource/lato/700-italic.css";
 import "@fontsource/lato/900-italic.css";
 import "../index.css";
 import HeroBanner from "../components/HeroBanner";
-import StaticMap from "../components/StaticMap";
 import HeroInfo from "../components/common/HeroInfotext";
 import LetsTalk from "../components/common/LetsTalk";
 import { useState } from "react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
 import InpageNav from "../components/common/InpageNav";
 export const config: TemplateConfig = {
   stream: {

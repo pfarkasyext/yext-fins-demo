@@ -71,7 +71,7 @@ export default function UniversalSearch() {
           searchActions.setStaticFilters([
             {
               selected: true,
-              displayName: "Current Location",
+              displayName: staticFilter,
               filter: {
                 kind: "fieldValue",
                 fieldId: "c_primaryService.name",
@@ -210,45 +210,43 @@ export default function UniversalSearch() {
           Search for bank locations, advisors, services, or ask a question.
         </div>
       </div>
-      {/* {
-        <div className="w-full bg-white">
-          <NavBar
-            onSelect={handleNavBarSelect}
-            items={[
-              {
-                label: "All Results",
-                id: "all",
-              },
-              {
-                label: "Financial Professionals",
-                id: "financial_professionals",
-                resultsCount: resultsCountMap["financial_professionals"] ?? 0,
-              },
-              {
-                label: "Locations",
-                id: "locations",
-                resultsCount: resultsCountMap["locations"] ?? 0,
-              },
-              {
-                label: "FAQs",
-                id: "faqs",
-                resultsCount: resultsCountMap["faqs"] ?? 0,
-              },
-              {
-                label: "Services",
-                id: "services",
-                resultsCount: resultsCountMap["faqs"] ?? 0,
-              },
-              {
-                label: "Financial Products",
-                id: "financial_products",
-                resultsCount: resultsCountMap["financial_products"] ?? 0,
-              },
-            ]}
-            selectedId={vertical ?? "all"}
-          />
-        </div>
-      } */}
+      <div className="w-full bg-white">
+        <NavBar
+          onSelect={handleNavBarSelect}
+          items={[
+            {
+              label: "All Results",
+              id: "all",
+            },
+            {
+              label: "Financial Professionals",
+              id: "financial_professionals",
+              resultsCount: resultsCountMap["financial_professionals"] ?? 0,
+            },
+            {
+              label: "Locations",
+              id: "locations",
+              resultsCount: resultsCountMap["locations"] ?? 0,
+            },
+            {
+              label: "FAQs",
+              id: "faqs",
+              resultsCount: resultsCountMap["faqs"] ?? 0,
+            },
+            {
+              label: "Services",
+              id: "services",
+              resultsCount: resultsCountMap["faqs"] ?? 0,
+            },
+            {
+              label: "Financial Products",
+              id: "financial_products",
+              resultsCount: resultsCountMap["financial_products"] ?? 0,
+            },
+          ]}
+          selectedId={vertical ?? "all"}
+        />
+      </div>
       {!searchLoading ? (
         <>
           <Section>
