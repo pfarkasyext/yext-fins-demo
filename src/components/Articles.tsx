@@ -58,8 +58,8 @@ export default function Articles({ articles }: { articles: ArticleProps[] }) {
               <span key={idx}>
                 <article className="flex flex-col gap-4 group" key={idx}>
                   <div className="text-sm text-gray-600 flex gap-2">
-                    <span>Category</span>
-                    <span>|</span>
+                    {/* <span>Category</span>
+                    <span>|</span> */}
                     <span>{formatDate(article.datePosted)}</span>
                   </div>
                   <h3 className="text-lg font-semibold text-brand-blue">

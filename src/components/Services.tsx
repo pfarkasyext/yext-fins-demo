@@ -4,6 +4,7 @@ import Carousel from "./Carousel";
 type ServiceProps = {
   name: string;
   c_serviceDescription: string;
+  slug: string;
 };
 
 interface ServicesProps {
@@ -37,7 +38,9 @@ export function ServiceCard({ service }: { service: ServiceProps }) {
           {service.c_serviceDescription}
         </div>
       </div>
-      <Button variant="outline">Learn More</Button>
+      <a href={service.slug}>
+        <Button variant="outline">Learn More</Button>
+      </a>
     </div>
   );
 }

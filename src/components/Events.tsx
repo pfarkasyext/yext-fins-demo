@@ -22,7 +22,7 @@ function EventCard({ event }: { event: Event }) {
     <section className="flex flex-col gap-4 justify-between border rounded-lg">
       <div className="flex flex-col gap-2">
         <img
-          src="https://a.mktgcdn.com/p-sandbox/OxpFIrEccA3zsdZ6LlKVxdQD_cGOME_8mNFU0IdByd4/1000x667.png"
+          src="https://a.mktgcdn.com/p/afh3Sr5mH7UpwN45oHKA6kyLJ8bH0WOh57uObkvOAHE/600x600.png"
           className="w-full"
         />
         <div className="p-4">
