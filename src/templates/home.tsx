@@ -79,7 +79,7 @@ const Home: Template<TemplateRenderProps> = ({ document }) => {
         heroTitle={document.c_heroBannerTitle}
         heroDescription={document.c_heroBannerDescription}
       />
-      <section className="px-4 w-full md:px-32 bg-gray-50 my-4 md:h-full ">
+      <section className="px-4 w-full md:px-32 bg-gray-50 py-4 md:h-full ">
         <Services services={document._site.c_featuredServices} />
       </section>
       <section className="px-4 md:px-32">

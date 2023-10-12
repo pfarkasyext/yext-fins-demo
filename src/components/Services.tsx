@@ -13,7 +13,7 @@ interface ServicesProps {
 
 export function ServiceCard({ service }: { service: ServiceProps }) {
   return (
-    <div className="py-8 my-8 bg-white rounded-lg border border-zinc-200 flex-col justify-between items-center gap-4 inline-flex w-full h-[350px]">
+    <div className="py-8 my-8 bg-white rounded-lg border border-zinc-200 flex-col justify-between items-center gap-4 inline-flex w-full ">
       <div className="w-full flex flex-col items-center gap-4 p-4">
         <div className="w-14 h-14 relative">
           <svg
