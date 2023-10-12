@@ -12,6 +12,8 @@ import "@fontsource/lato/700-italic.css";
 import "@fontsource/lato/900-italic.css";
 import "../index.css";
 import ServicesHero from "../components/ServicesHero";
+import ArticleContent from "../components/ArticleContent";
+import RelatedProducts from "../components/RelatedProducts";
 export const config: TemplateConfig = {
   stream: {
     $id: "products",
@@ -27,6 +29,7 @@ export const config: TemplateConfig = {
       "fins_servicesImage",
       "c_childProducts.name",
       "c_serviceDescription",
+      "c_serviceLongDescription",
       "c_parentService.name",
       "c_parentService.slug",
     ],
@@ -69,6 +72,9 @@ export default function Product({ document, __meta }: TemplateProps) {
         imageUrl={bannerImgUrl}
         description={document.c_serviceDescription}
       />
+      <div className="bg-gray-50 pb-36">
+        <ArticleContent content={document.c_serviceLongDescription} />
+      </div>
     </PageLayout>
   );
 }

@@ -13,6 +13,7 @@ import "@fontsource/lato/900-italic.css";
 import "../index.css";
 import ServicesHero from "../components/ServicesHero";
 import RelatedProducts from "../components/RelatedProducts";
+import ArticleContent from "../components/ArticleContent";
 export const config: TemplateConfig = {
   stream: {
     $id: "services",
@@ -20,7 +21,16 @@ export const config: TemplateConfig = {
     filter: {
       entityTypes: ["fins_service"],
     },
-    fields: ["name", "id", "slug", "fins_servicesImage", "c_childProducts.name", "c_childProducts.slug", "c_serviceDescription"],
+    fields: [
+      "name",
+      "id",
+      "slug",
+      "fins_servicesImage",
+      "c_childProducts.name",
+      "c_childProducts.slug",
+      "c_serviceDescription",
+      "c_serviceLongDescription",
+    ],
   },
 };
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
@@ -30,7 +40,7 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
 export default function Service({ document, __meta }: TemplateProps) {
   let pageTitle = `${document.name} at Capital Wealth`;
   if (document.name === "Mortgage") {
-    pageTitle = "Mortages at Capital Wealth"
+    pageTitle = "Mortages at Capital Wealth";
   } else if (document.name === "Retail Banking") {
     pageTitle = "Personal Banking with Capital";
   }
@@ -54,7 +64,13 @@ export default function Service({ document, __meta }: TemplateProps) {
         imageUrl={document.fins_servicesImage.url}
         description={document.c_serviceDescription}
       />
-      <RelatedProducts products={document.c_childProducts} name={document.name}/>
+      <div className="bg-gray-50">
+        <ArticleContent content={document.c_serviceLongDescription} />
+        <RelatedProducts
+          products={document.c_childProducts}
+          name={document.name}
+        />
+      </div>
     </PageLayout>
   );
 }
