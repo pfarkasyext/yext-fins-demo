@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { formatDate } from "../lib/utils";
 
 export interface ArticleHeroProps {
   pageTitle: string;
@@ -9,12 +10,20 @@ export interface ArticleHeroProps {
   description: string;
 }
 
-const ArticleHero = ({ pageTitle, datePosted, imageUrl, description }: ArticleHeroProps) => {
+const ArticleHero = ({
+  pageTitle,
+  datePosted,
+  imageUrl,
+  description,
+}: ArticleHeroProps) => {
   return (
     <div className="bg-white">
       <div className="flex flex-col border-b border-gray-200 lg:border-0">
         <div className="relative">
-          <div aria-hidden="true" className="absolute hidden h-full w-1/2 bg-gray-100 lg:block" />
+          <div
+            aria-hidden="true"
+            className="absolute hidden h-full w-1/2 bg-gray-100 lg:block"
+          />
           <div className="relative bg-gray-100 lg:bg-transparent">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:grid lg:grid-cols-2 lg:px-8">
               <div className="mx-auto max-w-2xl py-24 lg:max-w-none lg:py-24">
@@ -23,11 +32,9 @@ const ArticleHero = ({ pageTitle, datePosted, imageUrl, description }: ArticleHe
                     {pageTitle}
                   </h1>
                   <h3 className="text-l font-bold tracking-tight text-gray-900 mt-2">
-                    {datePosted}
+                    {formatDate(datePosted)}
                   </h3>
-                  <p className="mt-4 text-l text-gray-600">
-                    {description}
-                  </p>
+                  <p className="mt-4 text-l text-gray-600">{description}</p>
                   <div className="mt-6">
                     <a
                       href="#"

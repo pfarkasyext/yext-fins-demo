@@ -14,6 +14,7 @@ interface ArticleProps {
   c_insightsArticleSummary: string;
   primaryPhoto?: ComplexImageType | ImageType;
   datePosted?: string;
+  slug?: string;
 }
 
 export default function Articles({ articles }: { articles: ArticleProps[] }) {
@@ -29,7 +30,10 @@ export default function Articles({ articles }: { articles: ArticleProps[] }) {
       <h2 className="font-bold text-4xl text-center text-brand-blue">
         Insights
       </h2>
-      <div className="grid grid-cols-1 lg:grid-cols-5 md:gap-x-8 px-6 md:px-0 w-full">
+      <a
+        className="grid grid-cols-1 lg:grid-cols-5 md:gap-x-8 px-6 md:px-0 w-full"
+        href={`/${featuredArticle.slug}`}
+      >
         <article className="lg:col-span-3 flex flex-col gap-4">
           {featuredArticle.primaryPhoto && (
             <Image
@@ -40,7 +44,7 @@ export default function Articles({ articles }: { articles: ArticleProps[] }) {
           <span className="text-sm text-gray-600">
             {formatDate(featuredArticle.datePosted)}
           </span>
-          <h3 id="featured-post" className="text-2xl font-bold text-brand-blue">
+          <h3 id="featured-post" className="text-2xl font-bold text-brand-blue hover:underline">
             {featuredArticle.name}
           </h3>
           <p className="text-base  text-gray-600 line-clamp-3">
@@ -55,14 +59,14 @@ export default function Articles({ articles }: { articles: ArticleProps[] }) {
         <div className="lg:col-span-2">
           <div className="flex flex-col gap-6">
             {otherArticles.map((article, idx) => (
-              <span key={idx}>
+              <a key={idx} href={`/${article.slug}`}>
                 <article className="flex flex-col gap-4 group" key={idx}>
                   <div className="text-sm text-gray-600 flex gap-2">
                     {/* <span>Category</span>
                     <span>|</span> */}
                     <span>{formatDate(article.datePosted)}</span>
                   </div>
-                  <h3 className="text-lg font-semibold text-brand-blue">
+                  <h3 className="text-lg font-semibold text-brand-blue hover:underline">
                     {article.name}
                   </h3>
                   <p className="text-sm leading-6 text-gray-600 line-clamp-2">
@@ -74,11 +78,11 @@ export default function Articles({ articles }: { articles: ArticleProps[] }) {
                   </a>
                 </article>
                 <div className="w-full md:w-96 h-px border mt-4 border-stone-300"></div>
-              </span>
+              </a>
             ))}
           </div>
         </div>
-      </div>
+      </a>
       <div className="flex justify-center ">
         <Button variant="outline" className=" w-full mx-6 lg:w-fit">
           See All Articles

@@ -38,7 +38,7 @@ export function ServiceCard({ service }: { service: ServiceProps }) {
           {service.c_serviceDescription}
         </div>
       </div>
-      <a href={service.slug}>
+      <a href={`/${service.slug}`}>
         <Button variant="outline">Learn More</Button>
       </a>
     </div>

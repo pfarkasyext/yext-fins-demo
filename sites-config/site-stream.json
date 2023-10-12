@@ -13,6 +13,7 @@
     "c_featuredArticles.primaryPhoto",
     "c_featuredArticles.c_insightsArticleSummary",
     "c_featuredArticles.c_insightsArticleBody",
+    "c_featuredArticles.slug",
     "c_featuredEvents.name",
     "c_featuredEvents.description",
     "c_featuredEvents.time",
