@@ -123,7 +123,7 @@ const City: Template<TemplateRenderProps> = ({
     dm_directoryParents,
     dm_directoryChildren,
   } = document;
-  console.log(JSON.stringify(dm_directoryParents[1]));
+  console.log(JSON.stringify(dm_directoryParents));
   console.log("\n\n" + JSON.stringify(document));
 
   return (
