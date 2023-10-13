@@ -123,10 +123,12 @@ const City: Template<TemplateRenderProps> = ({
     dm_directoryParents,
     dm_directoryChildren,
   } = document;
+  console.log(JSON.stringify(dm_directoryParents[1]));
+  console.log("\n\n" + JSON.stringify(document));
 
   return (
     <>
-      <PageLayout _site={document._site}>
+      {/* <PageLayout _site={document._site}>
         <DirectoryHero
           pageTitle={`Capital Bank in ${name}, ${dm_directoryParents[1].name}`}
         />
@@ -139,7 +141,10 @@ const City: Template<TemplateRenderProps> = ({
               Home
             </a>
             <span className="mx-2 text-gray-400">&gt;</span>
-            <a href={`/${dm_directoryParents[1].slug}`} className="text-brand-primary hover:text-brand-hover">
+            <a
+              href={`/${dm_directoryParents[1].slug}`}
+              className="text-brand-primary hover:text-brand-hover"
+            >
               {dm_directoryParents[1].name}
             </a>
             <span className="mx-2 text-gray-400">&gt;</span>
@@ -154,7 +159,7 @@ const City: Template<TemplateRenderProps> = ({
             relativePrefixToRoot={relativePrefixToRoot}
           />
         </div>
-      </PageLayout>
+      </PageLayout> */}
       {!isProduction(siteDomain) && <EditTool data={document} />}
     </>
   );
