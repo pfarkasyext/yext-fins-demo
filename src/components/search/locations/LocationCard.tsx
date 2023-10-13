@@ -9,6 +9,7 @@ import {
 import * as React from "react";
 import { useSearchState } from "@yext/search-headless-react";
 import Location from "../../../types/locations";
+import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/outline";
 
 export const searchAnalytics = provideSearchAnalytics({
   experienceKey: experienceKey,
@@ -83,7 +84,7 @@ const LocationCard = ({ result }: CardProps<Location>) => {
             <div className="justify-start items-center gap-2 inline-flex">
               <div className="w-4 h-4 justify-center items-center flex">
                 <div className="w-5 h-5 text-center text-zinc-800 text-base font-light font-['Font Awesome 6 Pro']">
-                  
+                  <PhoneIcon />
                 </div>
               </div>
               <div className="text-zinc-800 text-base font-normal font-['Lato'] leading-normal">
@@ -93,7 +94,7 @@ const LocationCard = ({ result }: CardProps<Location>) => {
             <div className="justify-start items-center gap-2 inline-flex">
               <div className="w-4 h-4 justify-center items-center flex">
                 <div className="w-5 h-5 text-center text-zinc-800 text-base font-light font-['Font Awesome 6 Pro']">
-                  
+                  <EnvelopeIcon />
                 </div>
               </div>
               <div className="text-zinc-800 text-base font-normal font-['Lato'] underline leading-normal">
