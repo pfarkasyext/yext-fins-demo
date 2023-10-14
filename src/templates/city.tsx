@@ -123,12 +123,10 @@ const City: Template<TemplateRenderProps> = ({
     dm_directoryParents,
     dm_directoryChildren,
   } = document;
-  console.log(JSON.stringify(dm_directoryParents));
-  console.log("\n\n" + JSON.stringify(document));
 
   return (
     <>
-      {/* <PageLayout _site={document._site}>
+      <PageLayout _site={document._site}>
         <DirectoryHero
           pageTitle={`Capital Bank in ${name}, ${dm_directoryParents[1].name}`}
         />
@@ -159,7 +157,7 @@ const City: Template<TemplateRenderProps> = ({
             relativePrefixToRoot={relativePrefixToRoot}
           />
         </div>
-      </PageLayout> */}
+      </PageLayout>
       {!isProduction(siteDomain) && <EditTool data={document} />}
     </>
   );
