@@ -3,6 +3,7 @@ import {
   DirectAnswer,
   Facets,
   MapboxMap,
+  OnDragHandler,
   Pagination,
   ResultsCount,
   SearchBar,
@@ -15,11 +16,12 @@ import {
 import {
   Matcher,
   Result,
+  SelectableStaticFilter,
   useSearchActions,
   useSearchState,
 } from "@yext/search-headless-react";
 import Section from "../atoms/Section";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import ListSection from "../search/ListSection";
 import NoResults from "../search/NoResults";
 import SearchLoading from "../search/SearchLoading";
@@ -38,6 +40,7 @@ import Ce_financialProduct from "../../types/financial_products";
 import GridSection from "./GridSection";
 import "mapbox-gl/dist/mapbox-gl.css";
 import MapPin from "../MapPin";
+import { LngLat, LngLatBounds } from "mapbox-gl";
 
 export default function UniversalSearch() {
   const [resultsCountMap, setResultsCountMap] = useState<
@@ -56,6 +59,7 @@ export default function UniversalSearch() {
   const facetsPresent = useSearchState((state) => state.filters.facets);
 
   const searchLoading = useSearchState((state) => state.searchStatus.isLoading);
+  const filters = useSearchState((state) => state.filters.static);
 
   useEffect(() => {
     const verticalKey = new URLSearchParams(window.location.search).get(
@@ -195,9 +199,39 @@ export default function UniversalSearch() {
 
   const CardComponent = determineCardComponent();
 
-  function Coordinate(result: Result<Location>): Coordinate | undefined {
-    return result.rawData.geocodedCoordinate;
-  }
+  const handleDrag: OnDragHandler = useCallback(
+    (center: LngLat, bounds: LngLatBounds) => {
+      // get the distance from the center of the map to the top right corner
+      const radius = center.distanceTo(bounds.getNorthEast());
+
+      // filter out any existing location filters
+      const nonLocationFilters: SelectableStaticFilter[] =
+        filters?.filter(
+          (f) =>
+            f.filter.kind !== "fieldValue" ||
+            f.filter.fieldId !== "builtin.location"
+        ) ?? [];
+
+      // create a new location filter based on the center of the map and the radius
+      const nearFilter: SelectableStaticFilter = {
+        selected: true,
+        displayName: "Near Current Area",
+        filter: {
+          kind: "fieldValue",
+          fieldId: "builtin.location",
+          matcher: Matcher.Near,
+          value: { ...center, radius },
+        },
+      };
+
+      // update the static filters with the new location filter
+      searchActions.setStaticFilters([...nonLocationFilters, nearFilter]);
+
+      // execute the search
+      searchActions.executeVerticalQuery();
+    },
+    [filters, searchActions]
+  );
 
   return (
     <div className="min-h-[calc(100vh-184px)]">
@@ -503,6 +537,7 @@ export default function UniversalSearch() {
                               "pk.eyJ1Ijoic3VubnlrZWVydGhpIiwiYSI6ImNsNWh5ZGt3czAyejUzY3A3Y3pvZ2E0bTgifQ.TNHfh1HL0LwTzLxs2TOaBQ"
                             }
                             PinComponent={MapPin}
+                            onDrag={handleDrag}
                           />
                         </div>
                       </div>
