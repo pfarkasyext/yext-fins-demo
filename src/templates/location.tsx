@@ -1,4 +1,11 @@
-import { GetPath, TemplateConfig, TemplateProps } from "@yext/pages";
+import {
+  GetHeadConfig,
+  GetPath,
+  HeadConfig,
+  TemplateConfig,
+  TemplateProps,
+  TemplateRenderProps,
+} from "@yext/pages";
 import PageLayout from "../components/common/PageLayout";
 import Title from "../components/Title";
 import VerticalStack from "../components/VerticalStack";
@@ -58,7 +65,24 @@ export const config: TemplateConfig = {
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
   return document.slug ?? document.id.toString();
 };
-
+export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
+  document,
+}): HeadConfig => {
+  return {
+    title: `${document.name} | Location`,
+    charset: "UTF-8",
+    viewport: "width=device-width, initial-scale=1",
+    tags: [
+      {
+        type: "meta",
+        attributes: {
+          name: "description",
+          content: "Capital Wealth Management Location",
+        },
+      },
+    ],
+  };
+};
 export default function Location({ document, __meta }: TemplateProps) {
   const mappinSVG = (
     <svg

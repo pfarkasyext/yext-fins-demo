@@ -44,7 +44,10 @@ export default function Articles({ articles }: { articles: ArticleProps[] }) {
           <span className="text-sm text-gray-600">
             {formatDate(featuredArticle.datePosted)}
           </span>
-          <h3 id="featured-post" className="text-2xl font-bold text-brand-blue hover:underline">
+          <h3
+            id="featured-post"
+            className="text-2xl font-bold text-brand-blue hover:underline"
+          >
             {featuredArticle.name}
           </h3>
           <p className="text-base  text-gray-600 line-clamp-3">
@@ -84,7 +87,7 @@ export default function Articles({ articles }: { articles: ArticleProps[] }) {
         </div>
       </a>
       <div className="flex justify-center ">
-        <Button variant="outline" className=" w-full mx-6 lg:w-fit">
+        <Button variant="outline" className="w-full mx-6 lg:w-fit">
           See All Articles
         </Button>
       </div>

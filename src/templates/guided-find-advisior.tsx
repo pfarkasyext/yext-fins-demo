@@ -35,6 +35,7 @@ export const getHeadConfig: GetHeadConfig<
     viewport: "width=device-width, initial-scale=1",
   };
 };
+
 const GuidedDoctorFinder: Template<TemplateRenderProps> = ({ document }) => {
   return (
     <PageLayout _site={document._site}>

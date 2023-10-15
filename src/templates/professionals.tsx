@@ -1,4 +1,11 @@
-import { GetPath, TemplateConfig, TemplateProps } from "@yext/pages";
+import {
+  GetHeadConfig,
+  GetPath,
+  HeadConfig,
+  TemplateConfig,
+  TemplateProps,
+  TemplateRenderProps,
+} from "@yext/pages";
 import PageLayout from "../components/common/PageLayout";
 import Paragraph from "../components/Paragraph";
 import Title from "../components/Title";
@@ -56,7 +63,24 @@ export const config: TemplateConfig = {
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
   return document.slug ?? document.id.toString();
 };
-
+export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
+  document,
+}): HeadConfig => {
+  return {
+    title: `${document.name} | Professional`,
+    charset: "UTF-8",
+    viewport: "width=device-width, initial-scale=1",
+    tags: [
+      {
+        type: "meta",
+        attributes: {
+          name: "description",
+          content: "Capital Wealth Management Professional",
+        },
+      },
+    ],
+  };
+};
 export default function Professional({ document, __meta }: TemplateProps) {
   const [isSubNavOpen, setIsSubNavOpen] = useState<boolean>(false);
 

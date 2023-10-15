@@ -1,4 +1,11 @@
-import { GetPath, TemplateConfig, TemplateProps } from "@yext/pages";
+import {
+  GetHeadConfig,
+  GetPath,
+  HeadConfig,
+  TemplateConfig,
+  TemplateProps,
+  TemplateRenderProps,
+} from "@yext/pages";
 import PageLayout from "../components/common/PageLayout";
 import "@fontsource/lato/100.css";
 import "@fontsource/lato/300.css";
@@ -36,7 +43,24 @@ export const config: TemplateConfig = {
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
   return document.slug ?? document.id.toString();
 };
-
+export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
+  document,
+}): HeadConfig => {
+  return {
+    title: `${document.name} | Service`,
+    charset: "UTF-8",
+    viewport: "width=device-width, initial-scale=1",
+    tags: [
+      {
+        type: "meta",
+        attributes: {
+          name: "description",
+          content: "Capital Wealth Management Services",
+        },
+      },
+    ],
+  };
+};
 export default function Service({ document, __meta }: TemplateProps) {
   let pageTitle = `${document.name} at Capital Wealth`;
   if (document.name === "Mortgage") {
