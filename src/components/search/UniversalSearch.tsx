@@ -511,10 +511,9 @@ export default function UniversalSearch() {
                         <div
                           className={`${
                             vertical === "locations"
-                              ? `w-2/5 overflow-scroll`
-                              : `w-2/4 overflow-scroll`
+                              ? `w-full md:w-2/5 overflow-scroll h-[800px]`
+                              : `w-full md:w-2/4 overflow-scroll h-[800px]`
                           }`}
-                          style={{ height: "800px" }}
                         >
                           <VerticalResults
                             customCssClasses={{
@@ -527,8 +526,8 @@ export default function UniversalSearch() {
                         <div
                           className={`${
                             vertical === "locations"
-                              ? `w-3/5 overflow-scroll`
-                              : `w-2/4 overflow-scroll`
+                              ? `hidden w-3/5 overflow-scroll`
+                              : `hidden w-2/4 overflow-scroll`
                           }`}
                         >
                           <MapboxMap
