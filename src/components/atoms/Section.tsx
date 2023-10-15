@@ -22,7 +22,7 @@ export default function Section({
     <section className={backgroundColor}>
       <div
         className={twMerge(
-          "py-12 px-20 max-w-[1440px] mx-auto flex flex-col gap-12",
+          "py-2 md:py-12 px-4 md:px-20 max-w-full md:max-w-[1440px] mx-auto flex flex-col gap-12",
           containerClassname
         )}
       >

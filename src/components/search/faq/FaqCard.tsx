@@ -13,6 +13,7 @@ import {
   businessId,
 } from "../../common/consts";
 import { useSearchState } from "@yext/search-headless-react";
+import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/20/solid";
 
 export const searchAnalytics = provideSearchAnalytics({
   experienceKey: experienceKey,
@@ -87,44 +88,13 @@ const FaqCard = ({ result }: CardProps<FAQ>) => {
     <div className="mb-4 justify-between rounded-lg border p-4 text-stone-900 shadow-sm">
       <div className="body flex flex-col">
         {data.name && (
-          <div className="title text-lg font-semibold text-blue-950 relative">
-            {data.name}
-            <button
-              onClick={handleToggle}
-              className="arrow absolute top-1/2 right-4 transform -translate-y-1/2 focus:outline-none"
-            >
-              {isCollapsed ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 15l7-7 7 7"
-                  />
-                </svg>
-              )}
-            </button>
+          <div className="title text-lg font-semibold text-blue-950 flex justify-between items-center">
+            <div>{data.name}</div>
+            {isCollapsed ? (
+              <ChevronDownIcon className={`h-6 w-6 `} onClick={handleToggle} />
+            ) : (
+              <ChevronUpIcon className={`h-6 w-6 `} onClick={handleToggle} />
+            )}
           </div>
         )}
         {!isCollapsed && (

@@ -73,7 +73,7 @@ const ProfessionalsCard = ({ result }: CardProps<FinancialProfessional>) => {
   };
 
   return (
-    <div className="w-full  p-2 bg-white rounded-lg border border-zinc-200 justify-start items-start gap-4 inline-flex">
+    <div className="w-full  p-2 bg-white rounded-lg border border-zinc-200 flex flex-col justify-center items-center gap-2 md:justify-start md:flex-row md:items-start md:gap-4 md:inline-flex ">
       <img
         className="w-40 h-44 rounded-lg"
         src={
@@ -81,7 +81,7 @@ const ProfessionalsCard = ({ result }: CardProps<FinancialProfessional>) => {
           "https://www.delvinia.com/wp-content/uploads/2020/05/placeholder-headshot.png"
         }
       />
-      <div className="grow shrink basis-0 flex-col justify-start items-start gap-3 inline-flex">
+      <div className="grow shrink basis-0 flex-col justify-center md:justify-start items-center md:items-start gap-2 md:gap-3 inline-flex mx-auto">
         <a
           href={data.slug}
           className="text-blue-950 text-lg font-bold font-['Lato'] leading-normal"
@@ -91,13 +91,13 @@ const ProfessionalsCard = ({ result }: CardProps<FinancialProfessional>) => {
         <div className="text-center text-blue-950 text-base font-bold font-['Lato'] leading-normal">
           {data.job}
         </div>
-        <div className="self-stretch justify-start items-center gap-8 inline-flex">
+        <div className=" gap-2 self-auto justify-start flex flex-col md:flex-row  md:self-stretch md:justify-start items-center md:gap-8 md:inline-flex">
           <div className="text-zinc-800 text-base font-normal font-['Lato'] leading-normal">
             {data.address.line1}
             <br />
             {`${data.address.city}, ${data.address.region} ${data.address.postalCode}`}
           </div>
-          <div className="flex-col justify-center items-start gap-1 inline-flex">
+          <div className="flex-col justify-center items-center md:items-start gap-1 inline-flex">
             <div className="justify-start items-center gap-2 inline-flex">
               <div className="w-4 h-4 justify-center items-center flex">
                 <div className="w-5 h-5 text-center text-zinc-800 text-base font-light font-['Font Awesome 6 Pro']">
@@ -120,12 +120,12 @@ const ProfessionalsCard = ({ result }: CardProps<FinancialProfessional>) => {
             </div>
           </div>
         </div>
-        <div className="justify-start items-start gap-3 inline-flex">
+        <div className="w-full mt-3 md:mt-0 flex flex-col gap-2 justify-center items-center md:justify-start md:items-start md:gap-3 md:flex-row md:inline-flex">
           <a
             href={`/${data.slug}`}
-            className="h-8 bg-blue-950 rounded-md flex-col justify-center items-center inline-flex"
+            className="w-full md:w-fit h-10 md:h-8 bg-blue-950 rounded-md flex-col justify-center items-center inline-flex"
           >
-            <div className="grow shrink basis-0 px-6 py-2 justify-start items-center gap-2.5 inline-flex">
+            <div className=" grow shrink basis-0 px-6 py-2 justify-start items-center gap-2.5 inline-flex">
               <div className="text-center text-white text-sm font-normal font-['Lato'] leading-snug">
                 Get In Touch
               </div>
@@ -133,7 +133,7 @@ const ProfessionalsCard = ({ result }: CardProps<FinancialProfessional>) => {
           </a>
           <a
             href={`/${data.slug}`}
-            className="h-8 rounded-md border border-blue-950 flex-col justify-center items-center inline-flex"
+            className="w-full md:w-fit h-10 md:h-8 rounded-md border border-blue-950 flex-col justify-center items-center inline-flex"
           >
             <div className="grow shrink basis-0 px-6 py-2 justify-start items-center gap-2.5 inline-flex">
               <div className="text-center text-blue-950 text-sm font-normal font-['Lato'] leading-snug">
@@ -148,3 +148,5 @@ const ProfessionalsCard = ({ result }: CardProps<FinancialProfessional>) => {
 };
 
 export default ProfessionalsCard;
+
+//md:self-stretch md:flex-auto md:justify-start flex flex-col justify-center items-center gap-2 md:gap-8 md:inline-flex md:items-start

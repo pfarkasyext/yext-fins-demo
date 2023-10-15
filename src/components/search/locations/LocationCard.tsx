@@ -66,21 +66,21 @@ const LocationCard = ({ result }: CardProps<Location>) => {
   };
 
   return (
-    <div className="w-full h-44 p-6 bg-white rounded-lg border border-zinc-200 justify-start items-start gap-4 inline-flex">
-      <div className="grow shrink basis-0 flex-col justify-start items-start gap-3 inline-flex">
+    <div className="w-full md:h-44 p-6 bg-white rounded-lg border border-zinc-200 justify-start items-start gap-4 inline-flex">
+      <div className="flex grow shrink basis-0 flex-col justify-center items-center gap-1 md:justify-start md:items-start md:gap-3 md:inline-flex">
         <a
           href={data.slug}
           className="text-blue-950 text-lg font-bold font-['Lato'] leading-normal"
         >
           {data.name}
         </a>
-        <div className="self-stretch justify-start items-center gap-4 inline-flex">
+        <div className="flex flex-col md:flex-row justify-center gap-2  md:self-stretch md:justify-start items-center md:gap-4 md:inline-flex">
           <div className="text-zinc-800 text-base font-normal font-['Lato'] leading-normal">
             {data.address.line1}
             <br />
             {`${data.address.city}, ${data.address.region} ${data.address.postalCode}`}
           </div>
-          <div className="flex-col justify-center items-start gap-1 inline-flex">
+          <div className="flex-col justify-center items-center md:items-start gap-1 inline-flex">
             <div className="justify-start items-center gap-2 inline-flex">
               <div className="w-4 h-4 justify-center items-center flex">
                 <div className="w-5 h-5 text-center text-zinc-800 text-base font-light font-['Font Awesome 6 Pro']">
@@ -103,79 +103,30 @@ const LocationCard = ({ result }: CardProps<Location>) => {
             </div>
           </div>
         </div>
-        <div className="justify-start items-start gap-3 inline-flex">
-          <div className="h-8 bg-blue-950 rounded-md flex-col justify-center items-center inline-flex">
-            <div className="grow shrink basis-0 px-6 py-2 justify-start items-center gap-2.5 inline-flex">
-              <a
-                href={`/${data.slug}`}
-                className="text-center text-white text-sm font-normal font-['Lato'] leading-snug"
-              >
-                View More
-              </a>
+        <div className="w-full mt-3 md:mt-0 flex flex-col gap-2 justify-center items-center md:justify-start md:items-start md:gap-3 md:flex-row md:inline-flex">
+          <a
+            href={`/${data.slug}`}
+            className="w-full md:w-fit h-10 md:h-8 bg-blue-950 rounded-md flex-col justify-center items-center inline-flex"
+          >
+            <div className=" grow shrink basis-0 px-6 py-2 justify-start items-center gap-2.5 inline-flex">
+              <div className="text-center text-white text-sm font-normal font-['Lato'] leading-snug">
+                Get In Touch
+              </div>
             </div>
-          </div>
-          <div className="h-8 rounded-md border border-blue-950 flex-col justify-center items-center inline-flex">
+          </a>
+          <a
+            href={`/${data.slug}`}
+            className="w-full md:w-fit h-10 md:h-8 rounded-md border border-blue-950 flex-col justify-center items-center inline-flex"
+          >
             <div className="grow shrink basis-0 px-6 py-2 justify-start items-center gap-2.5 inline-flex">
-              <a
-                href={`/${data.slug}`}
-                className="text-center text-blue-950 text-sm font-normal font-['Lato'] leading-snug"
-              >
-                Get Directions
-              </a>
+              <div className="text-center text-blue-950 text-sm font-normal font-['Lato'] leading-snug">
+                View Profile
+              </div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>
-    // <div className="mb-4 w-auto justify-between rounded-lg border p-2 text-stone-900 shadow-sm overflow-hidden">
-    //   <div className="body flex flex-col">
-    //     <div className="w-full bg-neutral-100 h-32 rounded-full flex flex-row">
-    //       <div className="ml-4 mr-10">
-    //         <h1
-    //           className="text-2xl font-bold mb-2 text-blue-900"
-    //           onClick={() => fireTitle(result.id || "")}
-    //         >
-    //           {data.name}
-    //         </h1>
-    //         <h2 className="text-lg font-semibold mb-2 text-blue-900">
-    //           {data.job}
-    //         </h2>
-    //         <div className="flex flex-col">
-    //           <div className="flex mb-1 justify-between space-x-10">
-    //             <p className="min-w-fit">{data.address.line1}</p>
-    //             <p className="ml-auto">{data.formattedPhone}</p>
-    //           </div>
-    //           <div className="flex mb-1 justify-between space-x-10">
-    //             <p className="min-w-fit">{`${data.address.city}, ${data.address.region} ${data.address.postalCode}`}</p>
-    //             <p className="ml-auto">{data.email}</p>
-    //           </div>
-    //         </div>
-    //       </div>
-    //       <div className="cta-container flex flex-col ml-auto py-2 space-y-2 place-content-center">
-    //         {data.cta1?.label && (
-    //           <a href={`${data.cta1.link}`} target="_blank" rel="noreferrer">
-    //             <button
-    //               className="cta1 w-full bg-blue-900 text-white font-medium rounded-lg py-2 px-5 shadow mb-4 hover:bg-slate-600"
-    //               onClick={() => fireClick(result.id || "", data.cta1.label)}
-    //             >
-    //               {data.cta1.label}
-    //             </button>
-    //           </a>
-    //         )}
-    //         {data.cta2?.label && (
-    //           <a href={`${data.cta2.link}`} target="_blank" rel="noreferrer">
-    //             <button
-    //               className="cta2 whitespace-nowrap bg-white text-blue-900 font-medium rounded-lg py-2 px-5 shadow hover:bg-slate-200"
-    //               onClick={() => fireClick(result.id || "", data.cta2.label)}
-    //             >
-    //               {data.cta2.label}
-    //             </button>
-    //           </a>
-    //         )}
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
   );
 };
 export default LocationCard;
