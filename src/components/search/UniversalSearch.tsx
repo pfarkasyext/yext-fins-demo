@@ -423,7 +423,7 @@ export default function UniversalSearch() {
                       {isLoc ? (
                         <>
                           {vertical === "locations" ? (
-                            <div className="grid grid-cols-3 w-full justify-between items-center gap-8">
+                            <div className="grid grid-cols-1 md:grid-cols-3 w-full justify-between items-center gap-8">
                               <Facets
                                 customCssClasses={{
                                   facetsContainer: "p-4 border",
@@ -440,7 +440,7 @@ export default function UniversalSearch() {
                               </Facets>
                             </div>
                           ) : (
-                            <div className="grid grid-cols-3 w-full justify-between items-center gap-8">
+                            <div className="grid grid-cols-1 md:grid-cols-3 w-full justify-between items-center gap-2">
                               <Facets
                                 excludedFieldIds={[
                                   "languages",
@@ -448,11 +448,14 @@ export default function UniversalSearch() {
                                 ]}
                                 customCssClasses={{
                                   divider: "hidden",
-                                  facetsContainer: "border p-4",
+                                  facetsContainer: "border p-4 ",
                                 }}
                               >
                                 <StandardFacet
-                                  customCssClasses={{ titleLabel: "mr-6" }}
+                                  customCssClasses={{
+                                    titleLabel: "mr-6 !-mb-4",
+                                    optionsContainer: "mt-6",
+                                  }}
                                   fieldId="fins_relatedServices.name"
                                   defaultExpanded={false}
                                 />
@@ -470,6 +473,10 @@ export default function UniversalSearch() {
                                 <StandardFacet
                                   fieldId="languages"
                                   defaultExpanded={false}
+                                  customCssClasses={{
+                                    titleLabel: "mr-6 !-mb-4",
+                                    optionsContainer: "mt-6",
+                                  }}
                                 />
                               </Facets>
                               <Facets
@@ -483,6 +490,10 @@ export default function UniversalSearch() {
                                 }}
                               >
                                 <StandardFacet
+                                  customCssClasses={{
+                                    titleLabel: "mr-6 !-mb-4",
+                                    optionsContainer: "mt-6",
+                                  }}
                                   fieldId="yearsOfExperience"
                                   defaultExpanded={false}
                                 />
@@ -511,8 +522,8 @@ export default function UniversalSearch() {
                         <div
                           className={`${
                             vertical === "locations"
-                              ? `w-full md:w-2/5 overflow-scroll h-[800px]`
-                              : `w-full md:w-2/4 overflow-scroll h-[800px]`
+                              ? ` w-2/5 md:overflow-scroll md:h-[800px]`
+                              : ` w-2/4 md:overflow-scroll md:h-[800px]`
                           }`}
                         >
                           <VerticalResults
@@ -526,8 +537,8 @@ export default function UniversalSearch() {
                         <div
                           className={`${
                             vertical === "locations"
-                              ? `hidden w-3/5 overflow-scroll`
-                              : `hidden w-2/4 overflow-scroll`
+                              ? ` w-3/5 md:overflow-scroll`
+                              : ` w-2/4 md:overflow-scroll`
                           }`}
                         >
                           <MapboxMap
