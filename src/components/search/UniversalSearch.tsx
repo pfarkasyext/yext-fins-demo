@@ -413,7 +413,7 @@ export default function UniversalSearch() {
               )
             ) : verticalResultCount && verticalResultCount > 0 ? (
               <>
-                <div className={`flex mt-4 ${isLoc ? "flex-col" : "flex-row"}`}>
+                <div className={`flex static mt-4 ${isLoc ? "flex-col" : "flex-row"}`}>
                   {facetsPresent && facetsPresent.length >= 1 && (
                     <div
                       className={`${
@@ -457,6 +457,7 @@ export default function UniversalSearch() {
                                     optionsContainer: "mt-6",
                                   }}
                                   fieldId="fins_relatedServices.name"
+                                  label="Specialty"
                                   defaultExpanded={false}
                                 />
                               </Facets>
@@ -495,6 +496,7 @@ export default function UniversalSearch() {
                                     optionsContainer: "mt-6",
                                   }}
                                   fieldId="yearsOfExperience"
+                                  label="Years of Experience"
                                   defaultExpanded={false}
                                 />
                               </Facets>
@@ -515,7 +517,11 @@ export default function UniversalSearch() {
                   >
                     <div className="flex flex-col items-baseline">
                       <ResultsCount />
-                      <AppliedFilters />
+                      <AppliedFilters
+                        customCssClasses={{
+                          removableFilter: "bg-brand-secondary text-white capitalize",
+                        }}
+                      />
                     </div>
                     {isLoc ? (
                       <div className="flex gap-2">

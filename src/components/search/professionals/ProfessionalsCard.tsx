@@ -29,8 +29,10 @@ const ProfessionalsCard = ({ result }: CardProps<FinancialProfessional>) => {
     address: result.rawData.address,
     mainPhone: result.rawData.mainPhone,
     languages: result.rawData.languages,
+    fins_relatedServices: result.rawData.fins_relatedServices,
     interests: result.rawData.interests,
     job: result.rawData.fins_jobTitle,
+    cert: result.rawData.certifications,
     services: result.rawData.services,
     email: result.rawData.emails,
     cta1: result.rawData.fins_primaryCTA,
@@ -91,6 +93,11 @@ const ProfessionalsCard = ({ result }: CardProps<FinancialProfessional>) => {
         <div className="text-center text-blue-950 text-base font-bold font-['Lato'] leading-normal">
           {data.job}
         </div>
+        {data.cert && (
+          <div className="text-center text-blue-950 text-base italic font-['Lato'] leading-normal">
+            {data.cert[0]}
+          </div>
+        )}
         <div className=" gap-2 self-auto justify-start flex flex-col md:flex-row  md:self-stretch md:justify-start items-center md:gap-8 md:inline-flex">
           <div className="text-zinc-800 text-base font-normal font-['Lato'] leading-normal">
             {data.address.line1}
@@ -142,6 +149,22 @@ const ProfessionalsCard = ({ result }: CardProps<FinancialProfessional>) => {
             </div>
           </a>
         </div>
+        {data.fins_relatedServices && (
+          <>
+            <div className="text-center text-blue-950 text-base font-bold font-['Lato'] leading-normal pt-4">
+              Services Offered
+            </div>
+            <div className="text-zinc-800 text-base font-normal font-['Lato'] leading-normal pb-4">
+              <ul className="gap-2 self-auto justify-start flex flex-col items-center md:grid md:grid-cols-2 md:justify-start ">
+                {data.fins_relatedServices.map((service) => (
+                  <li key={service.id} className="">
+                    {service.name}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
