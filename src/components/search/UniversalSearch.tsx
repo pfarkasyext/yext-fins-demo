@@ -43,6 +43,9 @@ import MapPin from "../MapPin";
 import { LngLat, LngLatBounds } from "mapbox-gl";
 
 export default function UniversalSearch() {
+  const [showSearchAreaButton, setShowSearchAreaButton] = useState(false);
+  const [mapCenter, setMapCenter] = useState<LngLat | undefined>();
+  const [mapBounds, setMapBounds] = useState<LngLatBounds | undefined>();
   const [resultsCountMap, setResultsCountMap] = useState<
     Record<string, number>
   >({});
@@ -150,7 +153,28 @@ export default function UniversalSearch() {
       searchActions.executeVerticalQuery();
     }
   };
-
+  const handleSearchAreaClick = () => {
+    if (mapCenter && mapBounds) {
+      const locationFilter: SelectableStaticFilter = {
+        selected: true,
+        displayName: "Current map area",
+        filter: {
+          kind: "fieldValue",
+          fieldId: "builtin.location",
+          value: {
+            lat: mapCenter.lat,
+            lng: mapCenter.lng,
+            radius: mapBounds.getNorthEast().distanceTo(mapCenter),
+          },
+          matcher: Matcher.Near,
+        },
+      };
+      searchActions.setVertical("locations");
+      searchActions.setStaticFilters([locationFilter]);
+      searchActions.executeVerticalQuery();
+      setShowSearchAreaButton(false);
+    }
+  };
   const handleSearchClick = (searchEventData: {
     verticalKey?: string;
     query?: string;
@@ -199,40 +223,44 @@ export default function UniversalSearch() {
 
   const CardComponent = determineCardComponent();
 
-  const handleDrag: OnDragHandler = useCallback(
-    (center: LngLat, bounds: LngLatBounds) => {
-      // get the distance from the center of the map to the top right corner
-      const radius = center.distanceTo(bounds.getNorthEast());
+  // const handleDrag: OnDragHandler = useCallback(
+  //   (center: LngLat, bounds: LngLatBounds) => {
+  //     // get the distance from the center of the map to the top right corner
+  //     const radius = center.distanceTo(bounds.getNorthEast());
 
-      // filter out any existing location filters
-      const nonLocationFilters: SelectableStaticFilter[] =
-        filters?.filter(
-          (f) =>
-            f.filter.kind !== "fieldValue" ||
-            f.filter.fieldId !== "builtin.location"
-        ) ?? [];
+  //     // filter out any existing location filters
+  //     const nonLocationFilters: SelectableStaticFilter[] =
+  //       filters?.filter(
+  //         (f) =>
+  //           f.filter.kind !== "fieldValue" ||
+  //           f.filter.fieldId !== "builtin.location"
+  //       ) ?? [];
 
-      // create a new location filter based on the center of the map and the radius
-      const nearFilter: SelectableStaticFilter = {
-        selected: true,
-        displayName: "Near Current Area",
-        filter: {
-          kind: "fieldValue",
-          fieldId: "builtin.location",
-          matcher: Matcher.Near,
-          value: { ...center, radius },
-        },
-      };
+  //     // create a new location filter based on the center of the map and the radius
+  //     const nearFilter: SelectableStaticFilter = {
+  //       selected: true,
+  //       displayName: "Near Current Area",
+  //       filter: {
+  //         kind: "fieldValue",
+  //         fieldId: "builtin.location",
+  //         matcher: Matcher.Near,
+  //         value: { ...center, radius },
+  //       },
+  //     };
 
-      // update the static filters with the new location filter
-      searchActions.setStaticFilters([...nonLocationFilters, nearFilter]);
+  //     // update the static filters with the new location filter
+  //     searchActions.setStaticFilters([...nonLocationFilters, nearFilter]);
 
-      // execute the search
-      searchActions.executeVerticalQuery();
-    },
-    [filters, searchActions]
-  );
-
+  //     // execute the search
+  //     searchActions.executeVerticalQuery();
+  //   },
+  //   [filters, searchActions]
+  // );
+  const handleDrag: OnDragHandler = (center: LngLat, bounds: LngLatBounds) => {
+    setMapCenter(center);
+    setMapBounds(bounds);
+    setShowSearchAreaButton(true);
+  };
   return (
     <div className="min-h-[calc(100vh-184px)]">
       <div className="w-full bg-blue-950 px-20 py-8">
@@ -413,7 +441,11 @@ export default function UniversalSearch() {
               )
             ) : verticalResultCount && verticalResultCount > 0 ? (
               <>
-                <div className={`flex static mt-4 ${isLoc ? "flex-col" : "flex-row"}`}>
+                <div
+                  className={`flex static mt-4 ${
+                    isLoc ? "flex-col" : "flex-row"
+                  }`}
+                >
                   {facetsPresent && facetsPresent.length >= 1 && (
                     <div
                       className={`${
@@ -519,7 +551,8 @@ export default function UniversalSearch() {
                       <ResultsCount />
                       <AppliedFilters
                         customCssClasses={{
-                          removableFilter: "bg-brand-secondary text-white capitalize",
+                          removableFilter:
+                            "bg-brand-secondary text-white capitalize",
                         }}
                       />
                     </div>
@@ -543,8 +576,8 @@ export default function UniversalSearch() {
                         <div
                           className={`${
                             vertical === "locations"
-                              ? ` w-3/5 md:overflow-scroll`
-                              : ` w-2/4 md:overflow-scroll`
+                              ? `relative w-3/5 md:overflow-scroll`
+                              : `relative w-2/4 md:overflow-scroll`
                           }`}
                         >
                           <MapboxMap
@@ -555,6 +588,16 @@ export default function UniversalSearch() {
                             PinComponent={MapPin}
                             onDrag={handleDrag}
                           />
+                          {showSearchAreaButton && (
+                            <div className="absolute bottom-10 left-0 right-0 flex justify-center">
+                              <button
+                                onClick={handleSearchAreaClick}
+                                className="rounded-2xl border bg-white py-2 px-4 shadow-xl"
+                              >
+                                <p>Search This Area</p>
+                              </button>
+                            </div>
+                          )}
                         </div>
                       </div>
                     ) : (

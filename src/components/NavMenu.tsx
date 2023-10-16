@@ -1,7 +1,7 @@
 import { ChevronDownIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 
-const NavMenu = ({ menuItems }: any) => {
+const NavMenu = ({ menuItems, isPrimary = false }: any) => {
   const [hoveredMenu, setHoveredMenu] = useState(null);
   const [nestedData, setNestedData] = useState(null);
   const [hoveredItem, setHoveredItem] = useState(null);
@@ -77,8 +77,8 @@ const NavMenu = ({ menuItems }: any) => {
   };
 
   return (
-    <ul className="flex flex-row p-0 m-0 py-4">
-      {menuItems.c_navbar.map((item, index) => (
+    <ul className="flex flex-row p-0 m-0 py-2">
+      {menuItems.map((item, index) => (
         <li
           className="px-1 hover:underline hover:underline-offset-4"
           key={index}
@@ -87,7 +87,11 @@ const NavMenu = ({ menuItems }: any) => {
         >
           <section>
             <div>
-              <div className="relative z-50 text-sm">
+              <div
+                className={`relative z-50 ${
+                  isPrimary ? `!text-xs` : `text-sm`
+                }`}
+              >
                 <a
                   className=" flex items-center no-underline desktop-header-trigger leading-title font-bold text-navy secondary-nav-flyout-trigger px-1 rounded-full transition-all duration-100 ease-in-out"
                   href={`/${item.slug || `#`}`}
