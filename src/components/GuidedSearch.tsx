@@ -2,6 +2,19 @@ import { useSearchActions } from "@yext/search-headless-react";
 import { FilterSearch } from "@yext/search-ui-react";
 import { useState, useEffect } from "react";
 
+const serviceOptions = [
+  "Budgeting and Cash Flow Management",
+  "Estate Planning",
+  "Business Banking",
+  "Debt Management",
+  "Insurance Services",
+  "Investment Management",
+  "Mortgage",
+  "Lending",
+  "Education Planning",
+  "Retirement Planning",
+];
+
 const languageOptions = [
   "English",
   "American Sign Language",
@@ -18,6 +31,7 @@ const languageOptions = [
 const GuidedSearch = () => {
   const [service, setService] = useState("");
   const [locationDisplayName, setLocationDisplayName] = useState("");
+  const [language, setLanguage] = useState("");
   const [currentStep, setCurrentStep] = useState(1);
   const searchActions = useSearchActions();
   searchActions.setVertical("financial_professionals");
@@ -26,7 +40,10 @@ const GuidedSearch = () => {
       window.location.href = `/search.html?vertical=financial_professionals&query=${service.replaceAll(
         " ",
         "+"
-      )}+advisors+in+${locationDisplayName.replaceAll(" ", "+")}`;
+      )}+advisors+in+${locationDisplayName.replaceAll(
+        " ",
+        "+"
+      )}+who+speak+${language.replaceAll(" ", "+")}`;
     };
     if (currentStep === 4) {
       setTimeout(executeSearch, 1000);
@@ -35,7 +52,7 @@ const GuidedSearch = () => {
   return (
     <section className="flex flex-col pb-36">
       {currentStep === 1 && (
-        <section className="flex flex-col gap-8 items-center pt-20">
+        <section className="flex flex-col gap-8 items-center pt-20 mb-12">
           <h3 className="text-2xl font-bold">
             Search by City and State or Zip Code
           </h3>
@@ -69,8 +86,23 @@ const GuidedSearch = () => {
           <h3 className="text-2xl font-bold">
             What type of service you are looking for?
           </h3>
+          <div className="flex flex-wrap gap-4 max-w-2xl px-4 items-center justify-center">
+            {serviceOptions.map((service) => (
+              <a
+                key={service}
+                className="p-4 rounded-full bg-blue-950 text-white hover:bg-blue-900 w-fit"
+                onClick={(params) => {
+                  setService(service);
+                  setCurrentStep(3);
+                }}
+              >
+                {service}
+              </a>
+            ))}
+          </div>
+          <div className="pt-10">Not sure what type of advisor you need?</div>
           <FilterSearch
-            placeholder="Search for a Service"
+            placeholder="Search for all Financial Products"
             customCssClasses={{
               filterSearchContainer: "flex justify-center",
               inputElement:
@@ -86,7 +118,7 @@ const GuidedSearch = () => {
             }}
             searchFields={[
               {
-                fieldApiName: "fins_relatedServices.name",
+                fieldApiName: "fins_relatedServices.c_childProducts.name",
                 entityType: "financialProfessional",
               },
             ]}
@@ -98,9 +130,18 @@ const GuidedSearch = () => {
           <h3 className="text-2xl font-bold">
             What language do you prefer to speak?
           </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
+          <div className="flex flex-wrap gap-4 max-w-2xl px-4 items-center justify-center">
             {languageOptions.map((language) => (
-              <div key={language} className="p-2 rounded-full bg-blue-950 text-white">{language}</div>
+              <a
+                key={language}
+                className="p-4 rounded-full bg-blue-950 text-white hover:bg-blue-900 w-fit"
+                onClick={(params) => {
+                  setLanguage(language);
+                  setCurrentStep(4);
+                }}
+              >
+                {language}
+              </a>
             ))}
           </div>
         </section>
