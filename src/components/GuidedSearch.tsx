@@ -2,6 +2,19 @@ import { useSearchActions } from "@yext/search-headless-react";
 import { FilterSearch } from "@yext/search-ui-react";
 import { useState, useEffect } from "react";
 
+const languageOptions = [
+  "English",
+  "American Sign Language",
+  "Spanish",
+  "Mandarin",
+  "French",
+  "Japanese",
+  "Vietnamese",
+  "Arabic",
+  "Tagalog",
+  "Korean",
+];
+
 const GuidedSearch = () => {
   const [service, setService] = useState("");
   const [locationDisplayName, setLocationDisplayName] = useState("");
@@ -15,19 +28,19 @@ const GuidedSearch = () => {
         "+"
       )}+advisors+in+${locationDisplayName.replaceAll(" ", "+")}`;
     };
-    if (currentStep === 3) {
+    if (currentStep === 4) {
       setTimeout(executeSearch, 1000);
     }
   }, [currentStep]);
   return (
-    <section className="flex flex-col  ">
+    <section className="flex flex-col pb-36">
       {currentStep === 1 && (
         <section className="flex flex-col gap-8 items-center pt-20">
           <h3 className="text-2xl font-bold">
-            Where would you like to find advisors?
+            Search by City and State or Zip Code
           </h3>
           <FilterSearch
-            placeholder="Search for a city, state, or zip code"
+            placeholder="Search by location"
             customCssClasses={{
               filterSearchContainer: "flex justify-center",
               inputElement:
@@ -54,7 +67,7 @@ const GuidedSearch = () => {
       {currentStep === 2 && (
         <section className="flex flex-col gap-8 items-center pt-20">
           <h3 className="text-2xl font-bold">
-            What service you are looking for?
+            What type of service you are looking for?
           </h3>
           <FilterSearch
             placeholder="Search for a Service"
@@ -81,6 +94,18 @@ const GuidedSearch = () => {
         </section>
       )}
       {currentStep === 3 && (
+        <section className="flex flex-col gap-8 items-center pt-20">
+          <h3 className="text-2xl font-bold">
+            What language do you prefer to speak?
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
+            {languageOptions.map((language) => (
+              <div key={language} className="p-2 rounded-full bg-blue-950 text-white">{language}</div>
+            ))}
+          </div>
+        </section>
+      )}
+      {currentStep === 4 && (
         <section className="flex flex-col gap-8 items-center pt-20">
           <h3 className="text-2xl font-bold">
             One moment, searching for advisors that match your criteria...
