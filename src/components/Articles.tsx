@@ -27,9 +27,9 @@ export default function Articles({ articles }: { articles: ArticleProps[] }) {
 
   return (
     <div className="md:py-8 flex flex-col items-between gap-8">
-      <h2 className="font-bold text-4xl text-center text-brand-blue">
+      <h3 className="font-medium text-4xl text-center text-brand-blue">
         Insights
-      </h2>
+      </h3>
       <a
         className="grid grid-cols-1 lg:grid-cols-5 md:gap-x-8 px-6 md:px-0 w-full"
         href={`/${featuredArticle.slug}`}

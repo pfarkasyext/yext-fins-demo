@@ -55,6 +55,7 @@ export const config: TemplateConfig = {
       "fins_relatedServices.description",
       "fins_relatedServices.fins_servicesImage",
       "c_linkedInsightsArticles.name",
+      "c_linkedInsightsArticles.slug",
       "c_linkedInsightsArticles.c_insightsArticleSummary",
       "c_linkedInsightsArticles.primaryPhoto",
     ],
@@ -187,14 +188,14 @@ export default function Professional({ document, __meta }: TemplateProps) {
       <div className="flex flex-col items-center">
         <div className="max-w-5xl flex flex-col justify-center ">
           <a id="insights"></a>
-          <Title
+          {/* <Title
             value={`Insights`}
             textSize="4xl"
             fontWeight="medium"
             topMargin="12"
             bottomMargin="8"
             textColor="#1C2E5E"
-          />
+          /> */}
           <Articles articles={document.c_linkedInsightsArticles} />
         </div>
       </div>
