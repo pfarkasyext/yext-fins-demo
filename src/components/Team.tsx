@@ -33,7 +33,10 @@ export default function Team({
                   key={index}
                   className="grow shrink basis-0 bg-white rounded-lg border border-zinc-200 flex-col justify-start items-start inline-flex"
                 >
-                  <div className="self-stretch p-8 bg-white justify-start items-center gap-6 inline-flex">
+                  <a
+                    className="self-stretch p-8 bg-white justify-start items-center gap-6 inline-flex"
+                    href={`/${slug}`}
+                  >
                     <div className="w-20 h-20 relative">
                       <img
                         className="w-20 h-20 left-0 top-0 absolute rounded-[100px]"
@@ -48,7 +51,7 @@ export default function Team({
                         {fins_jobTitle}
                       </div>
                     </div>
-                  </div>
+                  </a>
                   <div className="self-stretch h-[0px] border border-stone-300"></div>
                   <div className="self-stretch h-[168px] p-8 bg-white flex-col justify-start items-start gap-4 flex">
                     <div className="self-stretch justify-start items-center gap-2 inline-flex">
@@ -72,9 +75,12 @@ export default function Team({
                       </div>
                     </div>
                     <div className="justify-center items-center gap-2 inline-flex">
-                      <div className="text-blue-950 text-base font-bold font-['Lato'] underline leading-normal">
+                      <a
+                        className="text-blue-950 text-base font-bold font-['Lato'] underline leading-normal"
+                        href={`/${slug}`}
+                      >
                         Visit Profile
-                      </div>
+                      </a>
                       <div className="w-3 h-3 relative"></div>
                     </div>
                   </div>

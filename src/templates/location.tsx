@@ -57,6 +57,7 @@ export const config: TemplateConfig = {
       "c_relatedFPsAndTeams.fins_jobTitle",
       "c_relatedFPsAndTeams.slug",
       "c_linkedInsightsArticles.name",
+      "c_linkedInsightsArticles.slug",
       "c_linkedInsightsArticles.c_insightsArticleSummary",
       "c_linkedInsightsArticles.primaryPhoto",
     ],
@@ -114,7 +115,7 @@ export default function Location({ document, __meta }: TemplateProps) {
 
   const InPageNavItems = [
     {
-      name: "services",
+      name: "Services",
       navId: "services",
     },
     {
@@ -192,7 +193,10 @@ export default function Location({ document, __meta }: TemplateProps) {
       {document.fins_relatedServices && (
         <>
           <a id="services"></a>
-          <Services services={document.fins_relatedServices} />
+          {/* <Services services={document.fins_relatedServices} /> */}
+          <section className="px-4 w-full md:px-32 bg-white py-4 md:h-full ">
+            <Services services={document.fins_relatedServices} />
+          </section>
         </>
       )}
 
@@ -219,14 +223,14 @@ export default function Location({ document, __meta }: TemplateProps) {
           <a id="insights"></a>
           <div className="flex flex-col items-center">
             <div className="max-w-5xl flex flex-col justify-center ">
-              <Title
+              {/* <Title
                 value={`Insights`}
                 textSize="4xl"
                 fontWeight="medium"
                 topMargin="12"
                 bottomMargin="8"
                 textColor="#1C2E5E"
-              />
+              /> */}
               <Articles articles={document.c_linkedInsightsArticles} />
             </div>
           </div>
