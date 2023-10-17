@@ -50,6 +50,7 @@ export const config: TemplateConfig = {
       "geocodedCoordinate",
       "fins_relatedServices.name",
       "fins_relatedServices.c_serviceDescription",
+      "fins_relatedServices.slug",
       "c_relatedFPsAndTeams.name",
       "c_relatedFPsAndTeams.mainPhone",
       "c_relatedFPsAndTeams.emails",
