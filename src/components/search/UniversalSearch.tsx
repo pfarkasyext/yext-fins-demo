@@ -169,7 +169,7 @@ export default function UniversalSearch() {
           matcher: Matcher.Near,
         },
       };
-      searchActions.setVertical("locations");
+      searchActions.setVertical(vertical!);
       searchActions.setStaticFilters([locationFilter]);
       searchActions.executeVerticalQuery();
       setShowSearchAreaButton(false);
@@ -223,39 +223,6 @@ export default function UniversalSearch() {
 
   const CardComponent = determineCardComponent();
 
-  // const handleDrag: OnDragHandler = useCallback(
-  //   (center: LngLat, bounds: LngLatBounds) => {
-  //     // get the distance from the center of the map to the top right corner
-  //     const radius = center.distanceTo(bounds.getNorthEast());
-
-  //     // filter out any existing location filters
-  //     const nonLocationFilters: SelectableStaticFilter[] =
-  //       filters?.filter(
-  //         (f) =>
-  //           f.filter.kind !== "fieldValue" ||
-  //           f.filter.fieldId !== "builtin.location"
-  //       ) ?? [];
-
-  //     // create a new location filter based on the center of the map and the radius
-  //     const nearFilter: SelectableStaticFilter = {
-  //       selected: true,
-  //       displayName: "Near Current Area",
-  //       filter: {
-  //         kind: "fieldValue",
-  //         fieldId: "builtin.location",
-  //         matcher: Matcher.Near,
-  //         value: { ...center, radius },
-  //       },
-  //     };
-
-  //     // update the static filters with the new location filter
-  //     searchActions.setStaticFilters([...nonLocationFilters, nearFilter]);
-
-  //     // execute the search
-  //     searchActions.executeVerticalQuery();
-  //   },
-  //   [filters, searchActions]
-  // );
   const handleDrag: OnDragHandler = (center: LngLat, bounds: LngLatBounds) => {
     setMapCenter(center);
     setMapBounds(bounds);
