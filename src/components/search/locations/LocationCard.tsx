@@ -66,7 +66,7 @@ const LocationCard = ({ result }: CardProps<Location>) => {
   };
 
   return (
-    <div className="w-full md:h-44 p-6 bg-white rounded-lg border border-zinc-200 justify-start items-start gap-4 inline-flex">
+    <div className="w-full  p-6 bg-white rounded-lg border border-zinc-200 justify-start items-start gap-4 inline-flex">
       <div className="flex grow shrink basis-0 flex-col justify-center items-center gap-1 md:justify-start md:items-start md:gap-3 md:inline-flex">
         <a
           href={data.slug}
@@ -98,33 +98,35 @@ const LocationCard = ({ result }: CardProps<Location>) => {
                 </div>
               </div>
               <div className="text-zinc-800 text-base font-normal font-['Lato'] underline leading-normal">
-                {data.email ? data.email : `DEFAULT`}
+                {data.email ? data.email : `atmsupport@capitalbank.com`}
               </div>
             </div>
           </div>
         </div>
-        <div className="w-full mt-3 md:mt-0 flex flex-col gap-2 justify-center items-center md:justify-start md:items-start md:gap-3 md:flex-row md:inline-flex">
-          <a
-            href={`/${data.slug}`}
-            className="w-full md:w-fit h-10 md:h-8 bg-blue-950 rounded-md flex-col justify-center items-center inline-flex"
-          >
-            <div className=" grow shrink basis-0 px-6 py-2 justify-start items-center gap-2.5 inline-flex">
-              <div className="text-center text-white text-sm font-normal font-['Lato'] leading-snug">
-                Get In Touch
+        {data.slug && (
+          <div className="w-full mt-3 md:mt-0 flex flex-col gap-2 justify-center items-center md:justify-start md:items-start md:gap-3 md:flex-row md:inline-flex">
+            <a
+              href={`/${data.slug}`}
+              className="w-full md:w-fit h-10 md:h-8 bg-blue-950 rounded-md flex-col justify-center items-center inline-flex"
+            >
+              <div className=" grow shrink basis-0 px-6 py-2 justify-start items-center gap-2.5 inline-flex">
+                <div className="text-center text-white text-sm font-normal font-['Lato'] leading-snug">
+                  Get In Touch
+                </div>
               </div>
-            </div>
-          </a>
-          <a
-            href={`/${data.slug}`}
-            className="w-full md:w-fit h-10 md:h-8 rounded-md border border-blue-950 flex-col justify-center items-center inline-flex"
-          >
-            <div className="grow shrink basis-0 px-6 py-2 justify-start items-center gap-2.5 inline-flex">
-              <div className="text-center text-blue-950 text-sm font-normal font-['Lato'] leading-snug">
-                View Profile
+            </a>
+            <a
+              href={(data.slug && `/${data.slug}`) || "#"}
+              className="w-full md:w-fit h-10 md:h-8 rounded-md border border-blue-950 flex-col justify-center items-center inline-flex"
+            >
+              <div className="grow shrink basis-0 px-6 py-2 justify-start items-center gap-2.5 inline-flex">
+                <div className="text-center text-blue-950 text-sm font-normal font-['Lato'] leading-snug">
+                  View Profile
+                </div>
               </div>
-            </div>
-          </a>
-        </div>
+            </a>
+          </div>
+        )}
       </div>
     </div>
   );
