@@ -8,7 +8,7 @@ import { useEffect } from "react";
 export default function ComplexHeader({ data }: any) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showSearchbar, setShowSearchbar] = useState(false);
-  const newSearchbarItems = ["locations", "login", "directory", "support"];
+  const newSearchbarItems = ["locator", "login", "directory", "support"];
   const handleSearch = (searchEventData: {
     verticalKey?: string;
     query?: string;
