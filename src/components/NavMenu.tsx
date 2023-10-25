@@ -94,7 +94,7 @@ const NavMenu = ({ menuItems, isPrimary = false }: any) => {
               >
                 <a
                   className=" flex items-center no-underline desktop-header-trigger leading-title font-bold text-navy secondary-nav-flyout-trigger px-1 rounded-full transition-all duration-100 ease-in-out"
-                  href={`/${item.slug || `#`}`}
+                  href={`/${(item.slug && buildLink(item.slug)) || `#`}`}
                 >
                   <span className="flex  items-center">
                     <div> {item.name}</div>
@@ -169,7 +169,7 @@ const NavMenu = ({ menuItems, isPrimary = false }: any) => {
 
 export default NavMenu;
 export const buildLink = (slug: string) => {
-  return slug.includes("staticfilter")
+  return slug.includes("vertical=")
     ? slug.replace("html-", "html?").replace("-static", "&static")
     : slug;
 };
