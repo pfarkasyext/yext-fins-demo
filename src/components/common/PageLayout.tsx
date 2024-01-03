@@ -59,7 +59,7 @@ const PageLayout = ({
             <ChatHeadlessProvider config={config}>
               <ChatPanel
                 customCssClasses={{
-                  container: "h-[400px] overflow-scroll",
+                  container: "h-[500px] overflow-scroll",
                   inputCssClasses: {
                     sendButton: " !hover:bg-blue-700 !bg-blue-950",
                   },
