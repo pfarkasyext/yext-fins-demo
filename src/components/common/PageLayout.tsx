@@ -26,6 +26,7 @@ const config: HeadlessConfig = {
   botId: "capital-chat",
   apiKey: "faa7e213d8d005f7dd0f56d9111d9261",
 };
+
 export const SEARCHER = provideHeadless({
   apiKey: apiKey,
   experienceKey: experienceKey,
@@ -63,6 +64,13 @@ const PageLayout = ({
                     sendButton: " !hover:bg-blue-700 !bg-blue-950",
                   },
                 }}
+                messageSuggestions={[
+                  "Are there any banks in Charlotte, NC?",
+                  "I need an ATM in Chicago",
+                  "What are Capital’s credit card options?",
+                  "What are my mobile banking options?",
+                  "Can Capital help me with buying a house?"
+                ]}
                 header={
                   <ChatHeader
                     title={"Capital Bank Chat"}
