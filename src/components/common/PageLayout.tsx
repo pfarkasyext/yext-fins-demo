@@ -65,8 +65,9 @@ const PageLayout = ({
                   },
                 }}
                 messageSuggestions={[
-                  "Are there any banks in Charlotte, NC?",
-                  "I need an ATM in Chicago",
+                  "Banks in Charlotte, NC",
+                  "ATMs in Chicago",
+                  "I'm looking for help finding an advisor",
                   "What are Capital’s credit card options?",
                   "What are my mobile banking options?",
                   "Can Capital help me with buying a house?"
