@@ -41,6 +41,8 @@ import GridSection from "./GridSection";
 import "mapbox-gl/dist/mapbox-gl.css";
 import MapPin from "../MapPin";
 import { LngLat, LngLatBounds } from "mapbox-gl";
+import DocumentsCard from "./documents/DocumentsCard";
+import CustomDA from "./CustomDA";
 
 export default function UniversalSearch() {
   const [showSearchAreaButton, setShowSearchAreaButton] = useState(false);
@@ -63,6 +65,8 @@ export default function UniversalSearch() {
 
   const searchLoading = useSearchState((state) => state.searchStatus.isLoading);
   const filters = useSearchState((state) => state.filters.static);
+
+  const da = useSearchState((state) => state.directAnswer.result);
 
   useEffect(() => {
     const verticalKey = new URLSearchParams(window.location.search).get(
@@ -109,6 +113,7 @@ export default function UniversalSearch() {
         "faqs",
         "services",
         "financial_products",
+        "documents",
       ]);
       searchActions.executeUniversalQuery();
     }
@@ -146,6 +151,7 @@ export default function UniversalSearch() {
         "faqs",
         "services",
         "financial_products",
+        "documents",
       ]);
       searchActions.executeUniversalQuery();
     } else {
@@ -205,6 +211,8 @@ export default function UniversalSearch() {
         return ServicesCard;
       case "financial_products":
         return ProductsCard;
+      case "documents":
+        return DocumentsCard;
       default:
         return StandardCard;
     }
@@ -213,9 +221,11 @@ export default function UniversalSearch() {
   const verticalResultsClassnames = () => {
     switch (vertical) {
       case "services":
-        return "grid grid-cols-3 gap-4 ";
+        return "grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 ";
       case "financial_products":
-        return "grid grid-cols-3 gap-4 ";
+        return "grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3";
+      case "documents":
+        return "grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3";
       default:
         return "flex flex-col gap-y-4";
     }
@@ -245,9 +255,9 @@ export default function UniversalSearch() {
             }}
             onSearch={handleSearchClick}
           />
-          <button className="bg-white flex justify-center items-center p-4 my-auto rounded-full ">
+          <button className="bg-white flex justify-center items-center p-4 my-auto rounded-full">
             <Icon name="search" color="text-green" height={"4"} width="4" />
-            <p className="text-white text-sm ml-2 lg:hidden">Search</p>
+            {/* <p className="text-white text-sm ml-2 lg:hidden">Search</p> */}
           </button>
         </div>
         <div className="text-white mb-2 italic">
@@ -280,12 +290,17 @@ export default function UniversalSearch() {
             {
               label: "Services",
               id: "services",
-              resultsCount: resultsCountMap["faqs"] ?? 0,
+              resultsCount: resultsCountMap["services"] ?? 0,
             },
             {
               label: "Financial Products",
               id: "financial_products",
               resultsCount: resultsCountMap["financial_products"] ?? 0,
+            },
+            {
+              label: "Documents",
+              id: "documents",
+              resultsCount: resultsCountMap["documents"] ?? 0,
             },
           ]}
           selectedId={vertical ?? "all"}
@@ -302,10 +317,18 @@ export default function UniversalSearch() {
                       resultsCountContainer: "font-sans-bold text-lg mb-0 p-0",
                     }}
                   />
-                  <DirectAnswer />
+
+                  {da ? (
+                    <>
+                      <CustomDA data={da} />
+                    </>
+                  ) : (
+                    ""
+                  )}
+
                   <UniversalResults
                     customCssClasses={{
-                      universalResultsContainer: "flex flex-col gap-y-8",
+                      universalResultsContainer: "flex flex-col",
                     }}
                     verticalConfigMap={{
                       financial_professionals: {
@@ -399,6 +422,25 @@ export default function UniversalSearch() {
                           />
                         ),
                         CardComponent: ProductsCard,
+                      },
+                      documents: {
+                        label: "Documents",
+                        SectionComponent: ({
+                          results,
+                          verticalKey,
+                        }: SectionProps<Ce_financialProduct>) => (
+                          <GridSection
+                            results={results}
+                            CardComponent={DocumentsCard}
+                            verticalKey={verticalKey}
+                            header={
+                              <h2 className="text-2xl font-semibold text-blue-950 pb-4">
+                                Documents
+                              </h2>
+                            }
+                          />
+                        ),
+                        CardComponent: DocumentsCard,
                       },
                     }}
                   />

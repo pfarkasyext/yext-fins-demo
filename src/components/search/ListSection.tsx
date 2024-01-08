@@ -12,7 +12,7 @@ export default function ListSection<T>({
   return (
     <>
       {header}
-      <div className="space-y-4">
+      <div className="mb-8">
         {results.map((r) => (
           <CardComponent key={r.id} result={r} />
         ))}

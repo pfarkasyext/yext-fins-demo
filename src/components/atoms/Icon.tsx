@@ -16,6 +16,7 @@ import {
   FaMap,
   FaList,
   FaFilter,
+  FaRegFilePdf,
   FaSpinner,
 } from "react-icons/fa";
 import { TbFileCertificate } from "react-icons/tb";
@@ -46,6 +47,7 @@ export type IconName =
   | "map"
   | "list"
   | "filter"
+  | "pdf"
   | "spinner";
 
 const icons: Record<IconName, IconType> = {
@@ -67,6 +69,7 @@ const icons: Record<IconName, IconType> = {
   map: FaMap,
   list: FaList,
   filter: FaFilter,
+  pdf: FaRegFilePdf,
   spinner: FaSpinner,
 };
 
