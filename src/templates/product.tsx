@@ -24,7 +24,7 @@ import RelatedProducts from "../components/RelatedProducts";
 export const config: TemplateConfig = {
   stream: {
     $id: "products",
-    localization: { locales: ["en"], primary: false },
+    localization: { locales: ["en"] },
     filter: {
       entityTypes: ["fins_financialProduct"],
       savedFilterIds: ["1343713918"],

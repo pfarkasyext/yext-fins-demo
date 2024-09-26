@@ -32,7 +32,7 @@ import InpageNav from "../components/common/InpageNav";
 export const config: TemplateConfig = {
   stream: {
     $id: "professionals",
-    localization: { locales: ["en"], primary: false },
+    localization: { locales: ["en"] },
     filter: {
       entityTypes: ["financialProfessional"],
       savedFilterIds: ["1339778047"],

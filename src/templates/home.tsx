@@ -30,7 +30,7 @@ import Title from "../components/Title";
 export const config: TemplateConfig = {
   stream: {
     $id: "home",
-    localization: { locales: ["en"], primary: false },
+    localization: { locales: ["en"] },
     fields: [
       "id",
       "name",

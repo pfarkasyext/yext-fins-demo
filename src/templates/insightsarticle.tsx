@@ -16,7 +16,7 @@ import ArticleContent from "../components/ArticleContent";
 export const config: TemplateConfig = {
   stream: {
     $id: "insightsarticles",
-    localization: { locales: ["en"], primary: false },
+    localization: { locales: ["en"] },
     filter: {
       entityTypes: ["ce_insightsArticle"],
     },

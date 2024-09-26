@@ -33,7 +33,7 @@ import InpageNav from "../components/common/InpageNav";
 export const config: TemplateConfig = {
   stream: {
     $id: "locations",
-    localization: { locales: ["en"], primary: false },
+    localization: { locales: ["en"] },
     filter: {
       entityTypes: ["location"],
     },

@@ -24,7 +24,7 @@ import ArticleContent from "../components/ArticleContent";
 export const config: TemplateConfig = {
   stream: {
     $id: "services",
-    localization: { locales: ["en"], primary: false },
+    localization: { locales: ["en"] },
     filter: {
       entityTypes: ["fins_service"],
     },
