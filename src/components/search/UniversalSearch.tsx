@@ -317,14 +317,14 @@ export default function UniversalSearch() {
                       resultsCountContainer: "font-sans-bold text-lg mb-0 p-0",
                     }}
                   />
-
-                  {da ? (
+                  <DirectAnswer />
+                  {/* {da ? (
                     <>
                       <CustomDA data={da} />
                     </>
                   ) : (
                     ""
-                  )}
+                  )} */}
 
                   <UniversalResults
                     customCssClasses={{

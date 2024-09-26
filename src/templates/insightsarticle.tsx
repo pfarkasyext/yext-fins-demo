@@ -27,7 +27,7 @@ export const config: TemplateConfig = {
       "datePosted",
       "c_insightsArticleSummary",
       "primaryPhoto",
-      "c_insightsArticleBody"
+      "c_insightsArticleBody",
     ],
   },
 };
@@ -35,7 +35,7 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
   return document.slug ?? document.id.toString();
 };
 
-export default function InsightsArticle({ document, __meta }: TemplateProps) {
+const InsightsArticle = ({ document, __meta }: TemplateProps) => {
   return (
     <PageLayout _site={document._site}>
       <ArticleHero
@@ -47,4 +47,6 @@ export default function InsightsArticle({ document, __meta }: TemplateProps) {
       <ArticleContent content={document.c_insightsArticleBody.markdown} />
     </PageLayout>
   );
-}
+};
+
+export default InsightsArticle;

@@ -1,9 +1,10 @@
-import { Markdown } from "@yext/react-components";
+// import { Markdown } from "@yext/pages-components";
 
 export default function ArticleContent({ content }) {
   return (
     <div className="max-w-4xl mx-auto pt-24 prose">
-      <Markdown content={content}  />
+      {/* <Markdown content={content}  /> */}
+      Hi
     </div>
   );
 }

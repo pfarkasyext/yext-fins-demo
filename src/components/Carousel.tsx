@@ -6,6 +6,7 @@ import { ServiceCard } from "./Services";
 export type ServiceProps = {
   name: string;
   c_serviceDescription: string;
+  slug: string;
 };
 
 interface ServicesProps {
@@ -13,20 +14,19 @@ interface ServicesProps {
 }
 
 const Carousel = ({ services }: ServicesProps) => {
-  const settings = {
+  var settings = {
     dots: true,
     infinite: false,
     speed: 500,
     slidesToShow: 4,
-    slidesToScroll: 1,
+    slidesToScroll: 4,
     initialSlide: 0,
-    arrows: false,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 4,
-          slidesToScroll: 1,
+          slidesToShow: 3,
+          slidesToScroll: 3,
           infinite: true,
           dots: true,
         },
@@ -34,8 +34,8 @@ const Carousel = ({ services }: ServicesProps) => {
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
+          slidesToShow: 2,
+          slidesToScroll: 2,
           initialSlide: 2,
         },
       },
@@ -52,12 +52,11 @@ const Carousel = ({ services }: ServicesProps) => {
     <Slider {...settings}>
       {services &&
         services.map((item: ServiceProps, index: any) => (
-          <ServiceCard service={item} key={index} />
+          // <ServiceCard service={item} key={index} />
+          <div>hi</div>
         ))}
     </Slider>
   );
 };
 
 export default Carousel;
-{
-}

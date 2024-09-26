@@ -4,8 +4,6 @@ import { Button } from "../common/Button";
 import Icon from "../atoms/Icon";
 
 const CustomDA = ({ data }: any) => {
-  console.log(JSON.stringify(data));
-
   return (
     <>
       {/* <DirectAnswer /> */}

@@ -11,7 +11,7 @@ interface ServicesProps {
   services: ServiceProps[];
 }
 
-export function ServiceCard({ service }: { service: ServiceProps }) {
+export const ServiceCard = ({ service }: { service: ServiceProps }) => {
   return (
     <div className="py-8 my-8 bg-white rounded-lg border border-zinc-200 flex-col justify-between items-center gap-4 inline-flex w-full ">
       <div className="w-full flex flex-col items-center gap-4 p-4">
@@ -43,7 +43,7 @@ export function ServiceCard({ service }: { service: ServiceProps }) {
       </a>
     </div>
   );
-}
+};
 
 export default function Services({ services }: ServicesProps) {
   return (
@@ -74,12 +74,12 @@ export default function Services({ services }: ServicesProps) {
           </div>
         </div>
       </div>
-      <span className="block md:hidden h-[500px]">
+      {/* <div className="block md:hidden h-[500px]">
         <h2 className="font-bold text-4xl text-center text-brand-blue">
           Our Services
         </h2>
         <Carousel services={services}></Carousel>
-      </span>
+      </div> */}
     </>
   );
 }

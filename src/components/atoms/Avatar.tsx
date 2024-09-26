@@ -1,4 +1,4 @@
-import { ComplexImageType, ImageType, Image } from "@yext/pages/components";
+import { ComplexImageType, ImageType, Image } from "@yext/pages-components";
 import useWindowSize from "../../hooks/useWindowSize";
 
 export interface AvatarProps {

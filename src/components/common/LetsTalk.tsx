@@ -1,9 +1,10 @@
-import { GoogleMaps } from "@yext/components-tsx-maps";
-import { LocationMap } from "@yext/sites-react-components";
+import { LocationMap } from "@yext/pages-components";
 import GridContainer from "../GridContainer";
 import MapDescription from "../MapDescription";
 import StaticMap from "../StaticMap";
 import Title from "../Title";
+import { GoogleMaps } from "@yext/pages-components";
+
 export interface Coordinates {
   latitude?: number;
   longitude?: number;

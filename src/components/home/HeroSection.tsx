@@ -1,4 +1,4 @@
-import { Image, ImageType } from "@yext/sites-components";
+import { Image, ImageType } from "@yext/pages-components";
 
 export interface HeroSectionProps {
   img: ImageType;

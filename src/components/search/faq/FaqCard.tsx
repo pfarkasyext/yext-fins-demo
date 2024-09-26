@@ -88,12 +88,15 @@ const FaqCard = ({ result }: CardProps<FAQ>) => {
     <div className="mb-4 justify-between rounded-lg border p-4 text-stone-900 shadow-sm">
       <div className="body flex flex-col">
         {data.name && (
-          <div className="title text-lg font-semibold text-blue-950 flex justify-between items-center">
+          <div
+            className="hover:cursor-pointer title text-lg font-semibold text-blue-950 flex justify-between items-center"
+            onClick={handleToggle}
+          >
             <div>{data.name}</div>
             {isCollapsed ? (
-              <ChevronDownIcon className={`h-6 w-6 `} onClick={handleToggle} />
+              <ChevronDownIcon className={`h-6 w-6 `} />
             ) : (
-              <ChevronUpIcon className={`h-6 w-6 `} onClick={handleToggle} />
+              <ChevronUpIcon className={`h-6 w-6 `} />
             )}
           </div>
         )}

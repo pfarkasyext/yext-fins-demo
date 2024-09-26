@@ -2,7 +2,7 @@ import {
   ComplexImage as ComplexImageType,
   Image as ImageType,
 } from "../types/autogen";
-import { Image } from "@yext/pages/components";
+import { Image } from "@yext/pages-components";
 import Cta from "./Cta";
 import { Button } from "./common/Button";
 import { formatDate } from "../lib/utils";

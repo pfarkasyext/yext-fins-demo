@@ -1,4 +1,4 @@
-import { ImageType } from "@yext/pages/components";
+import { ImageType } from "@yext/pages-components";
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/outline";
 
 interface TeamProps {

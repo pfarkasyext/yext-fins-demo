@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Coordinate } from "@yext/types";
-import { Link } from "@yext/pages/components";
+import { Link } from "@yext/pages-components";
 import type { LiveAPIProfile, LocationProfile } from "../types/entities";
 import classNames from "classnames";
 import DirectoryCard from "../components/DirectoryCard";

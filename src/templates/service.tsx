@@ -61,7 +61,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
     ],
   };
 };
-export default function Service({ document, __meta }: TemplateProps) {
+const Service = ({ document, __meta }: TemplateProps) => {
   let pageTitle = `${document.name} at Capital Wealth`;
   if (document.name === "Mortgage") {
     pageTitle = "Mortages at Capital Wealth";
@@ -97,4 +97,6 @@ export default function Service({ document, __meta }: TemplateProps) {
       </div>
     </PageLayout>
   );
-}
+};
+
+export default Service;

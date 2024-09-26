@@ -63,7 +63,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
     ],
   };
 };
-export default function Product({ document, __meta }: TemplateProps) {
+const Product = ({ document, __meta }: TemplateProps) => {
   let bannerImgUrl =
     "https://a.mktgcdn.com/p/X6uh0LQn4S9FDKtEP9CkXIC2QrSTEvTLwoKsT7asb8o/1872x836.jpg";
   if (document.fins_servicesImage.url)
@@ -101,4 +101,6 @@ export default function Product({ document, __meta }: TemplateProps) {
       </div>
     </PageLayout>
   );
-}
+};
+
+export default Product;

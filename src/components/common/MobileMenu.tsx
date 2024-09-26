@@ -1,7 +1,7 @@
 import { Transition, Dialog } from "@headlessui/react";
 import { useState, Fragment } from "react";
 import { XMarkIcon, ChevronLeftIcon } from "@heroicons/react/24/outline";
-import { ComplexImageType } from "@yext/pages/components";
+import { ComplexImageType } from "@yext/pages-components";
 import MobileSubmenu from "./MobileSubmenu";
 
 export type Category = {
