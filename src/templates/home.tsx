@@ -72,6 +72,8 @@ export const getHeadConfig: GetHeadConfig<
  */
 
 const Home: Template<TemplateRenderProps> = ({ document }) => {
+  console.log(`clo`);
+  
   return (
     <PageLayout containerClassName="mx-auto w-full" _site={document._site}>
       <HeroSection
