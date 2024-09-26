@@ -46,7 +46,7 @@
     "@types/react-slick": "^0.23.13",
     "@typescript-eslint/eslint-plugin": "^5.36.2",
     "@typescript-eslint/parser": "^5.36.2",
-    "@vitejs/plugin-react": "^4.3.1",
+    "@vitejs/plugin-react": "4.0.4",
     "@yext/pages": "1.1.2",
     "@yext/studio": "^0.27.0",
     "@yext/studio-plugin": "^0.27.0",
