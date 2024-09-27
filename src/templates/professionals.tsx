@@ -29,6 +29,7 @@ import HeroInfo from "../components/common/HeroInfotext";
 import LetsTalk from "../components/common/LetsTalk";
 import { useState } from "react";
 import InpageNav from "../components/common/InpageNav";
+import Reviews from "../components/Reviews";
 export const config: TemplateConfig = {
   stream: {
     $id: "professionals",
@@ -199,7 +200,7 @@ const Professional = ({ document, __meta }: TemplateProps) => {
           <Articles articles={document.c_linkedInsightsArticles} />
         </div>
       </div>
-
+      <Reviews entityId={document.id} />
       <VerticalStack
         alignment="center"
         rightMargin="0"

@@ -30,6 +30,18 @@
         ],
         "event": "ON_PAGE_GENERATE",
         "functionName": "PagesGenerator"
+      },
+      {
+        "pluginName": "fetchReviews-82256",
+        "event": "API",
+        "functionName": "default",
+        "apiPath": "api/fetchReviews",
+        "sourceFiles": [
+          {
+            "root": "dist/functions/fetchReviews-82256",
+            "pattern": "*{.js,.ts}"
+          }
+        ]
       }
     ]
   },

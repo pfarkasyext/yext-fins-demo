@@ -12,4 +12,9 @@ export default defineConfig({
       "@types/mapbox-gl",
     ],
   },
+  build: {
+    rollupOptions: {
+      external: ["ssh2-sftp-client"],
+    },
+  },
 });

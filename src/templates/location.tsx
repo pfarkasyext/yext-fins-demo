@@ -30,6 +30,7 @@ import { useState } from "react";
 import HeroInfo from "../components/common/HeroInfotext";
 import LetsTalk from "../components/common/LetsTalk";
 import InpageNav from "../components/common/InpageNav";
+import Reviews from "../components/Reviews";
 export const config: TemplateConfig = {
   stream: {
     $id: "locations",
@@ -237,6 +238,7 @@ const Location = ({ document, __meta }: TemplateProps) => {
           </div>
         </>
       )}
+      <Reviews entityId={document.id} />
 
       <VerticalStack
         alignment="center"
