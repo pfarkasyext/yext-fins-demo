@@ -9,7 +9,7 @@ const fetchReviews = async (
   const api_key = YEXT_PUBLIC_REVIEWS_API_KEY as string;
 
   const getEntitiesResponse = await fetch(
-    `https://api.yextapis.com/v2/accounts/me/reviews?api_key=${api_key}&v=20240404&entityIds=fp-0932`
+    `https://api.yextapis.com/v2/accounts/me/reviews?api_key=${api_key}&v=20240404&entityIds=${entityId}`
   );
 
   const resp = await getEntitiesResponse.json();

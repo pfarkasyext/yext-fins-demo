@@ -1,5 +1,14 @@
-import { StarIcon } from "@heroicons/react/20/solid";
+import {
+  Dialog,
+  DialogBackdrop,
+  DialogPanel,
+  DialogTitle,
+} from "@headlessui/react";
+import { CheckIcon, StarIcon } from "@heroicons/react/20/solid";
 import { useEffect, useState } from "react";
+import CollectFeedback from "./CollectFeedback";
+import { Cross1Icon } from "@radix-ui/react-icons";
+import { Address } from "@yext/types";
 
 export interface ReviewsRoot {
   meta: Meta;
@@ -49,17 +58,22 @@ export interface ReviewLabel {
 }
 interface ReviewsProps {
   entityId: string;
+  name: string;
+  address: Address;
 }
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Reviews({ entityId }: ReviewsProps) {
+export default function Reviews({ entityId, name, address }: ReviewsProps) {
   const [reviews, setReviews] = useState<ReviewsRoot>();
   const [ratingCounts, setRatingCounts] = useState<RatingCount[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const reviewsPerPage = 5; // Number of reviews per page
-
+  const [open, setOpen] = useState(false);
+  const handleCloseModal = () => {
+    setOpen(false); // Close modal on successful feedback submission
+  };
   useEffect(() => {
     fetch(`/api/fetchReviews?entityId=${entityId}`)
       .then((res) => res.json())
@@ -216,12 +230,12 @@ export default function Reviews({ entityId }: ReviewsProps) {
                   customers
                 </p>
 
-                <a
-                  href="#"
-                  className="mt-6 inline-flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-8 py-2 text-sm font-medium text-gray-900 hover:bg-gray-50 sm:w-auto lg:w-full"
+                <div
+                  onClick={() => setOpen(true)}
+                  className=" hover:cursor-pointer mt-6 inline-flex w-full items-center justify-center rounded-md border border-gray-300 bg-white px-8 py-2 text-sm font-medium text-gray-900 hover:bg-gray-50 sm:w-auto lg:w-full"
                 >
                   Write a review
-                </a>
+                </div>
               </div>
             </div>
 
@@ -317,6 +331,50 @@ export default function Reviews({ entityId }: ReviewsProps) {
           </div>
         </div>
       )}
+
+      <Dialog open={open} onClose={setOpen} className="relative z-10">
+        <DialogBackdrop
+          transition
+          className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in"
+        />
+
+        <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+          <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <DialogPanel
+              transition
+              className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 sm:w-full sm:max-w-sm sm:p-6 data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95"
+            >
+              <div>
+                <div
+                  className="ml-auto flex h-12 w-12 items-center justify-center rounded-full hover:cursor-pointer"
+                  onClick={() => setOpen(false)}
+                >
+                  <Cross1Icon aria-hidden="true" className="h-4 w-4" />
+                </div>
+                <div className="mt-3 text-center sm:mt-5">
+                  <DialogTitle
+                    as="h3"
+                    className="text-base space-y-4 leading-6  "
+                  >
+                    <p className="text-xl">We Value Your Feedback</p>
+                    <p>{name}</p>
+                    <p>
+                      {address.line1}, {address.city}, {address.region}
+                      {address.postalCode}
+                    </p>
+                  </DialogTitle>
+                  <div className="mt-2 text-gray-500 text-start">
+                    <CollectFeedback
+                      onSubmitSuccess={handleCloseModal}
+                      entityId={entityId}
+                    />
+                  </div>
+                </div>
+              </div>
+            </DialogPanel>
+          </div>
+        </div>
+      </Dialog>
     </>
   );
 }

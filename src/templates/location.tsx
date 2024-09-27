@@ -238,7 +238,11 @@ const Location = ({ document, __meta }: TemplateProps) => {
           </div>
         </>
       )}
-      <Reviews entityId={document.id} />
+      <Reviews
+        entityId={document.id}
+        address={document.address}
+        name={document.name}
+      />
 
       <VerticalStack
         alignment="center"
