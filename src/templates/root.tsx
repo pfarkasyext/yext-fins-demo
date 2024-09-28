@@ -1,6 +1,4 @@
-import * as React from "react";
 import PageLayout from "../components/common/PageLayout";
-import Banner from "../components/starter/Banner";
 import DirectoryRootGrid from "../components/starter/DirectoryRootGrid";
 import Favicon from "../assets/images/yext-favicon.ico";
 import "@fontsource/lato/100.css";
@@ -64,8 +62,7 @@ export const getHeadConfig: GetHeadConfig<
       {
         type: "meta",
         attributes: {
-          description:
-            "",
+          description: "",
         },
       },
       {

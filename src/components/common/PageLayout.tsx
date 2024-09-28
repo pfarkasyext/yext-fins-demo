@@ -30,8 +30,7 @@ const config: HeadlessConfig = {
 export const SEARCHER = provideHeadless({
   apiKey: apiKey,
   experienceKey: experienceKey,
-  locale: locale,
-  experienceVersion: experienceVersion,
+  locale: ""
 });
 const PageLayout = ({
   children,
@@ -70,7 +69,7 @@ const PageLayout = ({
                   "I'm looking for help finding an advisor",
                   "What are Capital’s credit card options?",
                   "What are my mobile banking options?",
-                  "Can Capital help me with buying a house?"
+                  "Can Capital help me with buying a house?",
                 ]}
                 header={
                   <ChatHeader

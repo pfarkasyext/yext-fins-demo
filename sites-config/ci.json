@@ -30,30 +30,6 @@
         ],
         "event": "ON_PAGE_GENERATE",
         "functionName": "PagesGenerator"
-      },
-      {
-        "pluginName": "postReview-22887",
-        "event": "API",
-        "functionName": "default",
-        "apiPath": "api/postReview",
-        "sourceFiles": [
-          {
-            "root": "dist/functions/postReview-22887",
-            "pattern": "*{.js,.ts}"
-          }
-        ]
-      },
-      {
-        "pluginName": "fetchReviews-82256",
-        "event": "API",
-        "functionName": "default",
-        "apiPath": "api/fetchReviews",
-        "sourceFiles": [
-          {
-            "root": "dist/functions/fetchReviews-82256",
-            "pattern": "*{.js,.ts}"
-          }
-        ]
       }
     ]
   },

@@ -30,7 +30,6 @@ import LetsTalk from "../components/common/LetsTalk";
 import { useState } from "react";
 import InpageNav from "../components/common/InpageNav";
 import Reviews from "../components/Reviews";
-import CollectFeedback from "../components/CollectFeedback";
 export const config: TemplateConfig = {
   stream: {
     $id: "professionals",

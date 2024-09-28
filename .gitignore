@@ -8,5 +8,4 @@ sites-config/features.json
 functions/functionMetadata.json
 *.local
 .env
-
 .DS_Store
