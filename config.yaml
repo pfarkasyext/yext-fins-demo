@@ -1,0 +1,39 @@
+buildConfiguration:
+  buildCommand: npm run build
+  installDependenciesStep:
+    command: npm install
+    requiredFiles:
+      - package.json
+      - package-lock.json
+      - .npmrc
+livePreviewConfiguration:
+  setupCommand: ":"
+siteStream:
+  id: site-entity
+  source: knowledgeGraph
+  fields:
+    - c_featuredServices.name
+    - c_featuredServices.c_serviceDescription
+    - c_featuredServices.slug
+    - c_featuredArticles.name
+    - c_featuredArticles.datePosted
+    - c_featuredArticles.primaryPhoto
+    - c_featuredArticles.c_insightsArticleSummary
+    - c_featuredArticles.c_insightsArticleBody
+    - c_featuredArticles.slug
+    - c_featuredEvents.name
+    - c_featuredEvents.description
+    - c_featuredEvents.time
+    - name
+    - c_navbar.name
+    - c_navbar.slug
+    - c_navbar.relatedServices.name
+    - c_navbar.relatedServices.slug
+    - c_navbar.relatedServices.c_childProducts.name
+    - c_navbar.relatedServices.c_childProducts.slug
+    - c_headerLogo
+  localization:
+    locales:
+      - en
+    primary: false
+  entityId: "home"
