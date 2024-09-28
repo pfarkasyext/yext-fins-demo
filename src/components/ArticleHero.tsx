@@ -47,13 +47,15 @@ const ArticleHero = ({
               </div>
             </div>
           </div>
-          <div className="h-48 w-full sm:h-64 lg:absolute lg:right-0 lg:top-0 lg:h-full lg:w-1/2">
-            <img
-              src={imageUrl}
-              alt=""
-              className="h-full w-full object-cover object-center"
-            />
-          </div>
+          {imageUrl && (
+            <div className="h-48 w-full sm:h-64 lg:absolute lg:right-0 lg:top-0 lg:h-full lg:w-1/2">
+              <img
+                src={imageUrl}
+                alt=""
+                className="h-full w-full object-cover object-center"
+              />
+            </div>
+          )}
         </div>
       </div>
     </div>
