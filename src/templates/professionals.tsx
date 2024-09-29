@@ -137,7 +137,7 @@ const Professional:Template<TemplateRenderProps> = ({
         line2={`${document.address.city}, ${document.address.region} ${document.address.postalCode}`}
         email={document.emails[0]}
         phone={formattedPhone}
-        backgroundImage={document.photoGallery[0]?.image.url}
+        backgroundImage={document.photoGallery[0]?.image?.url}
         textColor="#fff" headShot={document.headshot.url}
       />
       <InpageNav navItems={InPageNavItems}></InpageNav>
