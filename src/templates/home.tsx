@@ -18,6 +18,7 @@ import {
   HeadConfig,
   Template,
   TemplateConfig,
+  TemplateProps,
   TemplateRenderProps,
 } from "@yext/pages/*";
 import Services from "../components/Services";
@@ -66,7 +67,11 @@ export const getHeadConfig = () => {
  * The props passed in here are the direct result from `transformProps`.
  */
 
-const Home: Template<TemplateRenderProps> = ({ document }) => {
+const Home : Template<TemplateRenderProps> = ({
+  relativePrefixToRoot,
+  document,
+  __meta,
+}:TemplateRenderProps) => {
   console.log(JSON.stringify(document.c_site));
 
   return (

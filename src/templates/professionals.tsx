@@ -9,6 +9,8 @@ import {
 } from "@yext/pages";
 
 import "../index.css";
+
+import Articles from "../components/Articles";
 import "@fontsource/lato/100.css";
 import "@fontsource/lato/300.css";
 import "@fontsource/lato/400.css";
@@ -20,56 +22,50 @@ import "@fontsource/lato/400-italic.css";
 import "@fontsource/lato/700-italic.css";
 import "@fontsource/lato/900-italic.css";
 import "../index.css";
+import { useState } from "react";
+import InpageNav from "../components/InpageNav";
+import LetsTalk from "../components/LetsTalk";
 import PageLayout from "../components/PageLayout";
 import ProfessionalOrLocationHero from "../components/ProfessionalOrLocationHero";
-import Articles from "../components/Articles";
-import InpageNav from "../components/InpageNav";
-import Services from "../components/Services";
-import Team from "../components/Team";
-import LetsTalk from "../components/LetsTalk";
-
 export const config: TemplateConfig = {
   stream: {
-    $id: "locations",
+    $id: "professionals",
     localization: { locales: ["en"] },
     filter: {
-      entityTypes: ["location"],
+      entityTypes: ["financialProfessional"],
+      savedFilterIds: ["1339778047"],
     },
     fields: [
       "name",
       "id",
       "description",
+      "headshot",
       "slug",
       "photoGallery",
+      "c_fPBio",
+      "fins_jobTitle",
       "logo",
+      "fins_relatedServices.name",
       "emails",
       "address",
       "mainPhone",
       "geocodedCoordinate",
-      "fins_relatedServices.name",
-      "fins_relatedServices.c_serviceDescription",
-      "fins_relatedServices.slug",
-      "c_relatedFPsAndTeams.name",
-      "c_relatedFPsAndTeams.mainPhone",
-      "c_relatedFPsAndTeams.emails",
-      "c_relatedFPsAndTeams.headshot",
-      "c_relatedFPsAndTeams.fins_jobTitle",
-      "c_relatedFPsAndTeams.slug",
+      "fins_relatedServices.description",
+      "fins_relatedServices.fins_servicesImage",
       "c_linkedInsightsArticles.name",
       "c_linkedInsightsArticles.slug",
       "c_linkedInsightsArticles.c_insightsArticleSummary",
       "c_linkedInsightsArticles.primaryPhoto",
+      "c_linkedInsightsArticles.datePosted",
     ],
   },
 };
-export const getPath = ({ document }: TemplateRenderProps) => {
+export const getPath  = ({ document }:TemplateRenderProps) => {
   return document.slug ?? document.id.toString();
 };
-export const getHeadConfig = ({
-  document,
-}: TemplateRenderProps): HeadConfig => {
+export const getHeadConfig = ({ document }:TemplateRenderProps): HeadConfig => {
   return {
-    title: `${document.name} | Location`,
+    title: `${document.name} | Professional`,
     charset: "UTF-8",
     viewport: "width=device-width, initial-scale=1",
     tags: [
@@ -77,17 +73,19 @@ export const getHeadConfig = ({
         type: "meta",
         attributes: {
           name: "description",
-          content: "Capital Wealth Management Location",
+          content: "Capital Wealth Management Professional",
         },
       },
     ],
   };
 };
-const Location:Template<TemplateRenderProps> = ({
+const Professional:Template<TemplateRenderProps> = ({
   relativePrefixToRoot,
   document,
   __meta,
 }:TemplateRenderProps) => {  
+  const [isSubNavOpen, setIsSubNavOpen] = useState<boolean>(false);
+
   const mappinSVG = (
     <svg
       width="56"
@@ -115,30 +113,20 @@ const Location:Template<TemplateRenderProps> = ({
     5,
     8
   )}-${document.mainPhone.substring(8)}`;
-
   const InPageNavItems = [
     {
-      name: "Services",
-      navId: "services",
-    },
-    {
-      name: "Our Team",
-      navId: "team",
+      name: "About",
+      navId: "about",
     },
     {
       name: "Insights",
       navId: "insights",
     },
     {
-      name: "Recent Reviews",
-      navId: "reviews",
-    },
-    {
       name: "Let's Talk",
       navId: "letstalk",
     },
   ];
-
   return (
     <PageLayout _site={document._site} templateData={document}>
       <ProfessionalOrLocationHero
@@ -149,65 +137,18 @@ const Location:Template<TemplateRenderProps> = ({
         email={document.emails[0]}
         phone={formattedPhone}
         backgroundImage={document.photoGallery[0]?.image.url}
-        textColor="#fff"
+        textColor="#fff" headShot={document.headshot.url}
       />
-      <div className="VStack conainer bg-[#F9FAFB]">
-        <div className={`flex flex-col `}>
-          <div className="max-w-5xl flex md:flex-row flex-col justify-center items-center py-16 gap-8 px-4 md:px-0">
-            <img
-              src={
-                "https://a.mktgcdn.com/p/65JQqTuL6mWfKaHM0EiyiPEV820Oi35tUPhDN36Tq1A/3149x4724.jpg"
-              }
-              className="w-full md:w-[309.59px] aspect-[3/4] rounded-lg object-center object-cover"
-            />
-            <div className="flex flex-col items-left gap-6">
-              <div className="text-2xl font-bold text-blue-950">
-                Joseph Adams
-              </div>
-              <div className="text-blue-950 text-base font-bold">
-                Regional Director
-              </div>
-              <div className="text-zinc-800 text-base font-normal underline">
-                jadams@capitalbank.com
-              </div>
-              <div className="text-zinc-800 text-base font-normal">
-                {document.description}
-              </div>
-            </div>
-          </div>{" "}
-        </div>
-      </div>
-
       <InpageNav navItems={InPageNavItems}></InpageNav>
-
-      {document.fins_relatedServices && (
-        <>
-          <a id="services"></a>
-          {/* <Services services={document.fins_relatedServices} /> */}
-          <section className="px-4 w-full md:px-32 bg-white py-4 md:h-full ">
-            <Services services={document.fins_relatedServices} />
-          </section>
-        </>
-      )}
-
-      {document.c_relatedFPsAndTeams && (
-        <>
-          <a id="team"></a>
-          <span className="block md:hidden">
-            <Team
-              team={document.c_relatedFPsAndTeams.slice(0, 3)}
-              city={document.address.city}
-            />
-          </span>
-          <span className="md:block hidden">
-            <Team
-              team={document.c_relatedFPsAndTeams.slice(0, 6)}
-              city={document.address.city}
-            />
-          </span>
-        </>
-      )}
-
+      <div className="bg-[#F9FAFB] text-center w-full"> 
+         <div className="max-w-5xl flex flex-col justify-center px-10 w-full mx-auto">
+          <a id="about"></a>
+          <h1 className="text-4xl font-medium mt-8 mb-4 text-[#1C2E5E]">About {document.name}</h1>
+          <p className="mb-10">{document.c_fPBio}</p>
+          
+        </div>
+        </div>
+    
       {document.c_linkedInsightsArticles && (
         <>
           <a id="insights"></a>
@@ -218,14 +159,15 @@ const Location:Template<TemplateRenderProps> = ({
           </div>
         </>
       )}
-      <LetsTalk
+           <div className="bg-[#F9FAFB] text-center w-full"> 
+           <LetsTalk
         description={document.description}
         emails={document.emails[0]}
         formattedPhone={document.mainPhone}
         geocodedCoordinate={document.geocodedCoordinate}
-      />
+      /></div>
     </PageLayout>
   );
 };
 
-export default Location;
+export default Professional;

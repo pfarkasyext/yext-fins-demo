@@ -1,7 +1,4 @@
-import {
-  ComplexImage as ComplexImageType,
-  Image as ImageType,
-} from "../types/autogen";
+ 
 import { Image } from "@yext/pages-components";
 import Cta from "./Cta";
 
@@ -10,7 +7,7 @@ import { BsChevronRight } from "react-icons/bs";
 interface ArticleProps {
   name: string;
   c_insightsArticleSummary: string;
-  primaryPhoto?: ComplexImageType | ImageType;
+  primaryPhoto?: any;
   datePosted?: string;
   slug?: string;
 }
@@ -81,7 +78,7 @@ export default function Articles({ articles }: { articles: ArticleProps[] }) {
                         month: "long",
                         day: "numeric",
                         year: "numeric",
-                      }).format(new Date(article.datePosted))}
+                      }).format(new Date(article!.datePosted!))}
                     </span>
                   </div>
                   <h3 className="text-lg font-semibold text-brand-blue hover:underline">
