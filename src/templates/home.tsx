@@ -72,10 +72,10 @@ const Home : Template<TemplateRenderProps> = ({
   document,
   __meta,
 }:TemplateRenderProps) => {
-  console.log(JSON.stringify(document.c_site));
-
+ 
   return (
-    <PageLayout _site={document._site} templateData={document}>
+          <PageLayout templateData={{ __meta, document }}>
+
       <HeroSection
         img={document.primaryPhoto}
         heroTitle={document.c_heroBannerTitle}

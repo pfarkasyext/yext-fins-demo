@@ -103,8 +103,9 @@ const State: Template<TemplateRenderProps> = ({
 
   return (
     <>
-      <PageLayout templateData={{ __meta, document }}>
-        <Banner
+          <PageLayout templateData={{ __meta, document }}>
+
+    <Banner
           name={c_addressRegionDisplayName ? c_addressRegionDisplayName : name}
         />
         <div className="centered-container">

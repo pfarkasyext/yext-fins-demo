@@ -128,7 +128,8 @@ const Professional:Template<TemplateRenderProps> = ({
     },
   ];
   return (
-    <PageLayout _site={document._site} templateData={document}>
+          <PageLayout templateData={{ __meta, document }}>
+
       <ProfessionalOrLocationHero
         title={document.name}
         subtitle={document.address.city}

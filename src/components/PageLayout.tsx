@@ -13,21 +13,20 @@ import { searchConfig } from "./config";
 
 export interface PageLayoutProps {
   children?: React.ReactNode;
-  _site?: any;
   templateData: TemplateProps;
 }
 
-const PageLayout = ({ children, _site, templateData }: PageLayoutProps) => {
+const PageLayout = ({ children, templateData }: PageLayoutProps) => {
   return (
     <SearchHeadlessProvider searcher={provideHeadless(searchConfig)}>
       {/* AnalyticsProvider templateData={templateData} apiKey={""} currency={""}> */}
       <div className={"mx-auto w-full min-h-screen"}>
         {/* <AnalyticsScopeProvider name="header"> */}
-        <Header _site={_site} />
+        <Header _site={templateData.document._site} />
         {/* </AnalyticsScopeProvider> */}
         {children}
         {/* <AnalyticsScopeProvider name="footer"> */}
-        <Footer _site={_site} />
+        <Footer _site={templateData.document._site} />
         {/* </AnalyticsScopeProvider> */}
       </div>
 

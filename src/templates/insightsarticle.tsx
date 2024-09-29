@@ -50,7 +50,8 @@ const InsightsArticle: Template<TemplateRenderProps> = ({
   const entityType=(document.meta.entityType.id);
    
   return (
-    <PageLayout _site={document._site} templateData={document}>
+          <PageLayout templateData={{ __meta, document }}>
+
       <ArticleOrInsightsHero
         entityType={entityType}
         pageTitle={document.name}
