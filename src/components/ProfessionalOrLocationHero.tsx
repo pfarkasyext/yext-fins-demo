@@ -46,14 +46,16 @@ const ProfessionalOrLocationHero = ({
         <div
           className={`flex content-center justify-center h-fit md:h-[482px]  items-center gap-10 mt-0 mb-0 ml-0 mr-0`}
         >
-          <div className="col-start-2 row-span-2 self-center">
-            <div className="aspect-square overflow-hidden rounded-full h-52">
-              <img
-                src={headShot}
-                className={`h-full w-full object-cover object-center  `}
-              />
+          {headShot && (
+            <div className="col-start-2 row-span-2 self-center">
+              <div className="aspect-square overflow-hidden rounded-full h-52">
+                <img
+                  src={headShot}
+                  className={`h-full w-full object-cover object-center  `}
+                />
+              </div>
             </div>
-          </div>
+          )}
           <div
             className={`flex flex-col items-center gap-3 md:gap-4 text-white`}
           >
