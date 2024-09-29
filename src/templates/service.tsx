@@ -90,10 +90,10 @@ const Service: Template<TemplateRenderProps> = ({
       <ArticleOrInsightsContent
         content={document.c_serviceLongDescription}
       /> <div className="bg-gray-50">
-       <RelatedProducts
+      {document.c_childProducts && <RelatedProducts
         products={document.c_childProducts}
         name={document.name}
-      />
+      />}
     </div>
     </PageLayout>
     
