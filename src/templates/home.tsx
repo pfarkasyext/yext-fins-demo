@@ -13,7 +13,6 @@ import "../index.css";
 import HeroSection from "../components/HeroSection";
 import PageLayout from "../components/PageLayout";
 import {
-  HeadConfig,
   Template,
   TemplateConfig,
   TemplateRenderProps,

@@ -38,7 +38,8 @@ const PageLayout = ({ children, templateData }: PageLayoutProps) => {
           <AnalyticsScopeProvider name="footer">
             <Footer _site={templateData.document._site} />
           </AnalyticsScopeProvider>
-        </div>{" "}
+          
+        </div>
         {showChat && (
           <div
             className="w-[400px]  mb-8"
