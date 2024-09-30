@@ -24,6 +24,7 @@ import InpageNav from "../components/InpageNav";
 import LetsTalk from "../components/LetsTalk";
 import PageLayout from "../components/PageLayout";
 import ProfessionalOrLocationHero from "../components/ProfessionalOrLocationHero";
+import Reviews from "../components/Reviews";
 export const config: TemplateConfig = {
   stream: {
     $id: "professionals",
@@ -158,6 +159,11 @@ const Professional:Template<TemplateRenderProps> = ({
           </div>
         </>
       )}
+      <Reviews
+        entityId={document.id}
+        address={document.address}
+        name={document.name}
+      />    
         <div className="bg-[#F9FAFB] text-center w-full"> 
        <LetsTalk
         description={document.description}

@@ -24,6 +24,7 @@ import InpageNav from "../components/InpageNav";
 import Services from "../components/Services";
 import Team from "../components/Team";
 import LetsTalk from "../components/LetsTalk";
+import Reviews from "../components/Reviews";
 
 export const config: TemplateConfig = {
   stream: {
@@ -211,6 +212,11 @@ const Location:Template<TemplateRenderProps> = ({
           </div>
         </>
       )}
+      <Reviews
+        entityId={document.id}
+        address={document.address}
+        name={document.name}
+      />
       <LetsTalk
         description={document.description}
         emails={document.emails[0]}
