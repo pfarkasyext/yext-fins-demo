@@ -9,8 +9,7 @@ import {
   TemplateProps,
   TemplateRenderProps,
 } from "@yext/pages";
-import Banner from "../components/Banner";
-import PageLayout from "../components/PageLayout";
+ import PageLayout from "../components/PageLayout";
 import Favicon from "../assets/images/yext-favicon.ico";
 
 
@@ -47,8 +46,7 @@ const FourOhFour: Template<TemplateRenderProps> = ({ document, __meta }) => {
     <>
    <PageLayout templateData={{__meta, document}}>
 
-        <Banner name={"404 - Page not found"} />
-        <div className="centered-container">
+         <div className="centered-container">
           <div className="flex justify-center items-center text-2xl bg-gray-200 h-60 rounded-md shadow-md">
             <p>This page does not exist.</p>
           </div>

@@ -1,6 +1,5 @@
 import PageLayout from "../components/PageLayout";
-import Banner from "../components/Banner";
-import DirectoryRootGrid from "../components/DirectoryRootGrid";
+ import DirectoryRootGrid from "../components/DirectoryRootGrid";
 import Favicon from "../assets/images/yext-favicon.ico";
 import "../index.css";
 import {
@@ -12,6 +11,7 @@ import {
   GetHeadConfig,
   HeadConfig,
 } from "@yext/pages";
+import DirectoryHero from "../components/Directory/DirectoryHero";
 
 export const config: TemplateConfig = {
   stream: {
@@ -78,11 +78,10 @@ const Index: Template<TemplateRenderProps> = ({
   return (
     <>
       <PageLayout templateData={{ __meta, document }}>
-        <Banner name={"Turtlehead Tacos"} />
+      <DirectoryHero pageTitle={"Capital Bank Directory"} />
         <div className="centered-container">
           <div className="section space-y-14 px-10">
             <DirectoryRootGrid
-              name={"Turtlehead Tacos"}
               directoryChildren={dm_directoryChildren}
               relativePrefixToRoot={relativePrefixToRoot}
             />
