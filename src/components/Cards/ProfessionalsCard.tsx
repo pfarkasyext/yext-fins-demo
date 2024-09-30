@@ -6,9 +6,10 @@ import { CardProps } from "@yext/search-ui-react";
 import { provideSearchAnalytics } from "@yext/analytics";
 
 import { useSearchState } from "@yext/search-headless-react";
- import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/outline";
+import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/outline";
 import { searchAnalyticsConfig } from "../config";
 import FinancialProfessional from "../../types/financial_professionals";
+import { Image } from "@yext/pages-components";
 
 export const searchAnalytics = searchAnalyticsConfig;
 
@@ -69,13 +70,17 @@ const ProfessionalsCard = ({ result }: CardProps) => {
 
   return (
     <div className="w-full  p-2 bg-white rounded-lg border border-zinc-200 flex flex-col justify-center items-center gap-2 md:justify-start md:flex-row md:items-start md:gap-4 md:inline-flex ">
-      <img
-        className="w-40 h-44 rounded-lg"
-        src={
-          data.headshot?.url ??
-          "https://www.delvinia.com/wp-content/uploads/2020/05/placeholder-headshot.png"
-        }
-      />
+      {data.headshot ? (
+        <Image image={data.headshot} />
+      ) : (
+        <img
+          className="w-40 h-44 rounded-lg"
+          src={
+            "https://www.delvinia.com/wp-content/uploads/2020/05/placeholder-headshot.png"
+          }
+        />
+      )}
+
       <div className="grow shrink basis-0 flex-col justify-center md:justify-start items-center md:items-start gap-2 md:gap-3 inline-flex mx-auto">
         <a
           href={data.slug}

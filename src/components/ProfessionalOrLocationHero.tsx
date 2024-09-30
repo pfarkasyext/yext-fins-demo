@@ -1,5 +1,7 @@
+import { Image } from "@yext/pages-components";
 import { BsTelephone } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
+import { Image as ImageType } from "../types/financial_professionals";
 export interface ProfessionalOrLocationHeroProps {
   children?: React.ReactNode;
   title?: string;
@@ -9,10 +11,10 @@ export interface ProfessionalOrLocationHeroProps {
   phone?: string;
   email?: string;
   textColor?: any;
-  backgroundImage?: string;
+  backgroundImage?: ImageType;
   backgroundColor?: string;
   isProfessional?: boolean;
-  headShot?: string;
+  headShot?: ImageType;
 }
 
 const ProfessionalOrLocationHero = ({
@@ -28,13 +30,15 @@ const ProfessionalOrLocationHero = ({
 }: ProfessionalOrLocationHeroProps) => {
   return (
     <div className="relative overflow-hidden min-h-fit bg-blue-950 bg-opacity-80">
-      {backgroundImage && <img
-        src={backgroundImage}
-        className={`hidden md:block object-cover absolute -z-10 w-full object-bottom ${
-          isProfessional && `-top-1/3`
-        }`}
-      />}
-       
+      {backgroundImage && (
+        <Image
+          image={backgroundImage}
+          className={`hidden md:block object-cover absolute -z-10 w-full object-bottom ${
+            isProfessional && `-top-1/3`
+          }`}
+        />
+      )}
+
       <div className="flex flex-col justify-between p-8 h-full">
         <div
           className={`flex content-center justify-center h-fit md:h-[482px]  items-center gap-10 mt-0 mb-0 ml-0 mr-0`}
@@ -42,8 +46,8 @@ const ProfessionalOrLocationHero = ({
           {headShot && (
             <div className="col-start-2 row-span-2 self-center">
               <div className="aspect-square overflow-hidden rounded-full h-52">
-                <img
-                  src={headShot}
+                <Image
+                  image={headShot}
                   className={`h-full w-full object-cover object-center  `}
                 />
               </div>

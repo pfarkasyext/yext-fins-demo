@@ -1,5 +1,6 @@
-import { ImageType } from "@yext/pages-components";
+import { Image } from "@yext/pages-components";
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/outline";
+import { Image as ImageType } from "../types/financial_professionals";
 
 interface TeamProps {
   name: string;
@@ -37,12 +38,14 @@ export default function Team({
                     className="self-stretch p-8 bg-white justify-start items-center gap-6 inline-flex"
                     href={`/${slug}`}
                   >
-                    <div className="w-20 h-20 relative">
-                      <img
-                        className="w-20 h-20 left-0 top-0 absolute rounded-[100px]"
-                        src={headshot?.url}
-                      />
-                    </div>
+                    {headshot && (
+                      <div className="w-20 h-20 relative">
+                        <Image
+                          image={headshot}
+                          className="w-20 h-20 left-0 top-0 absolute rounded-[100px]"
+                        />
+                      </div>
+                    )}
                     <div className="grow shrink basis-0 flex-col justify-start items-start gap-1 inline-flex">
                       <div className="self-stretch text-blue-950 text-2xl font-bold font-['Lato'] leading-[30px]">
                         {name}

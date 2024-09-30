@@ -1,7 +1,9 @@
+import { Image } from "../types/financial_professionals";
+import { Image as _Image } from "@yext/pages-components";
 export interface ArticleOrInsightsHeroProps {
   pageTitle: string;
   datePosted: string;
-  imageUrl?: string;
+  imageUrl?: Image | string;
   description: string;
   entityType: string;
 }
@@ -49,13 +51,22 @@ const ArticleOrInsightsHero = ({
                 </div>
               </div>
             </div>
-           {imageUrl && <div className="h-48 w-full sm:h-64 lg:absolute lg:right-0 lg:top-0 lg:h-full lg:w-1/2">
-              <img
-                src={imageUrl}
-                alt=""
-                className="h-full w-full object-cover object-center"
-              />
-            </div>}
+            {imageUrl && (
+              <div className="h-48 w-full sm:h-64 lg:absolute lg:right-0 lg:top-0 lg:h-full lg:w-1/2">
+                {typeof imageUrl === "string" ? (
+                  <img
+                    src="imageUrl"
+                    className="aspect-[3/2] object-cover lg:aspect-auto lg:h-full lg:w-full"
+                    alt=""
+                  />
+                ) : (
+                  <_Image
+                    image={imageUrl}
+                    className="h-full w-full object-cover object-center"
+                  />
+                )}
+              </div>
+            )}
           </div>
         </div>
       ) : (
@@ -111,11 +122,16 @@ const ArticleOrInsightsHero = ({
             </div>
           </div>
           <div className="bg-gray-50 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-            {imageUrl && (
+            {typeof imageUrl === "string" ? (
               <img
+                src="imageUrl"
                 className="aspect-[3/2] object-cover lg:aspect-auto lg:h-full lg:w-full"
-                src={imageUrl}
                 alt=""
+              />
+            ) : (
+              <_Image
+                image={imageUrl!}
+                className="aspect-[3/2] object-cover lg:aspect-auto lg:h-full lg:w-full"
               />
             )}
           </div>

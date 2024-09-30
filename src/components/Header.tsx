@@ -5,10 +5,11 @@ import { SearchBar } from "@yext/search-ui-react";
 import { useEffect } from "react";
 import { MobileMenu } from "./MobileMenu";
 import NavMenu from "./NavMenu";
+import { Image } from "@yext/pages-components";
 
 const Header = ({ _site }: any) => {
   const data = _site;
- 
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showSearchbar, setShowSearchbar] = useState(false);
   const newSearchbarItems = ["locator", "login", "directory", "support"];
@@ -52,7 +53,7 @@ const Header = ({ _site }: any) => {
           <div className=" hidden lg:flex">
             <a href="/index.html" className="-m-1.5 p-1.5">
               <span className="sr-only">Capital Wealth Management</span>
-              <img src={data.c_headerLogo.url} />
+              <Image image={data.c_headerLogo} />
             </a>
           </div>
           <div className="flex lg:hidden w-full py-4 px-2">
@@ -71,7 +72,7 @@ const Header = ({ _site }: any) => {
             <div className="flex mx-auto">
               <a href="/index.html" className="-m-1.5 p-1.5">
                 <span className="sr-only">Capital Wealth Management</span>
-                <img src={data.c_headerLogo.url} />
+                <Image image={data.c_headerLogo} />
               </a>
             </div>
           </div>
@@ -101,7 +102,7 @@ const Header = ({ _site }: any) => {
             category={data.c_navbar}
             open={mobileMenuOpen}
             setOpen={setMobileMenuOpen}
-            logo={data.c_headerLogo.url}
+            logo={data.c_headerLogo}
           />
         </span>
       )}

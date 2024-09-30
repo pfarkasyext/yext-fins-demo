@@ -1,8 +1,9 @@
 import { Transition, Dialog } from "@headlessui/react";
 import { useState, Fragment } from "react";
 import { XMarkIcon, ChevronLeftIcon } from "@heroicons/react/24/outline";
-import { ComplexImageType } from "@yext/pages-components";
+import { ComplexImageType, Image } from "@yext/pages-components";
 import MobileSubmenu from "./MobileSubmenu";
+import { Image as ImageType } from "../types/financial_professionals";
 
 export type Category = {
   id: string;
@@ -15,7 +16,7 @@ export type Category = {
 type MobileMenuProps = {
   category: Category;
   open: boolean;
-  logo: string;
+  logo: ImageType;
   setOpen: (open: boolean) => void;
 };
 
@@ -79,6 +80,7 @@ const MobileMenu = ({ category, open, setOpen, logo }: MobileMenuProps) => {
                   onClick={() => setOpen(false)}
                 >
                   <span className="sr-only">Close menu</span>
+                  <Image image={logo}/>
                   <img src={logo} alt="" />
                   <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                 </button>

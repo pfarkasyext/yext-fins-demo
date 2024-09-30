@@ -55,7 +55,7 @@ const InsightsArticle: Template<TemplateRenderProps> = ({
         entityType={entityType}
         pageTitle={document.name}
         datePosted={document.datePosted}
-        imageUrl={document.primaryPhoto.image?.url}
+        image={document.primaryPhoto}
         description={document.c_insightsArticleSummary}
       />
       <ArticleOrInsightsContent
