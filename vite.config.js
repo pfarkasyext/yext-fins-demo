@@ -15,6 +15,7 @@ export default defineConfig({
       "@yext/search-ui-react",
       "mapbox-gl",
       "@types/mapbox-gl",
+      "react-slick",
     ],
   },
 });
