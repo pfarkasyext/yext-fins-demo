@@ -84,20 +84,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   };
 };
 
-// transformProps will be used in Module 5 of the Hitchhikers Pages Track: https://hitchhikers.yext.com/tracks/pages-development/pgs605-create-directory/01-yext-directory-manager/
-// export const transformProps: TransformProps<any> = async (data) => {
-//   const { dm_directoryParents_us_directory, name } = data.document;
-
-//   (dm_directoryParents_us_directory || []).push({ name: name, slug: "" });
-
-//   return {
-//     ...data,
-//     document: {
-//       ...data.document,
-//       dm_directoryParents: dm_directoryParents_us_directory,
-//     },
-//   };
-// };
+ 
 
 const City: Template<TemplateRenderProps> = ({
   relativePrefixToRoot,

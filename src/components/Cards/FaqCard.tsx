@@ -1,19 +1,14 @@
-// src/components/Card.tsx
-
 import { useMemo, useState } from "react";
 import { CardProps } from "@yext/search-ui-react";
-
 import { useSearchState } from "@yext/search-headless-react";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/20/solid";
-import { searchAnalyticsConfig, searchConfig } from "../config";
+import { searchAnalyticsConfig } from "../config";
 
 export const searchAnalytics = searchAnalyticsConfig;
 
-//replace below with the appropriate vertical key
 const verticalKey = "faqs";
 
 const FaqCard = ({ result }: CardProps) => {
-  //pull in the relevant fields from your entity to display on the card
   const data: any = {
     name: result.rawData.question,
     landingPageUrl: result.rawData.landingPageUrl,
@@ -22,10 +17,8 @@ const FaqCard = ({ result }: CardProps) => {
     cta2: result.rawData.fins_secondaryCTA,
   };
 
-  // change to the field name that contains html string
   const htmlFieldName = "answerV2";
 
-  // this interface is used to expose the field name containing HTML Content to the card
   interface CustomRawDataType {
     name: string;
     description: string;
@@ -35,17 +28,21 @@ const FaqCard = ({ result }: CardProps) => {
   function renderHTMLContent(htmlContent: { __html: string } | undefined) {
     if (htmlContent) {
       return (
-        <div className="reset-style" dangerouslySetInnerHTML={htmlContent} />
+        <div
+          className="reset-style"
+          dangerouslySetInnerHTML={htmlContent}
+          aria-live="polite"
+        />
       );
     }
     return null;
   }
+
   const html: string = result.rawData?.[htmlFieldName]?.html;
   const htmlContent = useMemo(() => {
     return { __html: html };
   }, [html]);
 
-  //analytics configuration for the card
   const queryId = useSearchState((state) => state.query.queryId) || "";
   const fireClick = (id: string, label: string) => {
     searchAnalytics.report({
@@ -66,6 +63,7 @@ const FaqCard = ({ result }: CardProps) => {
       queryId: queryId,
     });
   };
+
   const [isCollapsed, setIsCollapsed] = useState(true);
 
   const handleToggle = () => {
@@ -73,28 +71,31 @@ const FaqCard = ({ result }: CardProps) => {
   };
 
   return (
-    <div className="mb-4 justify-between rounded-lg border p-4 text-stone-900 shadow-sm">
-      <div className="body flex flex-col">
+    <article className="mb-4 rounded-lg border p-4 text-stone-900 shadow-sm">
+      <header className="flex justify-between items-center">
         {data.name && (
-          <div
-            className="hover:cursor-pointer title text-lg font-semibold text-blue-950 flex justify-between items-center"
+          <button
+            className="text-lg font-semibold text-blue-950 flex justify-between items-center"
             onClick={handleToggle}
+            aria-expanded={!isCollapsed}
+            aria-controls={`faq-${result.id}`}
           >
-            <div>{data.name}</div>
+            {data.name}
             {isCollapsed ? (
-              <ChevronDownIcon className={`h-6 w-6 `} />
+              <ChevronDownIcon className="h-6 w-6" aria-hidden="true" />
             ) : (
-              <ChevronUpIcon className={`h-6 w-6 `} />
+              <ChevronUpIcon className="h-6 w-6" aria-hidden="true" />
             )}
-          </div>
+          </button>
         )}
-        {!isCollapsed && (
-          <div className="description py-2 flex justify-between">
-            {renderHTMLContent(htmlContent)}
-          </div>
-        )}
+      </header>
+      <div
+        id={`faq-${result.id}`}
+        className={`mt-2 ${isCollapsed ? "hidden" : "block"}`}
+      >
+        {renderHTMLContent(htmlContent)}
       </div>
-    </div>
+    </article>
   );
 };
 

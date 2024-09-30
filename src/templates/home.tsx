@@ -72,10 +72,8 @@ const Home : Template<TemplateRenderProps> = ({
   document,
   __meta,
 }:TemplateRenderProps) => {
- 
   return (
-          <PageLayout templateData={{ __meta, document }}>
-
+    <PageLayout templateData={{ __meta, document }}>
       <HeroSection
         img={document.primaryPhoto}
         heroTitle={document.c_heroBannerTitle}

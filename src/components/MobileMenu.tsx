@@ -80,8 +80,7 @@ const MobileMenu = ({ category, open, setOpen, logo }: MobileMenuProps) => {
                   onClick={() => setOpen(false)}
                 >
                   <span className="sr-only">Close menu</span>
-                  <Image image={logo}/>
-                  <img src={logo} alt="" />
+                  <Image image={logo} />
                   <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                 </button>
               </div>

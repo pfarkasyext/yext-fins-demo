@@ -37,7 +37,12 @@ export const ServiceCard = ({ service }: { service: ServiceProps }) => {
           {service.c_serviceDescription}
         </div>
       </div>
-      <a href={`/${service.slug}`}>Learn More</a>
+      <a
+        href={`/${service.slug}`}
+        aria-label={`Learn more about ${service.name}`}
+      >
+        Learn More
+      </a>
     </div>
   );
 };
