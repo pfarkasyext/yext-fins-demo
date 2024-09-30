@@ -12,8 +12,9 @@ import {
 import { chatConfig, searchConfig } from "./config";
 import { ChatHeadlessProvider } from "@yext/chat-headless-react";
 import { ChatPanel, ChatHeader } from "@yext/chat-ui-react";
- import { useState } from "react";
+import { useState } from "react";
 import { IoChatbubblesSharp, IoCaretDownOutline } from "react-icons/io5";
+import "@yext/chat-ui-react/bundle.css";
 
 export interface PageLayoutProps {
   children?: React.ReactNode;
@@ -37,64 +38,64 @@ const PageLayout = ({ children, templateData }: PageLayoutProps) => {
           <AnalyticsScopeProvider name="footer">
             <Footer _site={templateData.document._site} />
           </AnalyticsScopeProvider>
-          {showChat && (
-            <div
-              className="w-[400px]  mb-8"
-              style={{ bottom: "60px", right: "30px", position: "fixed" }}
-            >
-              <ChatHeadlessProvider config={chatConfig}>
-                <ChatPanel
-                  customCssClasses={{
-                    container: "h-[500px] overflow-scroll",
-                    inputCssClasses: {
-                      sendButton: " !hover:bg-blue-700 !bg-blue-950",
-                    },
-                  }}
-                  messageSuggestions={[
-                    "Banks in Charlotte, NC",
-                    "ATMs in Chicago",
-                    "I'm looking for help finding an advisor",
-                    "What are Capital’s credit card options?",
-                    "What are my mobile banking options?",
-                    "Can Capital help me with buying a house?",
-                  ]}
-                  header={
-                    <ChatHeader
-                      title={"Capital Bank Chat"}
-                      showRestartButton={true}
-                      customCssClasses={{
-                        container: "!bg-none !bg-blue-950 text-white",
-                      }}
-                    ></ChatHeader>
-                  }
-                />
-              </ChatHeadlessProvider>
-            </div>
-          )}
+        </div>{" "}
+        {showChat && (
           <div
-            className="bg-brand-primary p-4 rounded-full"
-            style={{ position: "fixed", bottom: "20px", right: "20px" }}
+            className="w-[400px]  mb-8"
+            style={{ bottom: "60px", right: "30px", position: "fixed" }}
           >
-            {!showChat ? (
-              <IoChatbubblesSharp
-                className="text-white"
-                onClick={() => setShowChat(!showChat)}
-                style={{
-                  fontSize: "1.875rem",
-                  lineHeight: "2.25rem",
+            <ChatHeadlessProvider config={chatConfig}>
+              <ChatPanel
+                customCssClasses={{
+                  container: "h-[500px] overflow-scroll",
+                  inputCssClasses: {
+                    sendButton: " !hover:bg-blue-700 !bg-blue-950",
+                  },
                 }}
+                messageSuggestions={[
+                  "Banks in Charlotte, NC",
+                  "ATMs in Chicago",
+                  "I'm looking for help finding an advisor",
+                  "What are Capital’s credit card options?",
+                  "What are my mobile banking options?",
+                  "Can Capital help me with buying a house?",
+                ]}
+                header={
+                  <ChatHeader
+                    title={"Capital Bank Chat"}
+                    showRestartButton={true}
+                    customCssClasses={{
+                      container: "!bg-none !bg-blue-950 text-white",
+                    }}
+                  ></ChatHeader>
+                }
               />
-            ) : (
-              <IoCaretDownOutline
-                onClick={() => setShowChat(!showChat)}
-                className="text-white"
-                style={{
-                  fontSize: "1.875rem",
-                  lineHeight: "2.25rem",
-                }}
-              />
-            )}
+            </ChatHeadlessProvider>
           </div>
+        )}
+        <div
+          className="bg-brand-primary p-4 rounded-full"
+          style={{ position: "fixed", bottom: "20px", right: "20px" }}
+        >
+          {!showChat ? (
+            <IoChatbubblesSharp
+              className="text-white"
+              onClick={() => setShowChat(!showChat)}
+              style={{
+                fontSize: "1.875rem",
+                lineHeight: "2.25rem",
+              }}
+            />
+          ) : (
+            <IoCaretDownOutline
+              onClick={() => setShowChat(!showChat)}
+              className="text-white"
+              style={{
+                fontSize: "1.875rem",
+                lineHeight: "2.25rem",
+              }}
+            />
+          )}
         </div>
       </AnalyticsProvider>
     </SearchHeadlessProvider>
