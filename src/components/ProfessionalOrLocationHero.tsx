@@ -31,6 +31,7 @@ const ProfessionalOrLocationHero = ({
   return (
     <div className="relative overflow-hidden min-h-fit bg-blue-950 bg-opacity-80">
       <Image
+        loading="eager"
         image={backgroundImage!}
         className={`hidden md:block !object-cover !absolute !-z-10 !w-full !object-bottom !max-w-full ${
           isProfessional && `!-top-1/3`
@@ -45,6 +46,7 @@ const ProfessionalOrLocationHero = ({
             <div className="col-start-2 row-span-2 self-center">
               <div className="aspect-square overflow-hidden rounded-full h-52">
                 <Image
+                  loading="eager"
                   image={headShot}
                   className={`!h-full !w-full !object-cover !object-center  !max-w-full `}
                 />
