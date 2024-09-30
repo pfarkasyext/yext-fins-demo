@@ -8,8 +8,7 @@ import NavMenu from "./NavMenu";
 
 const Header = ({ _site }: any) => {
   const data = _site;
-  console.log(JSON.stringify(_site));
-
+ 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showSearchbar, setShowSearchbar] = useState(false);
   const newSearchbarItems = ["locator", "login", "directory", "support"];

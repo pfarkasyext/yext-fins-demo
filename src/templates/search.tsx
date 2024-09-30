@@ -21,14 +21,16 @@ import "@fontsource/lato/400-italic.css";
 import "@fontsource/lato/700-italic.css";
 import "@fontsource/lato/900-italic.css";
 import "../index.css";
+import PageLayout from "../components/PageLayout";
+import UniversalSearch from "../components/UniversalSearch";
 
 // import {apiKey, experienceKey, locale, experienceVersion} from "../common/consts";
 
-export const getPath: GetPath = () => {
+export const getPath = () => {
   return "search.html";
 };
 
-export const getHeadConfig: GetHeadConfig = (): HeadConfig => {
+export const getHeadConfig = (): HeadConfig => {
   return {
     //Update title to match Search starter
     title: `Search Capital Bank`,
@@ -37,12 +39,11 @@ export const getHeadConfig: GetHeadConfig = (): HeadConfig => {
   };
 };
 
-const Search = ({ document }: TemplateRenderProps) => {
+const Search = ({ document, __meta }: TemplateRenderProps) => {
   return (
-    // <PageLayout _site={document._site}>
-    //   <UniversalSearch />
-    // </PageLayout>
-    <>Hi</>
+    <PageLayout templateData={{ __meta, document }}>
+      <UniversalSearch />
+    </PageLayout>
   );
 };
 

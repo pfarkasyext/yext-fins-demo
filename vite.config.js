@@ -9,4 +9,12 @@ export default defineConfig({
       external: ["ssh2-sftp-client"],
     },
   },
+  ssr: {
+    noExternal: [
+      "@yext/search-headless-react",
+      "@yext/search-ui-react",
+      "mapbox-gl",
+      "@types/mapbox-gl",
+    ],
+  },
 });

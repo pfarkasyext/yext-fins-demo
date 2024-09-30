@@ -20,6 +20,7 @@
     "@heroicons/react": "^2.1.5",
     "@tailwindcss/typography": "^0.5.15",
     "@vitejs/plugin-react-swc": "^3.7.0",
+    "@yext/analytics": "^0.6.6",
     "@yext/chat-ui-react": "^0.11.4",
     "@yext/search-ui-react": "^1.6.4",
     "classnames": "^2.5.1",
@@ -31,6 +32,7 @@
     "tailwind-merge": "^2.5.2"
   },
   "devDependencies": {
+    "@types/mapbox-gl": "^3.4.0",
     "@types/react": "^18.3.10",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^6.16.0",

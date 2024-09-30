@@ -20,8 +20,7 @@ const postReview = async (
   );
 
   const resp = await response.json();
-  console.log(JSON.stringify(resp));
-
+ 
   return {
     body: JSON.stringify(resp),
     headers: {},
