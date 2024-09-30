@@ -1,4 +1,4 @@
-import * as React from "react";
+
 import { CardProps } from "@yext/search-ui-react";
 import { provideSearchAnalytics } from "@yext/analytics";
 import { useSearchState } from "@yext/search-headless-react";

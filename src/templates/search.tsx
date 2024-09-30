@@ -1,12 +1,7 @@
-// src/templates/search.tsx
-
+ 
 import {
-  Template,
-  GetPath,
   TemplateRenderProps,
-  GetHeadConfig,
   HeadConfig,
-  TemplateProps,
 } from "@yext/pages";
 import "../index.css";
 

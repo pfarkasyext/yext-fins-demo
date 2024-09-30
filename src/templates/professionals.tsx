@@ -1,10 +1,7 @@
 import {
-  GetHeadConfig,
-  GetPath,
   HeadConfig,
   Template,
   TemplateConfig,
-  TemplateProps,
   TemplateRenderProps,
 } from "@yext/pages";
 
@@ -137,8 +134,8 @@ const Professional:Template<TemplateRenderProps> = ({
         line2={`${document.address.city}, ${document.address.region} ${document.address.postalCode}`}
         email={document.emails[0]}
         phone={formattedPhone}
-        backgroundImage={document.photoGallery[0] || "https://a.mktgcdn.com/p/X6uh0LQn4S9FDKtEP9CkXIC2QrSTEvTLwoKsT7asb8o/1872x836.jpg"}
-        textColor="#fff" headShot={document.headshot}
+        backgroundImage={document.photoGallery[0] || document._site.c_defaultHeaderImage}
+        textColor="#fff" headShot={document.headshot || document._site.c_professionalPlaceholder}
       />
       <InpageNav navItems={InPageNavItems}></InpageNav>
       <div className="bg-[#F9FAFB] text-center w-full"> 

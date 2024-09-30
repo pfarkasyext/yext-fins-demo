@@ -1,6 +1,6 @@
 import { CardProps } from "@yext/search-ui-react";
 import { provideSearchAnalytics } from "@yext/analytics";
-import * as React from "react";
+
 import { useSearchState } from "@yext/search-headless-react";
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/outline";
 import { searchAnalyticsConfig } from "../config";

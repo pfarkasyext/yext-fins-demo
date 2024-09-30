@@ -1,4 +1,4 @@
-import * as React from "react";
+
 import { CardProps } from "@yext/search-ui-react";
 import { useSearchState } from "@yext/search-headless-react";
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/outline";
@@ -63,15 +63,7 @@ const ProfessionalsCard = ({ result }: CardProps) => {
   return (
     <article className="w-full p-2 bg-white rounded-lg border border-zinc-200 flex flex-col md:flex-row gap-4">
       <header>
-        {data.headshot ? (
-          <Image image={data.headshot} className="w-40 h-44 rounded-lg" />
-        ) : (
-          <img
-            className="w-40 h-44 rounded-lg"
-            src="https://www.delvinia.com/wp-content/uploads/2020/05/placeholder-headshot.png"
-            alt="Placeholder headshot"
-          />
-        )}
+        <Image image={data.headshot} className="w-40 h-44 rounded-lg" />
       </header>
 
       <div className="flex-grow flex flex-col justify-center items-start gap-2 mx-auto">

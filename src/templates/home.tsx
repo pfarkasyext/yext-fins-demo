@@ -13,12 +13,9 @@ import "../index.css";
 import HeroSection from "../components/HeroSection";
 import PageLayout from "../components/PageLayout";
 import {
-  GetHeadConfig,
-  GetPath,
   HeadConfig,
   Template,
   TemplateConfig,
-  TemplateProps,
   TemplateRenderProps,
 } from "@yext/pages/*";
 import Services from "../components/Services";
@@ -82,17 +79,15 @@ const Home : Template<TemplateRenderProps> = ({
       <section className="px-4 w-full md:px-32 bg-gray-50 py-4 md:h-full ">
         <Services services={document._site.c_featuredServices} />
       </section>
-      <section className="px-4 md:px-32">
-        <>
+      <section className="px-4 md:px-32"> 
           <div className="flex flex-col items-center">
             <div className="max-w-5xl flex flex-col justify-center ">
               <Articles articles={document._site.c_featuredArticles} />
             </div>
-          </div>
-        </>
+          </div> 
       </section>
       <section>
-        <Events events={document._site.c_featuredEvents} />
+        <Events events={document._site}/>
       </section>
     </PageLayout>
   );

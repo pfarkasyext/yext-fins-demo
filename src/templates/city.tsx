@@ -8,6 +8,7 @@
  * template for every eligible entity in your Knowledge Graph.
  */
 
+
 import {
   GetHeadConfig,
   GetPath,
@@ -19,12 +20,24 @@ import {
   TemplateRenderProps,
   TransformProps,
 } from "@yext/pages";
+import { isProduction } from "@yext/pages/util";
+import "@fontsource/lato/100.css";
+import "@fontsource/lato/300.css";
+import "@fontsource/lato/400.css";
+import "@fontsource/lato/700.css";
+import "@fontsource/lato/900.css";
+import "@fontsource/lato/100-italic.css";
+import "@fontsource/lato/300-italic.css";
+import "@fontsource/lato/400-italic.css";
+import "@fontsource/lato/700-italic.css";
+import "@fontsource/lato/900-italic.css";
 import "../index.css";
-import Favicon from "../assets/images/yext-favicon.ico";
-import Banner from "../components/Banner";
 import DirectoryCityGrid from "../components/DirectoryCityGrid";
 import PageLayout from "../components/PageLayout";
-import Breadcrumbs from "../components/Breadcrumbs";
+import DirectoryHero from "../components/Directory/DirectoryHero";
+import EditTool from "../components/Directory/EditTool";
+import Favicon from "../assets/images/yext-favicon.ico";
+
 
 export const config: TemplateConfig = {
   stream: {
@@ -40,19 +53,18 @@ export const config: TemplateConfig = {
       "description",
       "slug",
       "c_addressRegionDisplayName",
-      // These fields will be used in Module 5 of the Hitchhikers Pages Track: https://hitchhikers.yext.com/tracks/pages-development/pgs605-create-directory/01-yext-directory-manager/
-      // "dm_directoryParents_us_directory.name",
-      // "dm_directoryParents_us_directory.slug",
-      // "dm_directoryParents_us_directory.meta",
-      // "dm_directoryParents_us_directory.c_addressRegionDisplayName",
-      // "dm_directoryChildren.name",
-      // "dm_directoryChildren.address",
-      // "dm_directoryChildren.mainPhone",
-      // "dm_directoryChildren.slug",
+      "dm_directoryParents.name",
+      "dm_directoryParents.slug",
+      "dm_directoryParents.meta",
+      "dm_directoryParents.c_addressRegionDisplayName",
+      "dm_directoryChildren.name",
+      "dm_directoryChildren.address",
+      "dm_directoryChildren.mainPhone",
+      "dm_directoryChildren.slug",
     ],
     localization: {
       locales: ["en"],
-    },
+     },
   },
 };
 
@@ -84,33 +96,67 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   };
 };
 
- 
+export const transformProps: TransformProps<any> = async (data) => {
+  const { dm_directoryParents, name } = data.document;
+
+  (dm_directoryParents || []).push({ name: name, slug: "" });
+
+  return {
+    ...data,
+    document: {
+      ...data.document,
+      dm_directoryParents: dm_directoryParents,
+    },
+  };
+};
 
 const City: Template<TemplateRenderProps> = ({
   relativePrefixToRoot,
-  document,
-  __meta,
+  document,__meta
 }) => {
-  const { name, description, dm_directoryParents, dm_directoryChildren } =
-    document;
+  const {
+    name,
+    description,
+    siteDomain,
+    dm_directoryParents,
+    dm_directoryChildren,
+  } = document;
 
   return (
     <>
-      <PageLayout templateData={{ __meta, document }}>
-        <Banner name={name} />
+    <PageLayout templateData={{__meta, document}}>
+    <DirectoryHero
+          pageTitle={`Capital Bank in ${name}, ${dm_directoryParents[1].name}`}
+        />
         <div className="centered-container">
-          <Breadcrumbs
-            breadcrumbs={dm_directoryParents}
-            baseUrl={relativePrefixToRoot}
-          />
+          <div className="mx-auto max-w-7xl flex flex-row font-bold p-6 lg:px-8">
+            <a
+              href={"/index.html"}
+              className="text-brand-primary hover:text-brand-hover"
+            >
+              Home
+            </a>
+            <span className="mx-2 text-gray-400">&gt;</span>
+            <a
+              href={`/${dm_directoryParents[1].slug}`}
+              className="text-brand-primary hover:text-brand-hover"
+            >
+              {dm_directoryParents[1].name}
+            </a>
+            <span className="mx-2 text-gray-400">&gt;</span>
+            <a href={"#"} className="text-brand-primary hover:text-brand-hover">
+              {name}
+            </a>
+          </div>
           <DirectoryCityGrid
-            name={name}
+            name={`${name}, ${dm_directoryParents[1].name}`}
             description={description}
             directoryChildren={dm_directoryChildren}
             relativePrefixToRoot={relativePrefixToRoot}
           />
         </div>
       </PageLayout>
+      {!isProduction(siteDomain) && <EditTool data={document} />}
     </>
   );
 };

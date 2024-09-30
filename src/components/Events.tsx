@@ -1,3 +1,5 @@
+import { Image, ImageType } from "@yext/pages-components";
+
 type Event = {
   name: string;
   description: string;
@@ -6,26 +8,35 @@ type Event = {
   };
 };
 
-interface EventsProps {
-  events: Event[];
+interface EventsData {
+  c_featuredEvents: Event[];
+  c_eventPlaceholder: ImageType;
 }
 
-function EventCard({ event }: { event: Event }) {
+interface EventsProps {
+  events: EventsData;
+}
+
+function EventCard({
+  event,
+  placeholderImage,
+}: {
+  event: Event;
+  placeholderImage: ImageType;
+}) {
   const startDate = new Intl.DateTimeFormat("en-US", {
     month: "long",
     day: "numeric",
     year: "numeric",
   }).format(new Date(event.time.start));
+
   const fullDate = new Date(event.time.start);
   const startTime = fullDate.toLocaleTimeString("en-US", { hour: "numeric" });
 
   return (
     <section className="flex flex-col gap-4 justify-between border rounded-lg">
       <div className="flex flex-col gap-2">
-        <img
-          src="https://a.mktgcdn.com/p/afh3Sr5mH7UpwN45oHKA6kyLJ8bH0WOh57uObkvOAHE/600x600.png"
-          className="w-full"
-        />
+        <Image image={placeholderImage} className="w-full" />
         <div className="p-4">
           <h3 className="text-2xl text-brand-blue font-bold">{event.name}</h3>
           <div className="flex gap-2 text-gray-600 text-sm">
@@ -46,13 +57,17 @@ function EventCard({ event }: { event: Event }) {
 
 const Events = ({ events }: EventsProps) => {
   return (
-    <section className="flex flex-col gap-8 bg-gray-50 py-8 w-full  md:px-32 px-4">
+    <section className="flex flex-col gap-8 bg-gray-50 py-8 w-full md:px-32 px-4">
       <h2 className="font-bold text-brand-blue text-4xl text-center">
         Upcoming Events
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 grid-rows-1 gap-8">
-        {events.map((event: Event, i) => (
-          <EventCard event={event} key={i} />
+        {events.c_featuredEvents.map((event: Event, i) => (
+          <EventCard
+            event={event}
+            key={i}
+            placeholderImage={events.c_eventPlaceholder}
+          />
         ))}
       </div>
     </section>

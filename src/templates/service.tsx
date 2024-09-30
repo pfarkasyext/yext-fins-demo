@@ -81,7 +81,7 @@ const Service: Template<TemplateRenderProps> = ({
         entityType={entityType}
         pageTitle={document.name}
         datePosted={document.datePosted}
-        imageUrl={document.fins_servicesImage || "https://a.mktgcdn.com/p/X6uh0LQn4S9FDKtEP9CkXIC2QrSTEvTLwoKsT7asb8o/1872x836.jpg"}
+        imageUrl={document.fins_servicesImage || document._site.c_defaultHeaderImage}
         description={document.c_serviceDescription}
       />
       <ArticleOrInsightsContent content={document.c_serviceLongDescription} />

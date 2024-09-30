@@ -1,8 +1,6 @@
 import {
-  GetPath,
   Template,
   TemplateConfig,
-  TemplateProps,
   TemplateRenderProps,
 } from "@yext/pages";
 import "@fontsource/lato/100.css";
@@ -55,7 +53,7 @@ const InsightsArticle: Template<TemplateRenderProps> = ({
         entityType={entityType}
         pageTitle={document.name}
         datePosted={document.datePosted}
-        image={document.primaryPhoto || "https://a.mktgcdn.com/p/X6uh0LQn4S9FDKtEP9CkXIC2QrSTEvTLwoKsT7asb8o/1872x836.jpg"}
+        imageUrl={document.primaryPhoto || document._site.c_defaultHeaderImage}
         description={document.c_insightsArticleSummary}
       />
       <ArticleOrInsightsContent

@@ -1,9 +1,5 @@
 import {
-  GetHeadConfig,
-  GetPath,
   HeadConfig,
-  Template,
-  TemplateProps,
   TemplateRenderProps,
 } from "@yext/pages";
 import "@fontsource/lato/100.css";
@@ -19,6 +15,7 @@ import "@fontsource/lato/900-italic.css";
 import "../index.css";
 import PageLayout from "../components/PageLayout";
 import GuidedSearch from "../components/GuidedSearch";
+import { Image } from "@yext/pages-components";
 
 export const getPath = () => {
   return `guided-advisor-finder`;
@@ -37,11 +34,7 @@ const GuidedDoctorFinder = ({ document, __meta }: TemplateRenderProps) => {
     <PageLayout templateData={{__meta, document}}>
        <div className="relative bg-gray-800 px-6 py-16 sm:px-12 lg:px-16">
       <div className="absolute inset-0 overflow-hidden">
-        <img
-          src="https://a.mktgcdn.com/p/Kv4KDWsSWCn3y_x5VSRTLyN_AwatVuWE-Dp8ZSq0Z-w/1200x796.jpg"
-          alt=""
-          className="h-full w-full object-cover object-center"
-        />
+        <Image image={document._site.c_guidedSearchHero} className="h-full w-full object-cover object-center"/> 
       </div>
       <div
         aria-hidden="true"

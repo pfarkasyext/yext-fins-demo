@@ -11,7 +11,7 @@ export interface ProfessionalOrLocationHeroProps {
   phone?: string;
   email?: string;
   textColor?: any;
-  backgroundImage?: ImageType | string | undefined;
+  backgroundImage?: ImageType;
   backgroundColor?: string;
   isProfessional?: boolean;
   headShot?: ImageType;
@@ -30,22 +30,12 @@ const ProfessionalOrLocationHero = ({
 }: ProfessionalOrLocationHeroProps) => {
   return (
     <div className="relative overflow-hidden min-h-fit bg-blue-950 bg-opacity-80">
-      {typeof backgroundImage === "string" ? (
-        <img
-          src={backgroundImage}
-          className={`hidden md:block object-cover absolute -z-10 w-full object-bottom ${
-            isProfessional && `-top-1/3`
-          }`}
-          alt=""
-        />
-      ) : (
-        <Image
-          image={backgroundImage!}
-          className={`hidden md:block object-cover absolute -z-10 w-full object-bottom ${
-            isProfessional && `-top-1/3`
-          }`}
-        />
-      )}
+      <Image
+        image={backgroundImage!}
+        className={`hidden md:block object-cover absolute -z-10 w-full object-bottom ${
+          isProfessional && `-top-1/3`
+        }`}
+      />
 
       <div className="flex flex-col justify-between p-8 h-full">
         <div

@@ -32,6 +32,11 @@ siteStream:
     - c_navbar.relatedServices.c_childProducts.name
     - c_navbar.relatedServices.c_childProducts.slug
     - c_headerLogo
+    - c_regionalDirector
+    - c_defaultHeaderImage
+    - c_guidedSearchHero
+    - c_eventPlaceholder
+    - c_professionalPlaceholder
   localization:
     locales:
       - en

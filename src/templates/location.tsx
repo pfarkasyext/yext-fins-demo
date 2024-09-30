@@ -1,13 +1,10 @@
 import {
-  GetHeadConfig,
-  GetPath,
   HeadConfig,
   Template,
   TemplateConfig,
-  TemplateProps,
   TemplateRenderProps,
 } from "@yext/pages";
-
+import { Image } from "@yext/pages-components";
 import "../index.css";
 import "@fontsource/lato/100.css";
 import "@fontsource/lato/300.css";
@@ -148,18 +145,15 @@ const Location:Template<TemplateRenderProps> = ({
         line2={`${document.address.city}, ${document.address.region} ${document.address.postalCode}`}
         email={document.emails[0]}
         phone={formattedPhone}
-        backgroundImage={document.photoGallery[0] || "https://a.mktgcdn.com/p/X6uh0LQn4S9FDKtEP9CkXIC2QrSTEvTLwoKsT7asb8o/1872x836.jpg"}
+        backgroundImage={document.photoGallery[0] || document._site.c_defaultHeaderImage}
         textColor="#fff"
       />
       <div className="w-full conainer text-center bg-[#F9FAFB]">
         <div className={`flex flex-col `}>
           <div className="max-w-5xl flex md:flex-row flex-col justify-center items-center py-16 gap-8 px-4 md:px-0 mx-auto">
-            <img
-              src={
-                "https://a.mktgcdn.com/p/65JQqTuL6mWfKaHM0EiyiPEV820Oi35tUPhDN36Tq1A/3149x4724.jpg"
-              }
-              className="w-full md:w-[309.59px] aspect-[3/4] rounded-lg object-center object-cover"
-            />
+            <Image image={document._site.c_regionalDirector} className="w-full md:w-[309.59px] aspect-[3/4] rounded-lg object-center object-cover"
+            ></Image>
+             
             <div className="flex flex-col items-left gap-6">
               <div className="text-2xl font-bold text-blue-950">
                 Joseph Adams
