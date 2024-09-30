@@ -12,7 +12,7 @@ export const searchAnalyticsConfig = provideSearchAnalytics({
   experienceVersion: "PRODUCTION",
   businessId: 4067217,
 });
-// export const chatConfig: ChatConfig = {
-//   apiKey: YEXT_PUBLIC_CHAT_APIKEY,
-//   botId: YEXT_PUBLIC_CHAT_BOTKEY,
-// };
+export const chatConfig: ChatConfig = {
+  apiKey: YEXT_PUBLIC_CHAT_APIKEY,
+  botId: YEXT_PUBLIC_CHAT_BOTID
+};

@@ -5,5 +5,5 @@ declare let YEXT_PUBLIC_REVIEWS_API_KEY: string;
 declare let YEXT_PUBLIC_SEARCH_APIKEY: string;
 declare let YEXT_PUBLIC_SEARCH_EXPKEY: string;
 declare let YEXT_PUBLIC_CHAT_APIKEY: string;
-declare let YEXT_PUBLIC_CHAT_BOTKEY: string;
+declare let YEXT_PUBLIC_CHAT_BOTID: string;
 declare let YEXT_PUBLIC_ANALYTICS_API_KEY: string;
