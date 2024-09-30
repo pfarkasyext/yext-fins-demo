@@ -23,7 +23,7 @@ const StaticMap = (props: StaticMapProps) => {
           `${latitude}` +
           "," +
           `${longitude}` +
-          "&key=AIzaSyDZNQlSlEIkFAct5VzUtsP4dSbvOr2bE18"
+          `&key=${YEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`
         }
       ></img>
     </>
