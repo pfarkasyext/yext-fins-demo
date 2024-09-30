@@ -63,7 +63,7 @@ const ProfessionalsCard = ({ result }: CardProps) => {
   return (
     <article className="w-full p-2 bg-white rounded-lg border border-zinc-200 flex flex-col md:flex-row gap-4">
       <header>
-        <Image image={data.headshot} className="w-40 h-44 rounded-lg" />
+        <Image image={data.headshot} className="!w-40 !h-44 !rounded-lg" />
       </header>
 
       <div className="flex-grow flex flex-col justify-center items-start gap-2 mx-auto">

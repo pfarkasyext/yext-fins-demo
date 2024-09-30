@@ -23,7 +23,7 @@ const LetsTalk = ({
   geocodedCoordinate,
 }: LetsTalkProps) => {
   return (
-    <div className="w-full   bg-[#F9FaFb] py-8">
+    <div className="w-full bg-[#F9FaFb] py-8">
       <div className="max-w-5xl flex flex-col justify-center px-10 mt-4 mx-auto">
         <div className="flex justify-center items-center ">
           <div className={`not-prose mt-4 mb-8`}>
@@ -34,20 +34,20 @@ const LetsTalk = ({
             </h1>
           </div>
         </div>
-        <span className="hidden md:block">
-          <div className=" grid grid-cols-2">
-            <div className="rounded-lg max-height-full">
+        <span className=" block">
+          <div className=" grid grid-flow-dense grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="rounded-lg max-height-full  md:text-left">
               <p className="whitespace-pre-line mr-2 text-[#333333]">
                 {description}
               </p>
-              <div className="flex flex-col md:flex-row gap-2 mb-2 mt-5 justify-between">
-                <div className="flex  items-center  text-[#333333]">
+              <div className="flex flex-col md:flex-row gap-4 mb-8 mt-5 justify-between">
+                <div className="flex justify-center md:justify-start items-center  text-[#333333]">
                   <div>
                     <PhoneIcon height={16} width={16} />
                   </div>
                   <div>{formattedPhone}</div>
                 </div>
-                <div className="flex gap-1 items-center  text-[#333333]">
+                <div className="flex  justify-center md:justify-start gap-1 items-center  text-[#333333]">
                   <div>
                     <EnvelopeIcon height={16} width={16} />
                   </div>
@@ -64,33 +64,42 @@ const LetsTalk = ({
                 </div>
               </div>
             </div>
-            <LocationMap
-              className="h-full"
-              clientKey="gme-yextinc"
-              coordinate={geocodedCoordinate}
-              provider={GoogleMaps}
-            >
-              {
-                <svg
-                  width="56"
-                  height="58"
-                  viewBox="0 0 56 58"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M28.0951 1C33.1149 1 37.6595 3.03469 40.9491 6.32432C44.2388 9.61396 46.2734 14.1586 46.2734 19.1784C46.2734 25.9554 40.1704 38.558 28.0941 57C16.019 38.5565 9.91669 25.955 9.91669 19.1784C9.91669 14.1586 11.9514 9.61396 15.241 6.32432C18.5307 3.03469 23.0752 1 28.0951 1Z"
-                    fill="#0F70F0"
-                    stroke="black"
-                    strokeOpacity="0.5"
-                  />
-                  <path
-                    d="M28.095 27.2577C32.5571 27.2577 36.1743 23.6405 36.1743 19.1784C36.1743 14.7163 32.5571 11.0991 28.095 11.0991C23.633 11.0991 20.0157 14.7163 20.0157 19.1784C20.0157 23.6405 23.633 27.2577 28.095 27.2577Z"
-                    fill="white"
-                  />
-                </svg>
-              }
-            </LocationMap>
+            <span className="block md:hidden">
+              <StaticMap
+                latitude={geocodedCoordinate.latitude}
+                longitude={geocodedCoordinate.longitude}
+              ></StaticMap>
+            </span>
+
+            <span className="md:block hidden">
+              <LocationMap
+                className="h-full"
+                clientKey="gme-yextinc"
+                coordinate={geocodedCoordinate}
+                provider={GoogleMaps}
+              >
+                {
+                  <svg
+                    width="56"
+                    height="58"
+                    viewBox="0 0 56 58"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M28.0951 1C33.1149 1 37.6595 3.03469 40.9491 6.32432C44.2388 9.61396 46.2734 14.1586 46.2734 19.1784C46.2734 25.9554 40.1704 38.558 28.0941 57C16.019 38.5565 9.91669 25.955 9.91669 19.1784C9.91669 14.1586 11.9514 9.61396 15.241 6.32432C18.5307 3.03469 23.0752 1 28.0951 1Z"
+                      fill="#0F70F0"
+                      stroke="black"
+                      strokeOpacity="0.5"
+                    />
+                    <path
+                      d="M28.095 27.2577C32.5571 27.2577 36.1743 23.6405 36.1743 19.1784C36.1743 14.7163 32.5571 11.0991 28.095 11.0991C23.633 11.0991 20.0157 14.7163 20.0157 19.1784C20.0157 23.6405 23.633 27.2577 28.095 27.2577Z"
+                      fill="white"
+                    />
+                  </svg>
+                }
+              </LocationMap>
+            </span>
           </div>
         </span>
         {/* <span className="block md:hidden">

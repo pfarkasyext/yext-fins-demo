@@ -136,6 +136,7 @@ const Professional:Template<TemplateRenderProps> = ({
         phone={formattedPhone}
         backgroundImage={document.photoGallery[0] || document._site.c_defaultHeaderImage}
         textColor="#fff" headShot={document.headshot || document._site.c_professionalPlaceholder}
+        isProfessional={true}
       />
       <InpageNav navItems={InPageNavItems}></InpageNav>
       <div className="bg-[#F9FAFB] text-center w-full"> 
@@ -157,7 +158,7 @@ const Professional:Template<TemplateRenderProps> = ({
           </div>
         </>
       )}
-           <div className="bg-[#F9FAFB] text-center w-full"> 
+        <div className="bg-[#F9FAFB] text-center w-full"> 
            <LetsTalk
         description={document.description}
         emails={document.emails[0]}

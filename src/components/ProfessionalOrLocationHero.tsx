@@ -25,28 +25,28 @@ const ProfessionalOrLocationHero = ({
   phone,
   email,
   backgroundImage,
-  isProfessional,
+  isProfessional = false,
   headShot,
 }: ProfessionalOrLocationHeroProps) => {
   return (
     <div className="relative overflow-hidden min-h-fit bg-blue-950 bg-opacity-80">
       <Image
         image={backgroundImage!}
-        className={`hidden md:block object-cover absolute -z-10 w-full object-bottom ${
-          isProfessional && `-top-1/3`
+        className={`hidden md:block !object-cover !absolute !-z-10 !w-full !object-bottom !max-w-full ${
+          isProfessional && `!-top-1/3`
         }`}
       />
 
       <div className="flex flex-col justify-between p-8 h-full">
         <div
-          className={`flex content-center justify-center h-fit md:h-[482px]  items-center gap-10 mt-0 mb-0 ml-0 mr-0`}
+          className={`flex flex-col md:flex-row content-center justify-center h-fit md:h-[482px]  items-center gap-10 mt-0 mb-0 ml-0 mr-0`}
         >
           {headShot && (
             <div className="col-start-2 row-span-2 self-center">
               <div className="aspect-square overflow-hidden rounded-full h-52">
                 <Image
                   image={headShot}
-                  className={`h-full w-full object-cover object-center  `}
+                  className={`!h-full !w-full !object-cover !object-center  !max-w-full `}
                 />
               </div>
             </div>

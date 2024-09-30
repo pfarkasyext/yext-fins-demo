@@ -55,7 +55,7 @@ const ArticleOrInsightsHero = ({
               <div className="h-48 w-full sm:h-64 lg:absolute lg:right-0 lg:top-0 lg:h-full lg:w-1/2">
                 <_Image
                   image={imageUrl}
-                  className="h-full w-full object-cover object-center"
+                  className="!h-full !w-full !object-cover !object-center"
                 />
               </div>
             )}
@@ -116,7 +116,7 @@ const ArticleOrInsightsHero = ({
           <div className="bg-gray-50 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
             <_Image
               image={imageUrl!}
-              className="aspect-[3/2] object-cover lg:aspect-auto lg:h-full lg:w-full"
+              className="!aspect-[3/2] !object-cover !lg:aspect-auto !lg:h-full !lg:w-full"
             />
           </div>
         </div>
