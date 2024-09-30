@@ -1,4 +1,3 @@
-
 export interface StaticMapProps {
   latitude: string;
   longitude: string;
@@ -10,6 +9,7 @@ const StaticMap = (props: StaticMapProps) => {
   return (
     <>
       <img
+        alt="static map"
         className="w-full"
         width="300"
         height="200"

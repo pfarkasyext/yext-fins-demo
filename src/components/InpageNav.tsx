@@ -19,11 +19,12 @@ const InpageNav = ({ navItems }: InpageNavProps) => {
     <>
       {/* Desktop Navigation */}
       <ul className="hidden md:flex justify-center gap-10 py-4">
-        {navItems.map((item, index) => (
+        {navItems.map((item) => (
           <li key={item.navId}>
             <a
               href={`#${item.navId}`}
               className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              style={{ padding: "12px 16px" }} // Ensures minimum touch size
             >
               {item.name}
             </a>
@@ -32,13 +33,14 @@ const InpageNav = ({ navItems }: InpageNavProps) => {
       </ul>
 
       {/* Mobile Navigation */}
-      <ul className="md:hidden flex flex-col justify-center px-4 py-4">
-        <li className="flex justify-between items-center">
+      <div className="md:hidden flex flex-col justify-center px-4 py-4">
+        <div className="flex justify-between items-center">
           <button
             onClick={toggleSubNav}
             aria-expanded={isSubNavOpen}
             aria-controls="sub-navigation"
             className="hover:cursor-pointer flex-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-600"
+            style={{ padding: "12px 16px" }} // Ensures minimum touch size
           >
             Navigate to
           </button>
@@ -46,14 +48,14 @@ const InpageNav = ({ navItems }: InpageNavProps) => {
             onClick={() => setIsSubNavOpen(false)}
             aria-label="Close navigation"
             className="hover:cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-600"
+            style={{ padding: "10px" }} // Ensures minimum touch size for the close button
           >
-            <XMarkIcon className="h-4 w-4" />
+            <XMarkIcon className="h-6 w-6" />
           </button>
-        </li>
+        </div>
 
         <hr className="my-4" />
 
-        {/* Sub Navigation */}
         {isSubNavOpen && (
           <ul
             id="sub-navigation"
@@ -64,6 +66,7 @@ const InpageNav = ({ navItems }: InpageNavProps) => {
                 <a
                   href={`#${item.navId}`}
                   className="block py-2 px-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-600"
+                  style={{ padding: "12px 16px" }} // Ensures minimum touch size
                 >
                   {item.name}
                 </a>
@@ -72,7 +75,7 @@ const InpageNav = ({ navItems }: InpageNavProps) => {
             ))}
           </ul>
         )}
-      </ul>
+      </div>
     </>
   );
 };

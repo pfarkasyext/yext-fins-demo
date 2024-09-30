@@ -23,12 +23,12 @@ const LetsTalk = ({
   geocodedCoordinate,
 }: LetsTalkProps) => {
   return (
-    <div className="w-full bg-[#F9FaFb] py-8">
+    <div className="w-full bg-[#F9FaFb] py-4 md:py-8">
       <div className="max-w-5xl flex flex-col justify-center px-10 mt-4 mx-auto">
         <div className="flex justify-center items-center ">
           <div className={`not-prose mt-4 mb-8`}>
             <h1
-              className={`text-4xl tracking-tight font-medium text-[#1C2E5E]`}
+              className={`text-2xl md:text-4xl tracking-tight font-medium text-[#1C2E5E]`}
             >
               {`Let's Talk`}
             </h1>

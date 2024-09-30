@@ -27,10 +27,10 @@ export default function Articles({ articles }: { articles: ArticleProps[] }) {
   };
 
   return (
-    <div className="md:py-8 flex flex-col items-between gap-8">
-      <h3 className="font-medium text-4xl text-center text-brand-blue">
+    <div className="py-8 flex flex-col items-between gap-8">
+      <h2 className="font-medium text-2xl md:text-4xl text-center text-brand-blue">
         Insights
-      </h3>
+      </h2>
       <div className="grid grid-cols-1 lg:grid-cols-5 md:gap-x-8 px-6 md:px-0 w-full">
         <article
           className="lg:col-span-3 flex flex-col gap-4"
@@ -51,11 +51,11 @@ export default function Articles({ articles }: { articles: ArticleProps[] }) {
           </span>
           <h3
             id="featured-post"
-            className="text-2xl font-bold text-brand-blue hover:underline"
+            className="text-xl md:text-2xl font-bold text-brand-blue hover:underline"
           >
             {featuredArticle.name}
           </h3>
-          <p className="text-base  text-gray-600 line-clamp-3">
+          <p className="text-sm md:text-base  text-gray-600 line-clamp-3">
             {featuredArticle.c_insightsArticleSummary}
           </p>
           <button
@@ -81,7 +81,7 @@ export default function Articles({ articles }: { articles: ArticleProps[] }) {
                       }).format(new Date(article!.datePosted!))}
                     </span>
                   </div>
-                  <h3 className="text-lg font-semibold text-brand-blue hover:underline">
+                  <h3 className="text-xl md:text-lg font-semibold text-brand-blue hover:underline">
                     {article.name}
                   </h3>
                   <p className="text-sm leading-6 text-gray-600 line-clamp-2">

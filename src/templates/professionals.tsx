@@ -139,10 +139,10 @@ const Professional:Template<TemplateRenderProps> = ({
         isProfessional={true}
       />
       <InpageNav navItems={InPageNavItems}></InpageNav>
-      <div className="bg-[#F9FAFB] text-center w-full"> 
-         <div className="max-w-5xl flex flex-col justify-center px-10 w-full mx-auto">
+      <div className="bg-[#F9FAFB] md:text-center w-full"> 
+         <div className="max-w-5xl flex flex-col md:justify-center px-5 md:px-10 w-full mx-auto">
           <a id="about"></a>
-          <h1 className="text-4xl font-medium mt-8 mb-4 text-[#1C2E5E]">About {document.name}</h1>
+          <h1 className="text-2xl md:text-4xl font-medium mt-8 mb-4 text-[#1C2E5E] mx-auto">About {document.name}</h1>
           <p className="mb-10">{document.c_fPBio}</p>
           
         </div>
@@ -159,7 +159,7 @@ const Professional:Template<TemplateRenderProps> = ({
         </>
       )}
         <div className="bg-[#F9FAFB] text-center w-full"> 
-           <LetsTalk
+       <LetsTalk
         description={document.description}
         emails={document.emails[0]}
         formattedPhone={document.mainPhone}
