@@ -3,14 +3,6 @@ import { ComponentsContentPath } from "@yext/search-ui-react";
 
 module.exports = {
   darkMode: ["class"],
-  mode: "jit",
-  purge: [
-    "./src/**/*.html",
-    "./src/**/*.js",
-    "./src/**/*.jsx",
-    "./src/**/*.ts",
-    "./src/**/*.tsx",
-  ],
   content: [
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
