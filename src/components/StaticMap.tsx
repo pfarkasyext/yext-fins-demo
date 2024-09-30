@@ -9,6 +9,7 @@ const StaticMap = (props: StaticMapProps) => {
   return (
     <>
       <img
+        loading="lazy"
         alt="static map"
         className="w-full"
         width="300"

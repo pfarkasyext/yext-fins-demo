@@ -151,7 +151,7 @@ const Location:Template<TemplateRenderProps> = ({
       <div className="w-full conainer text-center bg-[#F9FAFB]">
         <div className={`flex flex-col `}>
           <div className="max-w-5xl flex md:flex-row flex-col justify-center items-center py-16 gap-8 px-4 md:px-0 mx-auto">
-            <Image image={document._site.c_regionalDirector} className="!w-full md:!w-[309.59px] !aspect-[3/4] !rounded-lg !object-center !object-cover"
+            <Image loading="eager" image={document._site.c_regionalDirector} className="!w-full md:!w-[309.59px] !aspect-[3/4] !rounded-lg !object-center !object-cover"
             ></Image>
              
             <div className="flex flex-col items-left gap-6">
