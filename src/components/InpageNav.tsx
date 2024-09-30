@@ -9,46 +9,68 @@ export interface NavItem {
 export interface InpageNavProps {
   navItems: NavItem[];
 }
+
 const InpageNav = ({ navItems }: InpageNavProps) => {
   const [isSubNavOpen, setIsSubNavOpen] = useState<boolean>(false);
 
+  const toggleSubNav = () => setIsSubNavOpen(!isSubNavOpen);
+
   return (
     <>
+      {/* Desktop Navigation */}
       <ul className="hidden md:flex justify-center gap-10 py-4">
         {navItems.map((item, index) => (
-          <li key={index}>
-            <a href={`#${item.navId}`}>{item.name}</a>{" "}
+          <li key={item.navId}>
+            <a
+              href={`#${item.navId}`}
+              className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              {item.name}
+            </a>
           </li>
         ))}
       </ul>
-      <ul className="md:hidden flex flex-col justify-center px-4 md:px-0 md:gap-10 py-4">
+
+      {/* Mobile Navigation */}
+      <ul className="md:hidden flex flex-col justify-center px-4 py-4">
         <li className="flex justify-between items-center">
-          <div
-            onClick={() => setIsSubNavOpen(true)}
-            className="hover:cursor-pointer flex-1"
+          <button
+            onClick={toggleSubNav}
+            aria-expanded={isSubNavOpen}
+            aria-controls="sub-navigation"
+            className="hover:cursor-pointer flex-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-600"
           >
-            Navigate to{" "}
-          </div>
-          <XMarkIcon
-            className="h-4 w-4 hover:cursor-pointer"
+            Navigate to
+          </button>
+          <button
             onClick={() => setIsSubNavOpen(false)}
-          />
-        </li>
-        <hr className="my-4" />
-        {isSubNavOpen && (
-          <span
-            className="bg-white  rounded py-4 mt-4 transition-all"
-            style={{ opacity: isSubNavOpen ? 1 : 0 }}
+            aria-label="Close navigation"
+            className="hover:cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-600"
           >
-            {navItems.map((item, index) => (
-              <span key={index}>
-                <li>
-                  <a href={`#${item.navId}`}>{item.name}</a>
-                </li>
-                <hr className="my-4" />
-              </span>
+            <XMarkIcon className="h-4 w-4" />
+          </button>
+        </li>
+
+        <hr className="my-4" />
+
+        {/* Sub Navigation */}
+        {isSubNavOpen && (
+          <ul
+            id="sub-navigation"
+            className="bg-white rounded py-4 mt-4 transition-opacity duration-300 ease-in-out opacity-100"
+          >
+            {navItems.map((item) => (
+              <li key={item.navId}>
+                <a
+                  href={`#${item.navId}`}
+                  className="block py-2 px-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-600"
+                >
+                  {item.name}
+                </a>
+                <hr className="my-2" />
+              </li>
             ))}
-          </span>
+          </ul>
         )}
       </ul>
     </>
