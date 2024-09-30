@@ -1,4 +1,5 @@
 import { Button } from "@headlessui/react";
+import Carousel from "./Carousel";
 
 type ServiceProps = {
   name: string;
@@ -38,10 +39,11 @@ export const ServiceCard = ({ service }: { service: ServiceProps }) => {
         </div>
       </div>
       <a
+        className="inline-flex items-center justify-center text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 dark:ring-offset-slate-950 dark:focus-visible:ring-slate-300 h-9  px-3 md:h-11 rounded-md md:px-8 border border-brand-blue bg-white hover:bg-brand-blue hover:text-white dark:border-slate-800 dark:bg-slate-950 dark:hover:bg-slate-800 dark:hover:text-slate-50"
         href={`/${service.slug}`}
         aria-label={`Learn more about ${service.name}`}
       >
-        Learn More
+        Learn more about {service.name}
       </a>
     </div>
   );
@@ -76,12 +78,12 @@ export default function Services({ services }: ServicesProps) {
           </div>
         </div>
       </div>
-      {/* <div className="block md:hidden h-[500px]">
+      <div className="block md:hidden h-[500px]">
         <h2 className="font-bold text-4xl text-center text-brand-blue">
           Our Services
         </h2>
         <Carousel services={services}></Carousel>
-      </div> */}
+      </div>
     </>
   );
 }

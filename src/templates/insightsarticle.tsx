@@ -1,4 +1,5 @@
 import {
+  HeadConfig,
   Template,
   TemplateConfig,
   TemplateRenderProps,
@@ -39,7 +40,24 @@ export const config: TemplateConfig = {
 export const getPath = ({ document }: TemplateRenderProps) => {
   return document.slug ?? document.id.toString();
 };
-
+export const getHeadConfig = ({
+  document,
+}: TemplateRenderProps): HeadConfig => {
+  return {
+    title: `${document.name} | Location`,
+    charset: "UTF-8",
+    viewport: "width=device-width, initial-scale=1",
+    tags: [
+      {
+        type: "meta",
+        attributes: {
+          name: "description",
+          content: "Capital Wealth Management Location",
+        },
+      },
+    ],
+  };
+};
 const InsightsArticle: Template<TemplateRenderProps> = ({
   relativePrefixToRoot,
   document,

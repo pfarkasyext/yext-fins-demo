@@ -66,7 +66,7 @@ export const getHeadConfig = ({
   document,
 }: TemplateRenderProps): HeadConfig => {
   return {
-    title: `${document.name} | Location`,
+    title: `${document.name}`,
     charset: "UTF-8",
     viewport: "width=device-width, initial-scale=1",
     tags: [
