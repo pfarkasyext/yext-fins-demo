@@ -148,7 +148,7 @@ const Location:Template<TemplateRenderProps> = ({
         line2={`${document.address.city}, ${document.address.region} ${document.address.postalCode}`}
         email={document.emails[0]}
         phone={formattedPhone}
-        backgroundImage={document.photoGallery[0]}
+        backgroundImage={document.photoGallery[0] || "https://a.mktgcdn.com/p/X6uh0LQn4S9FDKtEP9CkXIC2QrSTEvTLwoKsT7asb8o/1872x836.jpg"}
         textColor="#fff"
       />
       <div className="w-full conainer text-center bg-[#F9FAFB]">

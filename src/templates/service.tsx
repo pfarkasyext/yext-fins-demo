@@ -22,7 +22,7 @@ import PageLayout from "../components/PageLayout";
 import ArticleOrInsightsContent from "../components/ArticleOrInsightsContent";
 import ArticleOrInsightsHero from "../components/ArticleOrInsightsHero";
 import RelatedProducts from "../components/RelatedProducts";
- export const config: TemplateConfig = {
+export const config: TemplateConfig = {
   stream: {
     $id: "services",
     localization: { locales: ["en"] },
@@ -44,7 +44,9 @@ import RelatedProducts from "../components/RelatedProducts";
 export const getPath = ({ document }: TemplateRenderProps) => {
   return document.slug ?? document.id.toString();
 };
-export const getHeadConfig = ({ document }:TemplateRenderProps): HeadConfig => {
+export const getHeadConfig = ({
+  document,
+}: TemplateRenderProps): HeadConfig => {
   return {
     title: `${document.name} | Service`,
     charset: "UTF-8",
@@ -65,38 +67,33 @@ const Service: Template<TemplateRenderProps> = ({
   document,
   __meta,
 }:TemplateRenderProps) => {  
-  
-   
-  
-  
   let pageTitle = `${document.name} at Capital Wealth`;
   if (document.name === "Mortgage") {
     pageTitle = "Mortages at Capital Wealth";
   } else if (document.name === "Retail Banking") {
     pageTitle = "Personal Banking with Capital";
   }
-  const entityType=(document.meta.entityType.id);
+  const entityType = document.meta.entityType.id;
 
   return (
-          <PageLayout templateData={{ __meta, document }}>
-  
+    <PageLayout templateData={{ __meta, document }}>
       <ArticleOrInsightsHero
         entityType={entityType}
         pageTitle={document.name}
         datePosted={document.datePosted}
-        imageUrl={document.fins_servicesImage}
+        imageUrl={document.fins_servicesImage || "https://a.mktgcdn.com/p/X6uh0LQn4S9FDKtEP9CkXIC2QrSTEvTLwoKsT7asb8o/1872x836.jpg"}
         description={document.c_serviceDescription}
       />
-      <ArticleOrInsightsContent
-        content={document.c_serviceLongDescription}
-      /> <div className="bg-gray-50">
-      {document.c_childProducts && <RelatedProducts
-        products={document.c_childProducts}
-        name={document.name}
-      />}
-    </div>
+      <ArticleOrInsightsContent content={document.c_serviceLongDescription} />
+      <div className="bg-gray-50">
+        {document.c_childProducts && (
+          <RelatedProducts
+            products={document.c_childProducts}
+            name={document.name}
+          />
+        )}
+      </div>
     </PageLayout>
-    
   );
 };
 

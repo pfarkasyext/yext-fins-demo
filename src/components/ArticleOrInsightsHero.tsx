@@ -3,7 +3,7 @@ import { Image as _Image } from "@yext/pages-components";
 export interface ArticleOrInsightsHeroProps {
   pageTitle: string;
   datePosted: string;
-  imageUrl?: Image | string;
+  imageUrl?: Image | string | undefined;
   description: string;
   entityType: string;
 }
@@ -55,7 +55,7 @@ const ArticleOrInsightsHero = ({
               <div className="h-48 w-full sm:h-64 lg:absolute lg:right-0 lg:top-0 lg:h-full lg:w-1/2">
                 {typeof imageUrl === "string" ? (
                   <img
-                    src="imageUrl"
+                    src={imageUrl}
                     className="aspect-[3/2] object-cover lg:aspect-auto lg:h-full lg:w-full"
                     alt=""
                   />
@@ -124,7 +124,7 @@ const ArticleOrInsightsHero = ({
           <div className="bg-gray-50 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
             {typeof imageUrl === "string" ? (
               <img
-                src="imageUrl"
+                src={imageUrl}
                 className="aspect-[3/2] object-cover lg:aspect-auto lg:h-full lg:w-full"
                 alt=""
               />

@@ -41,10 +41,10 @@ export const config: TemplateConfig = {
     ],
   },
 };
-export const getPath: GetPath = ({ document }) => {
+export const getPath  = ({ document }:TemplateRenderProps) => {
   return document.slug ?? "financial-product/" + document.id.toString();
 };
-export const getHeadConfig: GetHeadConfig = ({ document }): HeadConfig => {
+export const getHeadConfig  = ({ document }:TemplateRenderProps): HeadConfig => {
   return {
     title: `${document.name} | Product`,
     charset: "UTF-8",
