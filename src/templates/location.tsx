@@ -140,8 +140,7 @@ const Location:Template<TemplateRenderProps> = ({
   ];
 
   return (
-          <PageLayout templateData={{ __meta, document }}>
-
+ <PageLayout templateData={{ __meta, document }}> 
       <ProfessionalOrLocationHero
         title={document.name}
         subtitle={document.address.city}
@@ -152,9 +151,9 @@ const Location:Template<TemplateRenderProps> = ({
         backgroundImage={document.photoGallery[0]?.image.url}
         textColor="#fff"
       />
-      <div className="VStack conainer bg-[#F9FAFB]">
+      <div className="w-full conainer text-center bg-[#F9FAFB]">
         <div className={`flex flex-col `}>
-          <div className="max-w-5xl flex md:flex-row flex-col justify-center items-center py-16 gap-8 px-4 md:px-0">
+          <div className="max-w-5xl flex md:flex-row flex-col justify-center items-center py-16 gap-8 px-4 md:px-0 mx-auto">
             <img
               src={
                 "https://a.mktgcdn.com/p/65JQqTuL6mWfKaHM0EiyiPEV820Oi35tUPhDN36Tq1A/3149x4724.jpg"
@@ -175,7 +174,7 @@ const Location:Template<TemplateRenderProps> = ({
                 {document.description}
               </div>
             </div>
-          </div>{" "}
+          </div>
         </div>
       </div>
 
@@ -184,8 +183,7 @@ const Location:Template<TemplateRenderProps> = ({
       {document.fins_relatedServices && (
         <>
           <a id="services"></a>
-          {/* <Services services={document.fins_relatedServices} /> */}
-          <section className="px-4 w-full md:px-32 bg-white py-4 md:h-full ">
+           <section className="px-4 w-full md:px-32 bg-white py-4 md:h-full ">
             <Services services={document.fins_relatedServices} />
           </section>
         </>
