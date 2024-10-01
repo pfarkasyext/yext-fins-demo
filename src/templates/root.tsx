@@ -1,6 +1,15 @@
-import PageLayout from "../components/PageLayout";
- import DirectoryRootGrid from "../components/DirectoryRootGrid";
+ 
 import Favicon from "../assets/images/yext-favicon.ico";
+import "@fontsource/lato/100.css";
+import "@fontsource/lato/300.css";
+import "@fontsource/lato/400.css";
+import "@fontsource/lato/700.css";
+import "@fontsource/lato/900.css";
+import "@fontsource/lato/100-italic.css";
+import "@fontsource/lato/300-italic.css";
+import "@fontsource/lato/400-italic.css";
+import "@fontsource/lato/700-italic.css";
+import "@fontsource/lato/900-italic.css";
 import "../index.css";
 import {
   Template,
@@ -12,7 +21,9 @@ import {
   HeadConfig,
 } from "@yext/pages";
 import DirectoryHero from "../components/Directory/DirectoryHero";
-
+import DirectoryRootGrid from "../components/DirectoryRootGrid";
+import PageLayout from "../components/PageLayout";
+ 
 export const config: TemplateConfig = {
   stream: {
     $id: "root-stream",
@@ -25,14 +36,13 @@ export const config: TemplateConfig = {
       "meta",
       "name",
       "slug",
-      // These fields will be used in Module 5 of the Hitchhikers Pages Track: https://hitchhikers.yext.com/tracks/pages-development/pgs605-create-directory/01-yext-directory-manager/
-      // "dm_directoryChildren.name",
-      // "dm_directoryChildren.slug",
-      // "dm_directoryChildren.c_addressRegionDisplayName",
-      // "dm_directoryChildren.dm_childEntityIds",
+      "dm_directoryChildren.name",
+      "dm_directoryChildren.slug",
+      "dm_directoryChildren.c_addressRegionDisplayName",
+      "dm_directoryChildren.dm_childEntityIds",
     ],
     localization: {
-      locales: ["en"],
+      locales: ["en"] 
     },
   },
 };
@@ -52,8 +62,7 @@ export const getHeadConfig: GetHeadConfig<
       {
         type: "meta",
         attributes: {
-          description:
-            "This is a description for the Turtlehead Tacos directory home page.",
+          description: "",
         },
       },
       {
@@ -70,15 +79,14 @@ export const getHeadConfig: GetHeadConfig<
 
 const Index: Template<TemplateRenderProps> = ({
   relativePrefixToRoot,
-  document,
-  __meta,
+  document,__meta
 }) => {
   const { dm_directoryChildren } = document;
 
   return (
     <>
-      <PageLayout templateData={{ __meta, document }}>
-      <DirectoryHero pageTitle={"Capital Bank Directory"} />
+    <PageLayout templateData={{ __meta, document }}>
+    <DirectoryHero pageTitle={"Capital Bank Directory"} />
         <div className="centered-container">
           <div className="section space-y-14 px-10">
             <DirectoryRootGrid

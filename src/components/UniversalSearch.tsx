@@ -2,6 +2,7 @@ import {
   AppliedFilters,
   DirectAnswer,
   Facets,
+  GenerativeDirectAnswer,
   MapboxMap,
   OnDragHandler,
   Pagination,
@@ -23,16 +24,16 @@ import {
 import { useCallback, useEffect, useState } from "react";
 
 import "mapbox-gl/dist/mapbox-gl.css";
-import MapPin from "./MapPin"; 
+import MapPin from "./MapPin";
 import { LngLat, LngLatBounds } from "mapbox-gl";
- import FaqCard from "./Cards/FaqCard";
+import FaqCard from "./Cards/FaqCard";
 import LocationCard from "./Cards/LocationCard";
 import ProfessionalsCard from "./Cards/ProfessionalsCard";
 import ServicesCard from "./Cards/ServicesCard";
- import NoResults from "./NoResults";
+import NoResults from "./NoResults";
 import SearchLoading from "./SearchLoading";
 import NavBar from "./NavBar";
- import ProductsCard from "./Cards/ProductsCard";
+import ProductsCard from "./Cards/ProductsCard";
 import DocumentsCard from "./Cards/DocumentsCard";
 import Icon from "./Icon";
 export default function UniversalSearch() {
@@ -313,6 +314,7 @@ export default function UniversalSearch() {
                       }}
                     />
                     <DirectAnswer />
+                    {/* <GenerativeDirectAnswer /> */}
 
                     <UniversalResults
                       customCssClasses={{
@@ -366,7 +368,7 @@ export default function UniversalSearch() {
                                 FAQs
                               </h2>
                               <div className="mb-8">
-                              {results.map((r, i) => (
+                                {results.map((r, i) => (
                                   <FaqCard key={i} result={r} />
                                 ))}
                               </div>
@@ -384,7 +386,7 @@ export default function UniversalSearch() {
                                 Services
                               </h2>
                               <div className="grid grid-cols-1 gap-x-6 pb-8 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
-                                {results.map((r,i) => (
+                                {results.map((r, i) => (
                                   <ServicesCard key={i} result={r} />
                                 ))}
                               </div>
@@ -439,15 +441,13 @@ export default function UniversalSearch() {
               ) : verticalResultCount && verticalResultCount > 0 ? (
                 <>
                   <div
-                    className={`flex static mt-4 ${
-                      isLoc ? "flex-col" : "flex-row"
-                    }`}
+                    className={`flex static mt-4 ${isLoc ? "flex-col" : "flex-row"
+                      }`}
                   >
                     {facetsPresent && facetsPresent.length >= 1 && (
                       <div
-                        className={`${
-                          isLoc ? `w-full  mb-6` : `w-[15rem] mr-5  mb-6`
-                        }`}
+                        className={`${isLoc ? `w-full  mb-6` : `w-[15rem] mr-5  mb-6`
+                          }`}
                       >
                         {isLoc ? (
                           <>
@@ -538,11 +538,10 @@ export default function UniversalSearch() {
                       </div>
                     )}
                     <div
-                      className={`${
-                        facetsPresent && facetsPresent.length >= 1
-                          ? "flex-grow"
-                          : "w-full"
-                      }`}
+                      className={`${facetsPresent && facetsPresent.length >= 1
+                        ? "flex-grow"
+                        : "w-full"
+                        }`}
                     >
                       <div className="flex flex-col items-baseline">
                         <ResultsCount />
@@ -556,11 +555,10 @@ export default function UniversalSearch() {
                       {isLoc ? (
                         <div className="flex gap-2">
                           <div
-                            className={`${
-                              vertical === "locations"
-                                ? ` w-2/5 md:overflow-scroll md:h-[800px]`
-                                : ` w-2/4 md:overflow-scroll md:h-[800px]`
-                            }`}
+                            className={`${vertical === "locations"
+                              ? ` w-2/5 md:overflow-scroll md:h-[800px]`
+                              : ` w-2/4 md:overflow-scroll md:h-[800px]`
+                              }`}
                           >
                             <VerticalResults
                               customCssClasses={{
@@ -571,11 +569,10 @@ export default function UniversalSearch() {
                             />
                           </div>
                           <div
-                            className={`${
-                              vertical === "locations"
-                                ? `relative w-3/5 md:overflow-scroll`
-                                : `relative w-2/4 md:overflow-scroll`
-                            }`}
+                            className={`${vertical === "locations"
+                              ? `relative w-3/5 md:overflow-scroll`
+                              : `relative w-2/4 md:overflow-scroll`
+                              }`}
                           >
                             <MapboxMap
                               mapboxOptions={{ zoom: 4 }}
