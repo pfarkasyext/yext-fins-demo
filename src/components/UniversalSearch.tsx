@@ -313,8 +313,7 @@ export default function UniversalSearch() {
                           "font-sans-bold text-lg mb-0 p-0",
                       }}
                     />
-                    <DirectAnswer />
-                    {/* <GenerativeDirectAnswer /> */}
+                    {YEXT_PUBLIC_ANSWER_TYPE === 'Generative' ? <GenerativeDirectAnswer /> : <DirectAnswer />}
 
                     <UniversalResults
                       customCssClasses={{
