@@ -5,11 +5,19 @@ import {
   DialogTitle,
 } from "@headlessui/react";
 import { StarIcon } from "@heroicons/react/20/solid";
-import { useEffect, useState } from "react";
-
+import {
+  useEffect,
+  useMemo,
+  useState,
+  useCallback,
+  lazy,
+  Suspense,
+} from "react";
 import { Address } from "@yext/types";
-import CollectFeedback from "./CollectFeedback";
 import { BiCross } from "react-icons/bi";
+import { twMerge } from "tailwind-merge";
+import SearchLoading from "./SearchLoading";
+import useDebouncedFunction from "../common/useDebouncedFunction";
 
 export interface ReviewsRoot {
   meta: Meta;
@@ -49,67 +57,62 @@ export interface Review {
   apiIdentifier: string;
   reviewLabels?: ReviewLabel[];
 }
+
 interface RatingCount {
   rating: number;
   count: number;
 }
+
 export interface ReviewLabel {
   id: number;
   name: string;
 }
+
 interface ReviewsProps {
   entityId: string;
   name: string;
   address: Address;
 }
-function classNames(...classes: any) {
-  return classes.filter(Boolean).join(" ");
-}
+
+const CollectFeedback = lazy(() => import("./CollectFeedback"));
 
 export default function Reviews({ entityId, name, address }: ReviewsProps) {
   const [reviews, setReviews] = useState<ReviewsRoot>();
-  const [ratingCounts, setRatingCounts] = useState<RatingCount[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const reviewsPerPage = 5; // Number of reviews per page
+  const reviewsPerPage = 5;
   const [open, setOpen] = useState(false);
-  const handleCloseModal = () => {
-    setOpen(false); // Close modal on successful feedback submission
-  };
+
+  const handleCloseModal = useCallback(() => {
+    setOpen(false);
+  }, []);
+
   useEffect(() => {
+    if (!entityId) return;
+
     fetch(`/api/fetchReviews?entityId=${entityId}`)
       .then((res) => res.json())
       .then((reviewsData) => {
         setReviews(reviewsData);
       })
       .catch((err) => console.log(JSON.stringify(err)));
-  }, []);
+  }, [entityId]);
 
-  useEffect(() => {
-    if (reviews && reviews.response.reviews.length > 0) {
-      const calculateRatingCounts = () => {
-        const ratingMap: { [key: number]: number } = {};
+  // Memoized rating counts calculation
+  const ratingCountsMemo = useMemo(() => {
+    if (!reviews) return [];
 
-        reviews?.response.reviews.forEach((review) => {
-          if (ratingMap[review.rating]) {
-            ratingMap[review.rating]++;
-          } else {
-            ratingMap[review.rating] = 1;
-          }
-        });
+    const ratingMap: { [key: number]: number } = {};
+    reviews.response.reviews.forEach((review) => {
+      ratingMap[review.rating] = (ratingMap[review.rating] || 0) + 1;
+    });
 
-        const counts: RatingCount[] = [
-          { rating: 5, count: ratingMap[5] || 0 },
-          { rating: 4, count: ratingMap[4] || 0 },
-          { rating: 3, count: ratingMap[3] || 0 },
-          { rating: 2, count: ratingMap[2] || 0 },
-          { rating: 1, count: ratingMap[1] || 0 },
-        ];
-
-        setRatingCounts(counts);
-      };
-
-      calculateRatingCounts();
-    }
+    return [
+      { rating: 5, count: ratingMap[5] || 0 },
+      { rating: 4, count: ratingMap[4] || 0 },
+      { rating: 3, count: ratingMap[3] || 0 },
+      { rating: 2, count: ratingMap[2] || 0 },
+      { rating: 1, count: ratingMap[1] || 0 },
+    ];
   }, [reviews]);
 
   // Pagination logic
@@ -123,21 +126,27 @@ export default function Reviews({ entityId, name, address }: ReviewsProps) {
     ? Math.ceil(reviews.response.reviews.length / reviewsPerPage)
     : 1;
 
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
+  const handleNextPage = useCallback(
+    useDebouncedFunction(() => {
+      if (currentPage < totalPages) {
+        setCurrentPage((prev) => prev + 1);
+      }
+    }, 300),
+    [currentPage, totalPages]
+  );
 
-  const handlePrevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
+  const handlePrevPage = useCallback(
+    useDebouncedFunction(() => {
+      if (currentPage > 1) {
+        setCurrentPage((prev) => prev - 1);
+      }
+    }, 300),
+    [currentPage]
+  );
 
   return (
     <>
-      {reviews && (
+      {reviews ? (
         <div className="bg-white">
           <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-12 lg:gap-x-8 lg:px-8 lg:py-32">
             <div className="lg:col-span-4">
@@ -152,7 +161,7 @@ export default function Reviews({ entityId, name, address }: ReviewsProps) {
                       <StarIcon
                         key={rating}
                         aria-hidden="true"
-                        className={classNames(
+                        className={twMerge(
                           reviews.response.averageRating > rating
                             ? "text-yellow-400"
                             : "text-gray-300",
@@ -174,7 +183,7 @@ export default function Reviews({ entityId, name, address }: ReviewsProps) {
                 <h3 className="sr-only">Review data</h3>
 
                 <dl className="space-y-3">
-                  {ratingCounts.map((count) => (
+                  {ratingCountsMemo.map((count) => (
                     <div
                       key={count.rating}
                       className="flex items-center text-sm"
@@ -190,14 +199,13 @@ export default function Reviews({ entityId, name, address }: ReviewsProps) {
                         >
                           <StarIcon
                             aria-hidden="true"
-                            className={classNames(
+                            className={twMerge(
                               count.count > 0
                                 ? "text-yellow-400"
                                 : "text-gray-300",
                               "h-5 w-5 flex-shrink-0"
                             )}
                           />
-
                           <div className="relative ml-3 flex-1">
                             <div className="h-3 rounded-full border border-gray-200 bg-gray-100" />
                             {count.count > 0 ? (
@@ -244,18 +252,20 @@ export default function Reviews({ entityId, name, address }: ReviewsProps) {
               <h3 className="sr-only">Recent reviews</h3>
 
               <div className="flow-root">
-                <div className="-my-12 divide-y divide-gray-200 ">
+                <div className="-my-12 divide-y divide-gray-200">
                   {currentReviews.map((review) => (
                     <div key={review.id} className="py-4">
                       <div className="flex flex-col gap-2">
                         <div className="ml-4 flex flex-col gap-2">
-                          <div className=" flex items-center text-sm gap-2">
+                          <div className="flex items-center text-sm gap-2">
                             <h3 className="text-sm font-bold text-gray-900">
                               {review.authorName}
                             </h3>
                             <time
-                              dateTime={review.publisherDate.toLocaleString()}
-                              className=" border-l border-gray-200 pl-4 text-gray-500"
+                              dateTime={new Date(
+                                review.publisherDate
+                              ).toLocaleString()}
+                              className="border-l border-gray-200 pl-4 text-gray-500"
                             >
                               {new Date(review.publisherDate).toDateString()}
                             </time>
@@ -265,7 +275,7 @@ export default function Reviews({ entityId, name, address }: ReviewsProps) {
                               <StarIcon
                                 key={rating}
                                 aria-hidden="true"
-                                className={classNames(
+                                className={twMerge(
                                   review.rating > rating
                                     ? "text-yellow-400"
                                     : "text-gray-300",
@@ -300,7 +310,7 @@ export default function Reviews({ entityId, name, address }: ReviewsProps) {
                   <button
                     onClick={handlePrevPage}
                     disabled={currentPage === 1}
-                    className={classNames(
+                    className={twMerge(
                       currentPage === 1
                         ? "cursor-not-allowed opacity-50"
                         : "hover:bg-gray-100",
@@ -317,7 +327,7 @@ export default function Reviews({ entityId, name, address }: ReviewsProps) {
                   <button
                     onClick={handleNextPage}
                     disabled={currentPage === totalPages}
-                    className={classNames(
+                    className={twMerge(
                       currentPage === totalPages
                         ? "cursor-not-allowed opacity-50"
                         : "hover:bg-gray-100",
@@ -331,19 +341,21 @@ export default function Reviews({ entityId, name, address }: ReviewsProps) {
             </div>
           </div>
         </div>
+      ) : (
+        <SearchLoading />
       )}
 
       <Dialog open={open} onClose={setOpen} className="relative z-10">
         <DialogBackdrop
           transition
-          className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in"
+          className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
         />
 
         <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-          <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+          <div className="flex min-h-full items-end justify-center p-4 sm:p-6 text-center sm:items-center">
             <DialogPanel
               transition
-              className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 sm:w-full sm:max-w-sm sm:p-6 data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95"
+              className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 sm:pt-6 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm"
             >
               <div>
                 <div
@@ -355,20 +367,17 @@ export default function Reviews({ entityId, name, address }: ReviewsProps) {
                 <div className="mt-3 text-center sm:mt-5">
                   <DialogTitle
                     as="h3"
-                    className="text-base space-y-4 leading-6  "
+                    className="text-lg sm:text-xl leading-6 font-medium text-gray-900"
                   >
-                    <p className="text-xl">We Value Your Feedback</p>
-                    <p>{name}</p>
-                    <p>
-                      {address.line1}, {address.city}, {address.region}
-                      {address.postalCode}
-                    </p>
+                    We Value Your Feedback
                   </DialogTitle>
                   <div className="mt-2 text-gray-500 text-start">
-                    <CollectFeedback
-                      onSubmitSuccess={handleCloseModal}
-                      entityId={entityId}
-                    />
+                    <Suspense fallback={<div>Loading feedback...</div>}>
+                      <CollectFeedback
+                        onSubmitSuccess={handleCloseModal}
+                        entityId={entityId}
+                      />
+                    </Suspense>
                   </div>
                 </div>
               </div>
