@@ -1,4 +1,3 @@
-import { Button } from "@headlessui/react";
 import Carousel from "./Carousel";
 
 type ServiceProps = {
@@ -78,12 +77,12 @@ export default function Services({ services }: ServicesProps) {
           </div>
         </div>
       </div>
-      <div className="block md:hidden h-[500px]">
+      {/* <div className="block md:hidden h-[500px]">
         <h2 className="font-bold text-4xl text-center text-brand-blue">
           Our Services
         </h2>
         <Carousel services={services}></Carousel>
-      </div>
+      </div> */}
     </>
   );
 }
