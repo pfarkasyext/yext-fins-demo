@@ -10,13 +10,14 @@ export default defineConfig({
     },
   },
   ssr: {
+    external: ["react-slick", "slick-carousel"],
     noExternal: [
       "@yext/search-headless-react",
       "@yext/search-ui-react",
       "mapbox-gl",
       "@types/mapbox-gl",
       "react-slick",
-      "slick-carousel"
+      "slick-carousel",
     ],
   },
 });

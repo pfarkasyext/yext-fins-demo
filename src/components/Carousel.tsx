@@ -2,7 +2,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { ServiceCard } from "./Services";
- 
+
 export type ServiceProps = {
   name: string;
   c_serviceDescription: string;
@@ -12,6 +12,8 @@ export type ServiceProps = {
 interface ServicesProps {
   services: ServiceProps[];
 }
+// @ts-ignore
+const SliderComponent = typeof window === 'undefined' ? Slider.default : Slider;
 
 const Carousel = ({ services }: ServicesProps) => {
   const settings = {
@@ -49,12 +51,12 @@ const Carousel = ({ services }: ServicesProps) => {
     ],
   };
   return (
-    <Slider {...settings}>
+    <SliderComponent {...settings}>
       {services &&
         services.map((item: ServiceProps, index: any) => (
           <ServiceCard service={item} key={index} />
         ))}
-    </Slider>
+    </SliderComponent>
   );
 };
 
