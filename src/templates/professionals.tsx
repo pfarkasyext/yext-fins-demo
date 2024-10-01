@@ -58,10 +58,10 @@ export const config: TemplateConfig = {
     ],
   },
 };
-export const getPath  = ({ document }:TemplateRenderProps) => {
+export const getPath = ({ document }: TemplateRenderProps) => {
   return document.slug ?? document.id.toString();
 };
-export const getHeadConfig = ({ document }:TemplateRenderProps): HeadConfig => {
+export const getHeadConfig = ({ document }: TemplateRenderProps): HeadConfig => {
   return {
     title: `${document.name} | Professional`,
     charset: "UTF-8",
@@ -77,11 +77,11 @@ export const getHeadConfig = ({ document }:TemplateRenderProps): HeadConfig => {
     ],
   };
 };
-const Professional:Template<TemplateRenderProps> = ({
+const Professional: Template<TemplateRenderProps> = ({
   relativePrefixToRoot,
   document,
   __meta,
-}:TemplateRenderProps) => {  
+}: TemplateRenderProps) => {
   const [isSubNavOpen, setIsSubNavOpen] = useState<boolean>(false);
 
   const mappinSVG = (
@@ -126,7 +126,7 @@ const Professional:Template<TemplateRenderProps> = ({
     },
   ];
   return (
- <PageLayout templateData={{ __meta, document }}>
+    <PageLayout templateData={{ __meta, document }}>
 
       <ProfessionalOrLocationHero
         title={document.name}
@@ -140,15 +140,15 @@ const Professional:Template<TemplateRenderProps> = ({
         isProfessional={true}
       />
       <InpageNav navItems={InPageNavItems}></InpageNav>
-      <div className="bg-[#F9FAFB] md:text-center w-full"> 
-         <div className="max-w-5xl flex flex-col md:justify-center px-5 md:px-10 w-full mx-auto">
+      <div className="bg-[#F9FAFB] md:text-center w-full">
+        <div className="max-w-5xl flex flex-col md:justify-center px-5 md:px-10 w-full mx-auto">
           <a id="about"></a>
           <h1 className="text-2xl md:text-4xl font-medium mt-8 mb-4 text-[#1C2E5E] mx-auto">About {document.name}</h1>
           <p className="mb-10">{document.c_fPBio}</p>
-          
+
         </div>
-        </div>
-    
+      </div>
+
       {document.c_linkedInsightsArticles && (
         <>
           <a id="insights"></a>
@@ -163,14 +163,14 @@ const Professional:Template<TemplateRenderProps> = ({
         entityId={document.id}
         address={document.address}
         name={document.name}
-      />    
-        <div className="bg-[#F9FAFB] text-center w-full"> 
-       <LetsTalk
-        description={document.description}
-        emails={document.emails[0]}
-        formattedPhone={document.mainPhone}
-        geocodedCoordinate={document.geocodedCoordinate}
-      /></div>
+      />
+      <div className="bg-[#F9FAFB] text-center w-full">
+        <LetsTalk
+          description={document.description}
+          emails={document.emails[0]}
+          formattedPhone={document.mainPhone}
+          geocodedCoordinate={document.geocodedCoordinate}
+        /></div>
     </PageLayout>
   );
 };

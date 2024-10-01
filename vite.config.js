@@ -16,6 +16,7 @@ export default defineConfig({
       "mapbox-gl",
       "@types/mapbox-gl",
       "react-slick",
+      "slick-carousel"
     ],
   },
 });
