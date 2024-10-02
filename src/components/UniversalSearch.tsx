@@ -555,8 +555,8 @@ export default function UniversalSearch() {
                         <div className="flex gap-2">
                           <div
                             className={`${vertical === "locations"
-                              ? ` w-2/5 md:overflow-scroll md:h-[800px]`
-                              : ` w-2/4 md:overflow-scroll md:h-[800px]`
+                              ? `w-full md:w-2/5 md:overflow-scroll md:h-[800px]`
+                              : `w-full md:w-2/4 md:overflow-scroll md:h-[800px]`
                               }`}
                           >
                             <VerticalResults
@@ -569,8 +569,8 @@ export default function UniversalSearch() {
                           </div>
                           <div
                             className={`${vertical === "locations"
-                              ? `relative w-3/5 md:overflow-scroll`
-                              : `relative w-2/4 md:overflow-scroll`
+                              ? `relative md:w-3/5 md:overflow-scroll hidden md:block`
+                              : `relative md:w-2/4 md:overflow-scroll hidden md:block`
                               }`}
                           >
                             <MapboxMap
