@@ -1,4 +1,4 @@
-import { Transition, Dialog } from "@headlessui/react";
+import { Transition, Dialog, DialogPanel } from "@headlessui/react";
 import { useState, Fragment } from "react";
 import { XMarkIcon, ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { ComplexImageType, Image } from "@yext/pages-components";
@@ -48,9 +48,9 @@ const MobileMenu = ({ category, open, setOpen, logo }: MobileMenuProps) => {
   };
 
   return (
-    <Transition.Root show={open} as={Fragment}>
+    <Transition show={open} as={Fragment}>
       <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>
-        <Transition.Child
+        <Transition
           as={Fragment}
           enter="transition-opacity ease-linear duration-300"
           enterFrom="opacity-0"
@@ -60,10 +60,10 @@ const MobileMenu = ({ category, open, setOpen, logo }: MobileMenuProps) => {
           leaveTo="opacity-0"
         >
           <div className="fixed inset-0 bg-black bg-opacity-25" />
-        </Transition.Child>
+        </Transition>
 
         <div className="fixed inset-0 z-40 flex">
-          <Transition.Child
+          <Transition
             as={Fragment}
             enter="transition ease-in-out duration-300 transform"
             enterFrom="-translate-x-full"
@@ -72,11 +72,11 @@ const MobileMenu = ({ category, open, setOpen, logo }: MobileMenuProps) => {
             leaveFrom="translate-x-0"
             leaveTo="-translate-x-full"
           >
-            <Dialog.Panel className="relative flex w-full max-w-sm flex-col overflow-y-auto bg-white pb-12 shadow-xl">
+            <DialogPanel className="relative flex w-full max-w-sm flex-col overflow-y-auto bg-white pb-12 shadow-xl">
               <div className="flex pt-5 pb-2 ">
                 <button
                   type="button"
-                  className="  w-full inline-flex items-center justify-between rounded-md p-2 text-gray-400"
+                  className="w-full inline-flex items-center justify-between rounded-md p-2 text-gray-400"
                   onClick={() => setOpen(false)}
                 >
                   <span className="sr-only">Close menu</span>
@@ -86,7 +86,7 @@ const MobileMenu = ({ category, open, setOpen, logo }: MobileMenuProps) => {
               </div>
               {previousCategories.length > 0 && (
                 <button type="button" onClick={handleBackClick}>
-                  <ChevronLeftIcon className="h-4 w-6 " />
+                  <ChevronLeftIcon className="h-4 w-6 my-4" />
                 </button>
               )}
               {currentCategory &&
@@ -107,11 +107,11 @@ const MobileMenu = ({ category, open, setOpen, logo }: MobileMenuProps) => {
                     ></MobileSubmenu>
                   </Transition>
                 ))}
-            </Dialog.Panel>
-          </Transition.Child>
+            </DialogPanel>
+          </Transition>
         </div>
       </Dialog>
-    </Transition.Root>
+    </Transition>
   );
 };
 

@@ -3,9 +3,9 @@ import { Bars3Icon } from "@heroicons/react/24/outline";
 
 import { SearchBar } from "@yext/search-ui-react";
 import { useEffect } from "react";
-import { MobileMenu } from "./MobileMenu";
 import NavMenu from "./NavMenu";
 import { Image } from "@yext/pages-components";
+import { MobileMenu } from "./MobileMenu";
 
 const Header = ({ _site }: any) => {
   const data = _site;
@@ -47,7 +47,7 @@ const Header = ({ _site }: any) => {
           />
         </div>
         <nav
-          className="mx-auto flex gap-x-4 items-center w-full mb-4  "
+          className="mx-auto flex gap-x-4 items-center w-full   "
           aria-label="Global"
         >
           <div className=" hidden lg:flex">
@@ -56,7 +56,7 @@ const Header = ({ _site }: any) => {
               <Image image={data.c_headerLogo} />
             </a>
           </div>
-          <div className="flex lg:hidden w-full py-4 px-2">
+          <div className="flex items-center lg:hidden w-full py-4 px-2">
             <button
               type="button"
               className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
@@ -69,10 +69,11 @@ const Header = ({ _site }: any) => {
                 onClick={() => setMobileMenuOpen(true)}
               />
             </button>
-            <div className="flex mx-auto">
-              <a href="/index.html" className="-m-1.5 p-1.5">
+            <div className="w-full justify-center flex mx-auto">
+              <a href="/index.html" className="-m-1.5 p-1.5 h-10">
                 <span className="sr-only">Capital Wealth Management</span>
-                <Image image={data.c_headerLogo} />
+                <Image image={data.c_headerLogo} className="!max-w-none !w-full !h-full" />
+
               </a>
             </div>
           </div>
